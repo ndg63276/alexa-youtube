@@ -4,6 +4,8 @@ from googleapiclient.discovery import build
 from pytube import YouTube
 import logging
 from random import shuffle, randint
+from botocore.vendored import requests
+import json
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 DEVELOPER_KEY=environ['DEVELOPER_KEY']
 YOUTUBE_API_SERVICE_NAME = 'youtube'
@@ -186,7 +188,15 @@ def on_intent(event):
     # Dispatch to your skill's intent handlers
     if intent_name == "SearchIntent":
         return search(intent, session)
+    elif intent_name == "PlaylistIntent":
+        return search(intent, session)
+    elif intent_name == "ChannelIntent":
+        return search(intent, session)
     elif intent_name == "ShuffleIntent":
+        return search(intent, session, shuffle_mode=True)
+    elif intent_name == "ShufflePlaylistIntent":
+        return search(intent, session, shuffle_mode=True)
+    elif intent_name == "ShuffleChannelIntent":
         return search(intent, session, shuffle_mode=True)
     elif intent_name == "AMAZON.HelpIntent":
         return get_help()
@@ -250,7 +260,7 @@ def illegal_action():
 def do_nothing():
     return build_response({})
 
-def youtube_search(query):
+def video_search(query):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
@@ -261,6 +271,48 @@ def youtube_search(query):
     videos = []
     for search_result in search_response.get('items', []):
         videos.append(search_result['id']['videoId'])
+    return videos
+
+def playlist_search(query):
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+    search_response = youtube.search().list(
+        q=query,
+        part='id,snippet',
+        maxResults=25,
+        type='playlist'
+        ).execute()
+    playlist_id = search_response.get('items')[0]['id']['playlistId']
+    videos = []
+    data={'nextPageToken':''}
+    while 'nextPageToken' in data and len(videos) < 25:
+        next_page_token = data['nextPageToken']
+        data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/playlistItems?pageToken={}&part=snippet&playlistId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
+        for item in data['items']:
+            try:
+                videos.append(item['snippet']['resourceId']['videoId'])
+            except:
+                pass
+    return videos
+
+def channel_search(query):
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+    search_response = youtube.search().list(
+        q=query,
+        part='id,snippet',
+        maxResults=25,
+        type='channel'
+        ).execute()
+    playlist_id = search_response.get('items')[0]['id']['channelId']
+    data={'nextPageToken':''}
+    videos = []
+    while 'nextPageToken' in data and len(videos) < 25:
+        next_page_token = data['nextPageToken']
+        data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/search?pageToken={}&part=snippet&channelId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
+        for item in data['items']:
+            try:
+                videos.append(item['id']['videoId'])
+            except:
+                pass
     return videos
 
 def get_url_and_title(id):
@@ -278,7 +330,13 @@ def search(intent, session, shuffle_mode=False):
     query = intent['slots']['query']['value']
     should_end_session = True
     print('Looking for: ' + query)
-    videos = youtube_search(query)
+    intent_name = intent['name']
+    if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent":
+        videos = playlist_search(query)
+    elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
+        videos = channel_search(query)
+    else:
+        videos = video_search(query)
     if shuffle_mode:
         shuffle(videos)
     next_url = None
@@ -375,6 +433,7 @@ def get_next_url_and_token(current_token, skip):
     next_url = None
     title = None
     shuffle_mode = int(playlist['s'])
+    loop_mode = int(playlist['l'])
     next_playing = int(playlist['p'])
     number_of_videos = sum('v' in i for i in playlist.keys())
     while next_url is None:
@@ -382,6 +441,11 @@ def get_next_url_and_token(current_token, skip):
         if shuffle_mode and skip != 0:
             next_playing = randint(1,number_of_videos)
         if next_playing < 0:
+            if loop_mode:
+                next_playing = number_of_videos - 1
+            else:
+                next_playing = 0
+        if next_playing >= number_of_videos and loop_mode:
             next_playing = 0
         next_key = 'v'+str(next_playing)
         if next_key not in playlist:
