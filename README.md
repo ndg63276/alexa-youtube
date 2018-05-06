@@ -2,7 +2,7 @@
 **Unofficial YouTube skill for Alexa**
 
 ## Features
-* Play audio (currently no video) form YouTube videos
+* Play audio (currently no video) from YouTube videos
 * Live videos are supported as much as possible
 
 ## Skill Commands
@@ -43,3 +43,6 @@ arn:aws:lambda:eu-west-1:175548706300:function:YouTube
 16. Move the slider at the top left so that it says "Test is enabled for this skill".
 
 That's it!
+
+## Deploying yourself (optional, advanced)
+This skill currently runs on my Lambda instance, hopefully it won't get too popular. If you want to, and know how, you can deploy it on your own Lambda, you just need the lambda_function.zip file, and a YouTube developer key. Upload the zip file to Lambda, add the environment variable DEVELOPER_KEY, and change the endpoint of your skill. If you do so, and don't mind some other people using your lambda instance, let me know and I'll put your ARN here.
