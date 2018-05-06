@@ -32,6 +32,8 @@
                         }
                     ],
                     "samples": [
+                        "play music by {query}",
+                        "play songs by {query}",
                         "play videos by {query}",
                         "search for {query}",
                         "Play {query}"
@@ -46,7 +48,73 @@
                         }
                     ],
                     "samples": [
+                        "shuffle {query}",
+                        "shuffle songs by {query}",
+                        "shuffle music by {query}",
                         "shuffle videos by {query}"
+                    ]
+                },
+                {
+                    "name": "PlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Start playlist {query}",
+                        "Listen to playlist {query}",
+                        "Play playlist {query}"
+                    ]
+                },
+                {
+                    "name": "ShufflePlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Shuffle playlist {query}"
+                    ]
+                },
+                {
+                    "name": "ChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Listen to channel {query}",
+                        "Start channel {query} ",
+                        "Play channel {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Shuffle channel {query}"
+                    ]
+                },
+                {
+                    "name": "NowPlayingIntent",
+                    "slots": [],
+                    "samples": [
+                        "Who is this",
+                        "What video is playing",
+                        "What song is playing",
+                        "What is this",
+                        "What is playing"
                     ]
                 }
             ],
