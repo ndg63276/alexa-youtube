@@ -7,6 +7,7 @@ from random import shuffle, randint
 from botocore.vendored import requests
 import json
 import urllib
+from time import time
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 DEVELOPER_KEY=environ['DEVELOPER_KEY']
 YOUTUBE_API_SERVICE_NAME = 'youtube'
@@ -160,10 +161,10 @@ def build_short_speechlet_response(output, should_end_session):
     }
 
 
-def build_response(speechlet_response):
+def build_response(speechlet_response, sessionAttributes={}):
     return {
         'version': '1.0',
-        'sessionAttributes': {},
+        'sessionAttributes': sessionAttributes,
         'response': speechlet_response
     }
 
@@ -171,7 +172,6 @@ def build_response(speechlet_response):
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
-    print(event)
     if event['request']['type'] == "LaunchRequest":
         return get_welcome_response()
     elif event['request']['type'] == "IntentRequest":
@@ -196,11 +196,15 @@ def on_intent(event):
     elif intent_name == "ChannelIntent":
         return search(intent, session)
     elif intent_name == "ShuffleIntent":
-        return search(intent, session, shuffle_mode=True)
+        return search(intent, session)
     elif intent_name == "ShufflePlaylistIntent":
-        return search(intent, session, shuffle_mode=True)
+        return search(intent, session)
     elif intent_name == "ShuffleChannelIntent":
-        return search(intent, session, shuffle_mode=True)
+        return search(intent, session)
+    elif intent_name == "AMAZON.YesIntent":
+        return yes_intent(session)
+    elif intent_name == "AMAZON.NoIntent":
+        return do_nothing()
     elif intent_name == "AMAZON.HelpIntent":
         return get_help()
     elif intent_name == "AMAZON.CancelIntent":
@@ -276,16 +280,17 @@ def video_search(query):
         videos.append(search_result['id']['videoId'])
     return videos
 
-def playlist_search(query):
+def playlist_search(query, sr):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
-        maxResults=1,
+        maxResults=10,
         type='playlist'
         ).execute()
-    playlist_id = search_response.get('items')[0]['id']['playlistId']
-    playlist_title = search_response.get('items')[0]['snippet']['title']
+    playlist_id = search_response.get('items')[sr]['id']['playlistId']
+    print('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
+    playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 25:
@@ -298,16 +303,16 @@ def playlist_search(query):
                 pass
     return videos, playlist_title
 
-def channel_search(query):
+def channel_search(query, sr):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
-        maxResults=1,
+        maxResults=10,
         type='channel'
         ).execute()
-    playlist_id = search_response.get('items')[0]['id']['channelId']
-    playlist_title = search_response.get('items')[0]['snippet']['title']
+    playlist_id = search_response.get('items')[sr]['id']['channelId']
+    playlist_title = search_response.get('items')[sr]['snippet']['title']
     data={'nextPageToken':''}
     videos = []
     while 'nextPageToken' in data and len(videos) < 25:
@@ -336,29 +341,52 @@ def get_live_video_url_and_title(id):
     info_url = 'https://www.youtube.com/get_video_info?&video_id='+id
     r = requests.get(info_url)
     info = convert_token_to_dict(r.text)
-    raw_url = info['hlsvp']
-    url = urllib.unquote(raw_url)
-    return url, 'live video'
+    try:
+        raw_url = info['hlsvp']
+        url = urllib.unquote(raw_url)
+        return url, 'live video'
+    except:
+        print('Unable to get hlsvp')
+        return None, None
 
-def search(intent, session, shuffle_mode=False):
+def yes_intent(session):
+    sessionAttributes = session.get('attributes')
+    if not sessionAttributes or 'intent' not in sessionAttributes or 'sr' not in sessionAttributes:
+        return build_response(build_cardless_speechlet_response("Sorry, something's gone wrong", None, True))
+    intent = sessionAttributes['intent']
+    session['attributes']['sr'] = sessionAttributes['sr'] + 1
+    return search(intent, session)
+
+def search(intent, session):
+    startTime = time()
     query = intent['slots']['query']['value']
     should_end_session = True
     print('Looking for: ' + query)
     intent_name = intent['name']
     playlist_title = None
+    sessionAttributes = session.get('attributes')
+    if not sessionAttributes:
+        sessionAttributes={'sr':0, 'intent':intent}
+    sr = sessionAttributes['sr']
     if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent":
-        videos, playlist_title = playlist_search(query)
+        videos, playlist_title = playlist_search(query, sr)
+        playlist_channel_video = 'playlist'
     elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
-        videos, playlist_title = channel_search(query)
+        videos, playlist_title = channel_search(query, sr)
+        playlist_channel_video = 'channel'
     else:
         videos = video_search(query)
-    if shuffle_mode:
-        shuffle(videos)
+        playlist_channel_video = 'video'
     next_url = None
     playlist = {}
-    playlist['s'] = '1' if shuffle_mode else '0'
+    playlist['s'] = '0'
+    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent":
+        shuffle(videos)
+        playlist['s'] = '1'
     playlist['l'] = '0'
     for i,id in enumerate(videos):
+        if playlist_channel_video != 'video' and time() - startTime > 8:
+            return build_response(build_cardless_speechlet_response("The "+playlist_channel_video+" "+playlist_title+" hasn't worked, shall I try the next one?", None, False), sessionAttributes)
         playlist['v'+str(i)]=id
         if next_url is None:
             playlist['p'] = i
