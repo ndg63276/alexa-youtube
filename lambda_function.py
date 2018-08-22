@@ -277,7 +277,8 @@ def video_search(query):
         ).execute()
     videos = []
     for search_result in search_response.get('items', []):
-        videos.append(search_result['id']['videoId'])
+        if 'videoId' in search_result['id']:
+            videos.append(search_result['id']['videoId'])
     return videos
 
 def playlist_search(query, sr):
