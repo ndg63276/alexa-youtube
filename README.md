@@ -3,6 +3,7 @@
 
 ## Updates
 * 2nd June 2018: The skill now handles playlists or channels where none of the videos exist (eg copyrighted deletions). It will now ask you if you want to try the next playlist or channel. If you have already created the skill, you will need to update the Interaction Model json file in your Alexa skill, ie step 7 under Setup Instructions.
+* 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
 
 ## Features
 * Play audio (currently no video) from YouTube videos
