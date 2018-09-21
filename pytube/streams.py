@@ -48,6 +48,7 @@ class Stream(object):
         self.res = None   # resolution (e.g.: 480p, 720p, 1080p)
         self.url = None   # signed download url
 
+        self._filesize = None  # filesize in bytes
         self.mime_type = None  # content identifier (e.g.: video/mp4)
         self.type = None       # the part of the mime before the slash
         self.subtype = None    # the part of the mime after the slash
@@ -159,8 +160,10 @@ class Stream(object):
         :returns:
             Filesize (in bytes) of the stream.
         """
-        headers = request.get(self.url, headers=True)
-        return int(headers['content-length'])
+        if self._filesize is None:
+            headers = request.get(self.url, headers=True)
+            self._filesize = int(headers['content-length'])
+        return self._filesize
 
     @property
     def default_filename(self):
@@ -174,7 +177,7 @@ class Stream(object):
         filename = safe_filename(title)
         return '{filename}.{s.subtype}'.format(filename=filename, s=self)
 
-    def download(self, output_path=None, filename=None):
+    def download(self, output_path=None, filename=None, filename_prefix=None):
         """Write the media stream to disk.
 
         :param output_path:
@@ -185,8 +188,15 @@ class Stream(object):
             (optional) Output filename (stem only) for writing media file.
             If one is not specified, the default filename is used.
         :type filename: str or None
+        :param filename_prefix:
+            (optional) A string that will be prepended to the filename.
+            For example a number in a playlist or the name of a series.
+            If one is not specified, nothing will be prepended
+            This is seperate from filename so you can use the default
+            filename but still add a prefix.
+        :type filename_prefix: str or None
 
-        :rtype: None
+        :rtype: str
 
         """
         output_path = output_path or os.getcwd()
@@ -194,6 +204,13 @@ class Stream(object):
             safe = safe_filename(filename)
             filename = '{filename}.{s.subtype}'.format(filename=safe, s=self)
         filename = filename or self.default_filename
+
+        if filename_prefix:
+            filename = '{prefix}{filename}'\
+                .format(
+                    prefix=safe_filename(filename_prefix),
+                    filename=filename,
+                )
 
         # file path
         fp = os.path.join(output_path, filename)
@@ -210,6 +227,7 @@ class Stream(object):
                 # send to the on_progress callback.
                 self.on_progress(chunk, fh, bytes_remaining)
             self.on_complete(fh)
+        return fp
 
     def stream_to_buffer(self):
         """Write the media stream to buffer
