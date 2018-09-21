@@ -116,6 +116,14 @@
                         "What is this",
                         "What is playing"
                     ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
                 }
             ],
             "types": []
