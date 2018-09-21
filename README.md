@@ -1,6 +1,10 @@
 # alexa-youtube
 **Unofficial YouTube skill for Alexa**
 
+## Updates
+* 2nd June 2018: The skill now handles playlists or channels where none of the videos exist (eg copyrighted deletions). It will now ask you if you want to try the next playlist or channel. If you have already created the skill, you will need to update the Interaction Model json file in your Alexa skill, ie step 7 under Setup Instructions.
+* 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
+
 ## Features
 * Play audio (currently no video) from YouTube videos
 * Live videos are supported as much as possible
@@ -47,3 +51,4 @@ That's it!
 
 ## Deploying yourself (optional, advanced)
 This skill currently runs on my Lambda instance, hopefully it won't get too popular. If you want to, and know how, you can deploy it on your own Lambda, you just need the lambda_function.zip file, and a YouTube developer key. Upload the zip file to Lambda, add the environment variable DEVELOPER_KEY, and change the endpoint of your skill. If you do so, and don't mind some other people using your lambda instance, let me know and I'll put your ARN here.
+
