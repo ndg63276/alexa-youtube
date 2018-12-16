@@ -9,6 +9,8 @@ import json
 import urllib
 from time import time
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 DEVELOPER_KEY=environ['DEVELOPER_KEY']
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
@@ -177,7 +179,7 @@ def lambda_handler(event, context):
     elif event['request']['type'] == "IntentRequest":
         return on_intent(event)
     elif event['request']['type'] == "SessionEndedRequest":
-        print("on_session_ended")
+        logger.info("on_session_ended")
     elif event['request']['type'].startswith('AudioPlayer'):
         return handle_playback(event)
         
@@ -290,7 +292,7 @@ def playlist_search(query, sr):
         type='playlist'
         ).execute()
     playlist_id = search_response.get('items')[sr]['id']['playlistId']
-    print('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
+    logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
     data={'nextPageToken':''}
@@ -327,18 +329,18 @@ def channel_search(query, sr):
     return videos, playlist_title
 
 def get_url_and_title(id):
-    print('Getting url for https://www.youtube.com/watch?v='+id)
+    logger.info('Getting url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id)
         first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
-        print(first_stream.url)
+        logger.info(first_stream.url)
         return first_stream.url, yt.title
     except:
-        print('Unable to get URL for '+id)
+        logger.info('Unable to get URL for '+id)
         return get_live_video_url_and_title(id)
 
 def get_live_video_url_and_title(id):
-    print('Live video?')
+    logger.info('Live video?')
     info_url = 'https://www.youtube.com/get_video_info?&video_id='+id
     r = requests.get(info_url)
     info = convert_token_to_dict(r.text)
@@ -347,7 +349,7 @@ def get_live_video_url_and_title(id):
         url = urllib.unquote(raw_url)
         return url, 'live video'
     except:
-        print('Unable to get hlsvp')
+        logger.info('Unable to get hlsvp')
         return None, None
 
 def yes_intent(session):
@@ -362,7 +364,7 @@ def search(intent, session):
     startTime = time()
     query = intent['slots']['query']['value']
     should_end_session = True
-    print('Looking for: ' + query)
+    logger.info('Looking for: ' + query)
     intent_name = intent['name']
     playlist_title = None
     sessionAttributes = session.get('attributes')
@@ -415,10 +417,10 @@ def nearly_finished(event):
     return build_response(build_audio_enqueue_response(should_end_session, next_url, current_token, next_token))
 
 def skip_action(event, skip):
-    print("event:")
-    print(event)
-    print("context:")
-    print(event['context'])
+    logger.info("event:")
+    logger.info(event)
+    logger.info("context:")
+    logger.info(event['context'])
     should_end_session = True
     current_token = event['context']['AudioPlayer']['token']
     next_url, next_token, title = get_next_url_and_token(current_token, skip)
@@ -522,21 +524,21 @@ def get_next_url_and_token(current_token, skip):
 
 def stopped(event):
     offsetInMilliseconds = event['request']['offsetInMilliseconds']
-    print("Stopped at %s" % offsetInMilliseconds)
+    logger.info("Stopped at %s" % offsetInMilliseconds)
 
 def started(event):
-    print("Started")
+    logger.info("Started")
     token = event['request']['token']
 
 def finished(event):
-    print('finished')
+    logger.info('finished')
     token = event['request']['token']
 
 def failed(event):
-    print("Playback failed")
-    print(event)
+    logger.info("Playback failed")
+    logger.info(event)
     if 'error' in event['request']:
-        print(event['request']['error'])
+        logger.info(event['request']['error'])
     should_end_session = True
     playBehavior = 'REPLACE_ALL'
     current_token = event['request']['token']
