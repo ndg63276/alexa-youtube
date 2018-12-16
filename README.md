@@ -44,8 +44,7 @@ arn:aws:lambda:eu-west-1:175548706300:function:YouTube
 12. Click "Invocation" in the menu on the left.
 13. If you want to call the skill anything other than "youtube", change it here. Click "Save Model" if you change anything.
 14. Click "Build Model". This will take a minute, be patient. It should tell you if it succeeded.
-15. At the top, click "Test".
-16. Move the slider at the top left so that it says "Test is enabled for this skill".
+15. **Important** At the top, click "Test". Where it says "Test is disabled for this skill", change the dropdown from "Off" to "Development". 
 
 That's it!
 
