@@ -31,7 +31,7 @@
 4. Give your skill any name, eg "My YouTube Skill", and click "Next".
 5. Choose "Custom" as your model, and click "Create Skill".
 6. On the left hand side, click "JSON Editor".
-7. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel.json
+7. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or for French, use https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_fr.json)
 8. Click "Save Model" at the top.
 9. Click "Interfaces" in the menu on the left, and enable "Audio Player". Click "Save Interfaces".
 10. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put:
