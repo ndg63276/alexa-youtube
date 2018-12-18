@@ -1,0 +1,132 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "youtube",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SearchIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "jouer la musique de {query}",
+                        "jouer la chanson de {query}",
+                        "jouer la vidéo de {query}",
+                        "rechercher {query}",
+                        "Jouer {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "aléatoire de {query}",
+                        "chanson aléatoire de {query}",
+                        "musique aléatoire de {query}",
+                        "vidéo aléatoire de {query}"
+                    ]
+                },
+                {
+                    "name": "PlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Démarrer la playlist {query}",
+                        "Ecouter la playlist {query}",
+                        "Jouer la playlist {query}"
+                    ]
+                },
+                {
+                    "name": "ShufflePlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Playlist aléatoire {query}"
+                    ]
+                },
+                {
+                    "name": "ChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Ecouter la chaine {query}",
+                        "Démarrer la chaine {query} ",
+                        "Lire la chaine {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Chaine aléatoire {query}"
+                    ]
+                },
+                {
+                    "name": "NowPlayingIntent",
+                    "slots": [],
+                    "samples": [
+                        "Qui est ce",
+                        "Quelle vidéo joue",
+                        "Quelle est cette chanson",
+                        "Qui chante",
+                        "C'est quoi"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}
