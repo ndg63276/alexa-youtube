@@ -482,7 +482,7 @@ def resume(event, say_title = False):
         return get_welcome_response()
     current_token = event['context']['AudioPlayer']['token']
     should_end_session = True
-    speech_output = strings['resume']
+    speech_output = strings['resuming']
     offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
     next_url, next_token, title = get_next_url_and_token(current_token, 0)
     if title is None:
