@@ -218,9 +218,11 @@ def build_response(speechlet_response, sessionAttributes={}):
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
+    global strings
     if event['request']['locale'][0:2] == 'fr':
-        global strings
         strings = strings_fr
+    else:
+        strings = strings_en
     if event['request']['type'] == "LaunchRequest":
         return get_welcome_response()
     elif event['request']['type'] == "IntentRequest":
