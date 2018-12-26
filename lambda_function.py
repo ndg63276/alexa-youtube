@@ -56,6 +56,26 @@ strings_fr = {
 'nowplaying':"Vous écoutez ",
 'nothingplaying':"Il n'y a aucune lecture en cours."
 }
+strings_it = {
+'welcome1':"Benvenuto su YouTube. Dici, per esempio, riproduci i video dei Beatles.",
+'welcome2':"Oppure puoi dire, canzoni casuali di Michael Jackson.",
+'help':"Per esempio dici, riproduci i videi dei Fall out Boy",
+'illegal':"Non puoi fare questo con questa skill.",
+'gonewrong':"Spiacente, qualcosa è andato storto",
+'playlist':"La playlist",
+'channel':"Il canale",
+'video':"Il video",
+'notworked':"non ha funzionato, dovrei provare la prossima?",
+'playing':"Riproduco",
+'pausing':"Ciao da Youtube",
+'nomoreitems':"Non ci sono più elementi nella playlist.",
+'resuming':"Riprendo",
+'noresume':"Non ero in grado di riprendere la riproduzione.",
+'novideo':"Non ero in grado di riprodurre un video",
+'notitle':"Non riesco a trovare il nome del video corrente.",
+'nowplaying':"Ora riproduco",
+'nothingplaying':"Al momento non sto riproducendo nulla."
+}
 
 strings = strings_en
 
@@ -221,6 +241,8 @@ def lambda_handler(event, context):
     global strings
     if event['request']['locale'][0:2] == 'fr':
         strings = strings_fr
+    elif event['request']['locale'][0:2] == 'it':
+        strings = strings_it
     else:
         strings = strings_en
     if event['request']['type'] == "LaunchRequest":
