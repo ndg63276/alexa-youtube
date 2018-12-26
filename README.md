@@ -54,15 +54,15 @@ This skill currently runs on my Lambda instance, hopefully it won't get too popu
 [tal9000v2](https://github.com/tal9000v2) has put together a handy guide for deploying yourself [here](https://github.com/ndg63276/alexa-youtube/issues/15#issuecomment-447684487).
 
 ## FAQ
-* Alexa tells me she can't find any supported video skills, what does that mean?
+* **Alexa tells me she can't find any supported video skills, what does that mean?**
 Alexa is trying to be too clever, and not launching this skill. Start your request by saying 'Alexa, open YouTube' and then when she says 'Welcome to YouTube', ask for the video you want.
-* She still says she can't find any video skills.
+* **She still says she can't find any video skills.**
 Make sure to follow step 15 above, enabling Testing for Development.
-* I am getting another issue, can you fix it?
+* **I am getting another issue, can you fix it?**
 Hopefully. Create an issue on github, with the exact wording of what you ask Alexa, so I can try and reproduce it.
-* Can you add another language?
+* **Can you add another language?**
 Yes, as long as you can translate for me. Click on 'Issues' at the top, then 'New Issue', and let me know what language you can help with, and I'll let you know what I need translating.
-* If I try and test in the Developer Console, it says 'Unsupported Directive. AudioPlayer is currently an unsupported namespace. Check the device log for more information.'
+* **If I try and test in the Developer Console, it says 'Unsupported Directive. AudioPlayer is currently an unsupported namespace. Check the device log for more information.'**
 That is normal, the Developer Console doesn't play audio. You just need to enable testing through the Developer Console, then you can use the skill through your Alexa device.
 
 
