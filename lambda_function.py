@@ -574,7 +574,7 @@ def get_next_url_and_token(current_token, skip):
     while next_url is None:
         next_playing = next_playing + skip
         if shuffle_mode and skip != 0:
-            next_playing = randint(1,number_of_videos)
+            next_playing = randint(0,number_of_videos-1)
         if next_playing < 0:
             if loop_mode:
                 next_playing = number_of_videos - 1
