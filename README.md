@@ -22,6 +22,7 @@
 
 1. Some videos just fail, it's not clear why, they work locally. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
 2. It doesn't play video, because I don't have an Echo Show or Echo Spot to test on. If you want to buy me one, get in touch!
+3. Apparently it doesn't work on Sonos devices. Sorry about that, email Sonos and ask them to support mp4.
 
 ## Setup Instructions
 
