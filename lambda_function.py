@@ -274,6 +274,8 @@ def on_intent(event):
         return search(intent, session)
     elif intent_name == "ShuffleChannelIntent":
         return search(intent, session)
+    elif intent_name == 'SkipToIntent':
+        return skip_to(event)
     elif intent_name == "AMAZON.YesIntent":
         return yes_intent(session)
     elif intent_name == "AMAZON.NoIntent":
