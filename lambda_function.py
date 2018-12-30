@@ -274,6 +274,10 @@ def on_intent(event):
         return search(intent, session)
     elif intent_name == "ShuffleChannelIntent":
         return search(intent, session)
+    elif intent_name == 'SkipForwardIntent':
+        return skip_by(event, 1)
+    elif intent_name == 'SkipBackwardIntent':
+        return skip_by(event, -1)
     elif intent_name == 'SkipToIntent':
         return skip_to(event)
     elif intent_name == "AMAZON.YesIntent":
@@ -502,6 +506,43 @@ def skip_action(event, skip):
         return build_response(build_short_speechlet_response(speech_output, should_end_session))
     speech_output = strings['playing']+' '+title
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
+
+def skip_by(event, direction):
+    intent = event['request']['intent']
+    logger.info(intent)
+    if 'token' not in event['context']['AudioPlayer']:
+        speech_output = "Nothing is currently playing."
+        return build_response(build_short_speechlet_response(speech_output, True))
+    if 'slots' not in intent:
+        speech_output = "Sorry, I didn't hear how much to skip by."
+        return build_response(build_short_speechlet_response(speech_output, True))
+    if 'hours' in intent['slots'] and 'value' in intent['slots']['hours']:
+        try:
+            hours = int(intent['slots']['hours']['value'])
+        except:
+            hours = 0
+    else:
+        hours = 0
+    if 'minutes' in intent['slots'] and 'value' in intent['slots']['minutes']:
+        try:
+            minutes = int(intent['slots']['minutes']['value'])
+        except:
+            minutes = 0
+    else:
+        minutes = 0
+    if 'seconds' in intent['slots'] and 'value' in intent['slots']['seconds']:
+        try:
+            seconds = int(intent['slots']['seconds']['value'])
+        except:
+            seconds = 0
+    else:
+        seconds = 0
+    if hours == 0 and minutes == 0 and seconds == 0:
+        speech_output = "Sorry, I didn't hear how much to skip by."
+        return build_response(build_short_speechlet_response(speech_output, True))
+    current_offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
+    skip_by_offsetInMilliseconds = direction * (hours * 3600000 + minutes * 60000 + seconds * 1000)
+    return resume(event, offsetInMilliseconds = current_offsetInMilliseconds + skip_by_offsetInMilliseconds)
 
 def skip_to(event):
     intent = event['request']['intent']
