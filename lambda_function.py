@@ -501,13 +501,15 @@ def skip_action(event, skip):
     speech_output = strings['playing']+' '+title
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
 
-def resume(event, say_title = False):
+def resume(event, say_title = False, offsetInMilliseconds = None):
     if 'token' not in event['context']['AudioPlayer']:
         return get_welcome_response()
     current_token = event['context']['AudioPlayer']['token']
     should_end_session = True
-    speech_output = strings['resuming']
-    offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
+    speech_output = 'OK'
+    if offsetInMilliseconds is None:
+        speech_output = strings['resuming']
+        offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
     next_url, next_token, title = get_next_url_and_token(current_token, 0)
     if title is None:
         speech_output = strings['noresume']
