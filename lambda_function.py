@@ -511,7 +511,7 @@ def skip_by(event, direction):
     intent = event['request']['intent']
     logger.info(intent)
     if 'token' not in event['context']['AudioPlayer']:
-        speech_output = "Nothing is currently playing."
+        speech_output = strings['nothingplaying']
         return build_response(build_short_speechlet_response(speech_output, True))
     if 'slots' not in intent:
         speech_output = "Sorry, I didn't hear how much to skip by."
@@ -548,7 +548,7 @@ def skip_to(event):
     intent = event['request']['intent']
     logger.info(intent)
     if 'token' not in event['context']['AudioPlayer']:
-        speech_output = "Nothing is currently playing."
+        speech_output = strings['nothingplaying']
         return build_response(build_short_speechlet_response(speech_output, True))
     if 'slots' not in intent:
         speech_output = "Sorry, I didn't hear where to skip to."
