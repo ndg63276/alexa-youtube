@@ -501,6 +501,42 @@ def skip_action(event, skip):
     speech_output = strings['playing']+' '+title
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
 
+def skip_to(event):
+    intent = event['request']['intent']
+    logger.info(intent)
+    if 'token' not in event['context']['AudioPlayer']:
+        speech_output = "Nothing is currently playing."
+        return build_response(build_short_speechlet_response(speech_output, True))
+    if 'slots' not in intent:
+        speech_output = "Sorry, I didn't hear where to skip to."
+        return build_response(build_short_speechlet_response(speech_output, True))
+    if 'hours' in intent['slots'] and 'value' in intent['slots']['hours']:
+        try:
+            hours = int(intent['slots']['hours']['value'])
+        except:
+            hours = 0
+    else:
+        hours = 0
+    if 'minutes' in intent['slots'] and 'value' in intent['slots']['minutes']:
+        try:
+            minutes = int(intent['slots']['minutes']['value'])
+        except:
+            minutes = 0
+    else:
+        minutes = 0
+    if 'seconds' in intent['slots'] and 'value' in intent['slots']['seconds']:
+        try:
+            seconds = int(intent['slots']['seconds']['value'])
+        except:
+            seconds = 0
+    else:
+        seconds = 0
+    if hours == 0 and minutes == 0 and seconds == 0:
+        speech_output = "Sorry, I didn't hear where to skip to."
+        return build_response(build_short_speechlet_response(speech_output, True))
+    offsetInMilliseconds = hours * 3600000 + minutes * 60000 + seconds * 1000
+    return resume(event, offsetInMilliseconds = offsetInMilliseconds)
+
 def resume(event, say_title = False, offsetInMilliseconds = None):
     if 'token' not in event['context']['AudioPlayer']:
         return get_welcome_response()
