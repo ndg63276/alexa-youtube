@@ -34,7 +34,10 @@ strings_en = {
 'novideo':"I wasn't able to play a video.",
 'notitle':"I can't find out the name of the current video.",
 'nowplaying':"Now playing",
-'nothingplaying':"Nothing is currently playing."
+'nothingplaying':"Nothing is currently playing.",
+'sorryskipby':"Sorry, I didn't hear how much to skip by",
+'sorryskipto':"Sorry, I didn't hear where to skip to",
+'ok':"OK"
 }
 strings_fr = {
 'welcome1':"Bienvenue sur Youtube. Dite, par exemple, jouer une vidéo de Madonna.",
@@ -54,7 +57,10 @@ strings_fr = {
 'novideo':"Je ne peux pas lire la vidéo.",
 'notitle':"Je ne retrouve pas le nom de cette vidéo.",
 'nowplaying':"Vous écoutez ",
-'nothingplaying':"Il n'y a aucune lecture en cours."
+'nothingplaying':"Il n'y a aucune lecture en cours.",
+'sorryskipby':"Désolé, je n'ai pas compris de combien je devais avancer ou reculer.",
+'sorryskipto':"Désolé, je n'ai pas compris de combien je devais avancer ou reculer.",
+'ok':"OK"
 }
 strings_it = {
 'welcome1':"Benvenuto su YouTube. Dici, per esempio, riproduci i video dei Beatles.",
@@ -74,7 +80,10 @@ strings_it = {
 'novideo':"Non ero in grado di riprodurre un video",
 'notitle':"Non riesco a trovare il nome del video corrente.",
 'nowplaying':"Ora riproduco",
-'nothingplaying':"Al momento non sto riproducendo nulla."
+'nothingplaying':"Al momento non sto riproducendo nulla.",
+'sorryskipby':"Spiacente, non ho capito di quanto saltare",
+'sorryskipto':"Spiacente, non ho capito dove saltare",
+'ok':"OK"
 }
 
 strings = strings_en
@@ -514,7 +523,7 @@ def skip_by(event, direction):
         speech_output = strings['nothingplaying']
         return build_response(build_short_speechlet_response(speech_output, True))
     if 'slots' not in intent:
-        speech_output = "Sorry, I didn't hear how much to skip by."
+        speech_output = strings['sorryskipby']
         return build_response(build_short_speechlet_response(speech_output, True))
     if 'hours' in intent['slots'] and 'value' in intent['slots']['hours']:
         try:
@@ -538,7 +547,7 @@ def skip_by(event, direction):
     else:
         seconds = 0
     if hours == 0 and minutes == 0 and seconds == 0:
-        speech_output = "Sorry, I didn't hear how much to skip by."
+        speech_output = strings['sorryskipby']
         return build_response(build_short_speechlet_response(speech_output, True))
     current_offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
     skip_by_offsetInMilliseconds = direction * (hours * 3600000 + minutes * 60000 + seconds * 1000)
@@ -551,7 +560,7 @@ def skip_to(event):
         speech_output = strings['nothingplaying']
         return build_response(build_short_speechlet_response(speech_output, True))
     if 'slots' not in intent:
-        speech_output = "Sorry, I didn't hear where to skip to."
+        speech_output = strings['sorryskipto']
         return build_response(build_short_speechlet_response(speech_output, True))
     if 'hours' in intent['slots'] and 'value' in intent['slots']['hours']:
         try:
@@ -575,7 +584,7 @@ def skip_to(event):
     else:
         seconds = 0
     if hours == 0 and minutes == 0 and seconds == 0:
-        speech_output = "Sorry, I didn't hear where to skip to."
+        speech_output = strings['sorryskipto']
         return build_response(build_short_speechlet_response(speech_output, True))
     offsetInMilliseconds = hours * 3600000 + minutes * 60000 + seconds * 1000
     return resume(event, offsetInMilliseconds = offsetInMilliseconds)
@@ -585,7 +594,7 @@ def resume(event, say_title = False, offsetInMilliseconds = None):
         return get_welcome_response()
     current_token = event['context']['AudioPlayer']['token']
     should_end_session = True
-    speech_output = 'OK'
+    speech_output = strings['ok']
     if offsetInMilliseconds is None:
         speech_output = strings['resuming']
         offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
@@ -601,7 +610,7 @@ def change_mode(event, mode, value):
     playlist = convert_token_to_dict(current_token)
     playlist[mode] = str(value)
     current_token = convert_dict_to_token(playlist)
-    speech_output = "OK"
+    speech_output = strings['ok']
     offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
     next_url, next_token, title = get_next_url_and_token(current_token, 0)
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, current_token, offsetInMilliseconds))
