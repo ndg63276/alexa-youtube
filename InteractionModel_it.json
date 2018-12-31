@@ -45,7 +45,21 @@
                         "mostra il video di {query}",
                         "cerca {query}",
                         "suona {query}",
-                        "riproduci {query}"
+                        "riproduci {query}",
+                        "riprodurre la canzone di {query}",
+                        "riprodurre la musica di {query}",
+                        "riprodurre dei brani di {query}",
+                        "riprodurre dei pezzi di {query}",
+                        "suonare la canzone di {query}",
+                        "suonare la musica di {query}",
+                        "suonare i brani di {query}",
+                        "suonare dei pezzi di {query}",
+                        "avviare il video di {query}",
+                        "riprodurre il video di {query}",
+                        "mostrare il video di {query}",
+                        "cercare {query}",
+                        "suonare {query}",
+                        "riprodurre {query}"
                     ]
                 },
                 {
@@ -76,7 +90,10 @@
                     "samples": [
                         "Avvia la playlist {query}",
                         "Ascolta la playlist {query}",
-                        "Riproduci la playlist {query}"
+                        "Riproduci la playlist {query}",
+                        "Avviare la playlist {query}",
+                        "Ascoltare la playlist {query}",
+                        "Riprodurre la playlist {query}"
                     ]
                 },
                 {
@@ -102,7 +119,10 @@
                     "samples": [
                         "Ascolta il canale {query}",
                         "Riproduci il canale {query} ",
-                        "Suona il canale {query}"
+                        "Suona il canale {query}",
+                        "Ascoltare il canale {query}",
+                        "Riprodurre il canale {query} ",
+                        "Suonare il canale {query}"
                     ]
                 },
                 {
@@ -126,7 +146,172 @@
                         "Che video stai riproducendo",
                         "Che canzone stai riproducendo",
                         "Cos'è questa musica",
-                        "Cosa stai riproducendo"
+                        "Cosa sta riproducendo",
+                        "Che video sta riproducendo",
+                        "Che canzone stai riproducendo",
+                        "Cos'è questa musica",
+                        "Cosa sta riproducendo"
+                    ]
+                },
+                {
+                    "name": "SkipToIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Vai avanti di {hours} ora",
+                        "Vai avanti di {hours} ore",
+                        "Vai avanti di {hours} ora {minutes} minuto e {seconds} secondo",
+                        "Vai avanti di {hours} ora {minutes} minuti e {seconds} secondo",
+                        "Vai avanti di {hours} ora {minutes} minuti e {seconds} secondi",
+                        "Vai avanti di {hours} ora {minutes} minuto e {seconds} secondi",
+                        "Vai avanti di {hours} ore {minutes} minuto e {seconds} secondi",
+                        "Vai avanti di {hours} ore {minutes} minuto e {seconds} secondo",
+                        "Vai avanti di {hours} ore {minutes} minuti e {seconds} secondo",
+                        "Vai avanti di {hours} ore {minutes} minuti e {seconds} secondi",
+                        "Vai avanti di {hours} ora {minutes} minuto",
+                        "Vai avanti di {hours} ora {minutes} minuti",
+                        "Vai avanti di {hours} ore {minutes} minuto",
+                        "Vai avanti di {hours} ore {minutes} minuti",
+                        "Vai avanti di {hours} ora e {seconds} secondo",
+                        "Vai avanti di {hours} ora e {seconds} secondi",
+                        "Vai avanti di {hours} ore e {seconds} secondo",
+                        "Vai avanti di {hours} ore e {seconds} secondi",
+                        "Vai avanti di {minutes} minuto e {seconds} secondo",
+                        "Vai avanti di {minutes} minuti e {seconds} secondo",
+                        "Vai avanti di {minutes} minuti e {seconds} secondi",
+                        "Vai avanti di {minutes} minuto e {seconds} secondi",
+                        "Vai avanti di {minutes} minuto",
+                        "Vai avanti di {minutes} minuti",
+                        "Vai avanti di {seconds} secondi",
+                        "Vai avanti di {seconds} secondo",
+                        "Vai indietro di {hours} ora",
+                        "Vai indietro di {hours} ore",
+                        "Vai indietro di {hours} ora {minutes} minuto e {seconds} secondo",
+                        "Vai indietro di {hours} ora {minutes} minuti e {seconds} secondo",
+                        "Vai indietro di {hours} ora {minutes} minuti e {seconds} secondi",
+                        "Vai indietro di {hours} ora {minutes} minuto e {seconds} secondi",
+                        "Vai indietro di {hours} ore {minutes} minuto e {seconds} secondi",
+                        "Vai indietro di {hours} ore {minutes} minuto e {seconds} secondo",
+                        "Vai indietro di {hours} ore {minutes} minuti e {seconds} secondo",
+                        "Vai indietro di {hours} ore {minutes} minuti e {seconds} secondi",
+                        "Vai indietro di {hours} ora {minutes} minuto",
+                        "Vai indietro di {hours} ora {minutes} minuti",
+                        "Vai indietro di {hours} ore {minutes} minuto",
+                        "Vai indietro di {hours} ore {minutes} minuti",
+                        "Vai indietro di {hours} ora e {seconds} secondo",
+                        "Vai indietro di {hours} ora e {seconds} secondi",
+                        "Vai indietro di {hours} ore e {seconds} secondo",
+                        "Vai indietro di {hours} ore e {seconds} secondi",
+                        "Vai indietro di {minutes} minuto e {seconds} secondo",
+                        "Vai indietro di {minutes} minuti e {seconds} secondo",
+                        "Vai indietro di {minutes} minuti e {seconds} secondi",
+                        "Vai indietro di {minutes} minuto e {seconds} secondi",
+                        "Vai indietro di {minutes} minuto",
+                        "Vai indietro di {minutes} minuti",
+                        "Vai indietro di {seconds} secondi",
+                        "Vai indietro di {seconds} secondo"
+                   ]
+                },
+                {
+                    "name": "SkipForwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                    "Vai avanti di {hours} ora",
+                        "Vai avanti di {hours} ore",
+                        "Vai avanti di {hours} ora {minutes} minuto e {seconds} secondo",
+                        "Vai avanti di {hours} ora {minutes} minuti e {seconds} secondo",
+                        "Vai avanti di {hours} ora {minutes} minuti e {seconds} secondi",
+                        "Vai avanti di {hours} ora {minutes} minuto e {seconds} secondi",
+                        "Vai avanti di {hours} ore {minutes} minuto e {seconds} secondi",
+                        "Vai avanti di {hours} ore {minutes} minuto e {seconds} secondo",
+                        "Vai avanti di {hours} ore {minutes} minuti e {seconds} secondo",
+                        "Vai avanti di {hours} ore {minutes} minuti e {seconds} secondi",
+                        "Vai avanti di {hours} ora {minutes} minuto",
+                        "Vai avanti di {hours} ora {minutes} minuti",
+                        "Vai avanti di {hours} ore {minutes} minuto",
+                        "Vai avanti di {hours} ore {minutes} minuti",
+                        "Vai avanti di {hours} ora e {seconds} secondo",
+                        "Vai avanti di {hours} ora e {seconds} secondi",
+                        "Vai avanti di {hours} ore e {seconds} secondo",
+                        "Vai avanti di {hours} ore e {seconds} secondi",
+                        "Vai avanti di {minutes} minuto e {seconds} secondo",
+                        "Vai avanti di {minutes} minuti e {seconds} secondo",
+                        "Vai avanti di {minutes} minuti e {seconds} secondi",
+                        "Vai avanti di {minutes} minuto e {seconds} secondi",
+                        "Vai avanti di {minutes} minuto",
+                        "Vai avanti di {minutes} minuti",
+                        "Vai avanti di {seconds} secondi",
+                        "Vai avanti di {seconds} secondo"
+                    ]
+                },
+                {
+                    "name": "SkipBackwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Vai indietro di {hours} ora",
+                        "Vai indietro di {hours} ore",
+                        "Vai indietro di {hours} ora {minutes} minuto e {seconds} secondo",
+                        "Vai indietro di {hours} ora {minutes} minuti e {seconds} secondo",
+                        "Vai indietro di {hours} ora {minutes} minuti e {seconds} secondi",
+                        "Vai indietro di {hours} ora {minutes} minuto e {seconds} secondi",
+                        "Vai indietro di {hours} ore {minutes} minuto e {seconds} secondi",
+                        "Vai indietro di {hours} ore {minutes} minuto e {seconds} secondo",
+                        "Vai indietro di {hours} ore {minutes} minuti e {seconds} secondo",
+                        "Vai indietro di {hours} ore {minutes} minuti e {seconds} secondi",
+                        "Vai indietro di {hours} ora {minutes} minuto",
+                        "Vai indietro di {hours} ora {minutes} minuti",
+                        "Vai indietro di {hours} ore {minutes} minuto",
+                        "Vai indietro di {hours} ore {minutes} minuti",
+                        "Vai indietro di {hours} ora e {seconds} secondo",
+                        "Vai indietro di {hours} ora e {seconds} secondi",
+                        "Vai indietro di {hours} ore e {seconds} secondo",
+                        "Vai indietro di {hours} ore e {seconds} secondi",
+                        "Vai indietro di {minutes} minuto e {seconds} secondo",
+                        "Vai indietro di {minutes} minuti e {seconds} secondo",
+                        "Vai indietro di {minutes} minuti e {seconds} secondi",
+                        "Vai indietro di {minutes} minuto e {seconds} secondi",
+                        "Vai indietro di {minutes} minuto",
+                        "Vai indietro di {minutes} minuti",
+                        "Vai indietro di {seconds} secondi",
+                        "Vai indietro di {seconds} secondo"
                     ]
                 },
                 {
