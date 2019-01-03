@@ -1,0 +1,432 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "youtube",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SearchIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "spiel Musik von {query}",
+                        "spiel Lieder von {query}",
+                        "spiel Videos von {query}",
+                        "such nach {query}",
+                        "spiel {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "misch {query}",
+                        "misch Lieder von {query}",
+                        "misch Musik von {query}",
+                        "misch Videos von {query}"
+                    ]
+                },
+                {
+                    "name": "PlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "start Playlist {query}",
+                        "hör Playlist {query} an",
+                        "spiel Playlist {query} ab"
+                    ]
+                },
+                {
+                    "name": "ShufflePlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "misch Playlist {query}"
+                    ]
+                },
+                {
+                    "name": "ChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "hör Kanal {query} an",
+                        "start Kanal {query} ",
+                        "spiel Kanal {query} ab"
+                    ]
+                },
+                {
+                    "name": "ShuffleChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "misch Kanal {query}"
+                    ]
+                },
+                {
+                    "name": "NowPlayingIntent",
+                    "slots": [],
+                    "samples": [
+                        "Wer ist das",
+                        "Welches Video spielt",
+                        "Wleche Musik spielt",
+                        "Was ist das",
+                        "Was spielt"
+                    ]
+                },
+                {
+                    "name": "SkipToIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "zur {hours} Stunde",
+                        "zur {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "zur {hours} Stunde {minutes} Minute",
+                        "zur {hours} Stunde {minutes} Sekunde",
+                        "zur {minutes} Minute {seconds} Sekunde",
+                        "zur {minutes} Minute",
+                        "zur {seconds} Sekunde",
+                        "geh zur {hours} Stunde",
+                        "geh zur {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "geh zur {hours} Stunde {minutes} Minute",
+                        "geh zur {hours} Stunde {minutes} Sekunde",
+                        "geh zur {minutes} Minute {seconds} Sekunde",
+                        "geh zur {minutes} Minute",
+                        "geh zur {seconds} Sekunde",
+                        "spring zur {hours} Stunde",
+                        "spring zur {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "spring zur {hours} Stunde {minutes} Minute",
+                        "spring zur {hours} Stunde {minutes} Sekunde",
+                        "spring zur {minutes} Minute {seconds} Sekunde",
+                        "spring zur {minutes} Minute",
+                        "spring zur {seconds} Sekunde"
+                    ]
+                },
+                {
+                    "name": "SkipForwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{hours} Stunden vor",
+                        "{hours} Stunde vor",
+                        "{hours} Stunden {minutes} Minuten {seconds} Sekunden vor",
+                        "{hours} Stunden {minutes} Minute {seconds} Sekunden vor",
+                        "{hours} Stunde {minutes} Minuten {seconds} Sekunden vor",
+                        "{hours} Stunde {minutes} Minute {seconds} Sekunden vor",
+                        "{hours} Stunden {minutes} Minuten {seconds} Sekunde vor",
+                        "{hours} Stunden {minutes} Minute {seconds} Sekunde vor",
+                        "{hours} Stunde {minutes} Minuten {seconds} Sekunde vor",
+                        "{hours} Stunde {minutes} Minute {seconds} Sekunde vor",
+                        "{hours} Stunden {minutes} Minuten vor",
+                        "{hours} Stunden {minutes} Minute vor",
+                        "{hours} Stunde {minutes} Minuten vor",
+                        "{hours} Stunde {minutes} Minute vor",
+                        "{minutes} Minuten {seconds} Sekunden vor",
+                        "{minutes} Minuten {seconds} Sekunde vor",
+                        "{minutes} Minute {seconds} Sekunden vor",
+                        "{minutes} Minute {seconds} Sekunde vor",
+                        "{minutes} Minuten vor",
+                        "{seconds} Sekunden vor",
+                        "{minutes} Minute vor",
+                        "{seconds} Sekunde vor",
+                        "{hours} Stunden vor",
+                        "{hours} Stunde vor",
+                        "spring {hours} Stunden {minutes} Minuten {seconds} Sekunden vor",
+                        "spring {hours} Stunden {minutes} Minute {seconds} Sekunden vor",
+                        "spring {hours} Stunde {minutes} Minuten {seconds} Sekunden vor",
+                        "spring {hours} Stunde {minutes} Minute {seconds} Sekunden vor",
+                        "spring {hours} Stunden {minutes} Minuten {seconds} Sekunde vor",
+                        "spring {hours} Stunden {minutes} Minute {seconds} Sekunde vor",
+                        "spring {hours} Stunde {minutes} Minuten {seconds} Sekunde vor",
+                        "spring {hours} Stunde {minutes} Minute {seconds} Sekunde vor",
+                        "spring {hours} Stunden {minutes} Minuten vor",
+                        "spring {hours} Stunden {minutes} Minute vor",
+                        "spring {hours} Stunde {minutes} Minuten vor",
+                        "spring {hours} Stunde {minutes} Minute vor",
+                        "spring {minutes} Minuten {seconds} Sekunden vor",
+                        "spring {minutes} Minuten {seconds} Sekunde vor",
+                        "spring {minutes} Minute {seconds} Sekunden vor",
+                        "spring {minutes} Minute {seconds} Sekunde vor",
+                        "spring {minutes} Minuten vor",
+                        "spring {seconds} Sekunden vor",
+                        "spring {minutes} Minute vor",
+                        "spring {seconds} Sekunde vor",
+                        "spring vor {hours} Stunden",
+                        "spring vor {hours} Stunde",
+                        "spring vor {hours} Stunden {minutes} Minuten {seconds} Sekunden",
+                        "spring vor {hours} Stunden {minutes} Minute {seconds} Sekunden",
+                        "spring vor {hours} Stunde {minutes} Minuten {seconds} Sekunden",
+                        "spring vor {hours} Stunde {minutes} Minute {seconds} Sekunden",
+                        "spring vor {hours} Stunden {minutes} Minuten {seconds} Sekunde",
+                        "spring vor {hours} Stunden {minutes} Minute {seconds} Sekunde",
+                        "spring vor {hours} Stunde {minutes} Minuten {seconds} Sekunde",
+                        "spring vor {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "spring vor {hours} Stunden {minutes} Minuten",
+                        "spring vor {hours} Stunden {minutes} Minute",
+                        "spring vor {hours} Stunde {minutes} Minuten",
+                        "spring vor {hours} Stunde {minutes} Minute",
+                        "spring vor {minutes} Minuten {seconds} Sekunden",
+                        "spring vor {minutes} Minuten {seconds} Sekunde",
+                        "spring vor {minutes} Minute {seconds} Sekunden",
+                        "spring vor {minutes} Minute {seconds} Sekunde",
+                        "spring vor {minutes} Minuten",
+                        "spring vor {seconds} Sekunden",
+                        "spring vor {minutes} Minute",
+                        "spring vor {seconds} Sekunde",
+                        "geh {hours} Stunden vor",
+                        "geh {hours} Stunde vor",
+                        "geh {hours} Stunden {minutes} Minuten {seconds} Sekunden vor",
+                        "geh {hours} Stunden {minutes} Minute {seconds} Sekunden vor",
+                        "geh {hours} Stunde {minutes} Minuten {seconds} Sekunden vor",
+                        "geh {hours} Stunde {minutes} Minute {seconds} Sekunden vor",
+                        "geh {hours} Stunden {minutes} Minuten {seconds} Sekunde vor",
+                        "geh {hours} Stunden {minutes} Minute {seconds} Sekunde vor",
+                        "geh {hours} Stunde {minutes} Minuten {seconds} Sekunde vor",
+                        "geh {hours} Stunde {minutes} Minute {seconds} Sekunde vor",
+                        "geh {hours} Stunden {minutes} Minuten vor",
+                        "geh {hours} Stunden {minutes} Minute vor",
+                        "geh {hours} Stunde {minutes} Minuten vor",
+                        "geh {hours} Stunde {minutes} Minute vor",
+                        "geh {minutes} Minuten {seconds} Sekunden vor",
+                        "geh {minutes} Minuten {seconds} Sekunde vor",
+                        "geh {minutes} Minute {seconds} Sekunden vor",
+                        "geh {minutes} Minute {seconds} Sekunde vor",
+                        "geh {minutes} Minuten vor",
+                        "geh {seconds} Sekunden vor",
+                        "geh {minutes} Minute vor",
+                        "geh {seconds} Sekunde vor",
+                        "geh vor {hours} Stunden",
+                        "geh vor {hours} Stunde",
+                        "geh vor {hours} Stunden {minutes} Minuten {seconds} Sekunden",
+                        "geh vor {hours} Stunden {minutes} Minute {seconds} Sekunden",
+                        "geh vor {hours} Stunde {minutes} Minuten {seconds} Sekunden",
+                        "geh vor {hours} Stunde {minutes} Minute {seconds} Sekunden",
+                        "geh vor {hours} Stunden {minutes} Minuten {seconds} Sekunde",
+                        "geh vor {hours} Stunden {minutes} Minute {seconds} Sekunde",
+                        "geh vor {hours} Stunde {minutes} Minuten {seconds} Sekunde",
+                        "geh vor {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "geh vor {hours} Stunden {minutes} Minuten",
+                        "geh vor {hours} Stunden {minutes} Minute",
+                        "geh vor {hours} Stunde {minutes} Minuten",
+                        "geh vor {hours} Stunde {minutes} Minute",
+                        "geh vor {minutes} Minuten {seconds} Sekunden",
+                        "geh vor {minutes} Minuten {seconds} Sekunde",
+                        "geh vor {minutes} Minute {seconds} Sekunden",
+                        "geh vor {minutes} Minute {seconds} Sekunde",
+                        "geh vor {minutes} Minuten",
+                        "geh vor {seconds} Sekunden",
+                        "geh vor {minutes} Minute",
+                        "geh vor {seconds} Sekunde"
+                    ]
+                },
+                {
+                    "name": "SkipBackwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{hours} Stunden zurück",
+                        "{hours} Stunde zurück",
+                        "{hours} Stunden {minutes} Minuten {seconds} Sekunden zurück",
+                        "{hours} Stunden {minutes} Minute {seconds} Sekunden zurück",
+                        "{hours} Stunde {minutes} Minuten {seconds} Sekunden zurück",
+                        "{hours} Stunde {minutes} Minute {seconds} Sekunden zurück",
+                        "{hours} Stunden {minutes} Minuten {seconds} Sekunde zurück",
+                        "{hours} Stunden {minutes} Minute {seconds} Sekunde zurück",
+                        "{hours} Stunde {minutes} Minuten {seconds} Sekunde zurück",
+                        "{hours} Stunde {minutes} Minute {seconds} Sekunde zurück",
+                        "{hours} Stunden {minutes} Minuten zurück",
+                        "{hours} Stunden {minutes} Minute zurück",
+                        "{hours} Stunde {minutes} Minuten zurück",
+                        "{hours} Stunde {minutes} Minute zurück",
+                        "{minutes} Minuten {seconds} Sekunden zurück",
+                        "{minutes} Minuten {seconds} Sekunde zurück",
+                        "{minutes} Minute {seconds} Sekunden zurück",
+                        "{minutes} Minute {seconds} Sekunde zurück",
+                        "{minutes} Minuten zurück",
+                        "{seconds} Sekunden zurück",
+                        "{minutes} Minute zurück",
+                        "{seconds} Sekunde zurück",
+                        "{hours} Stunden zurück",
+                        "{hours} Stunde zurück",
+                        "spring {hours} Stunden zurück",
+                        "spring {hours} Stunde zurück",
+                        "spring {hours} Stunden {minutes} Minuten {seconds} Sekunden zurück",
+                        "spring {hours} Stunden {minutes} Minute {seconds} Sekunden zurück",
+                        "spring {hours} Stunde {minutes} Minuten {seconds} Sekunden zurück",
+                        "spring {hours} Stunde {minutes} Minute {seconds} Sekunden zurück",
+                        "spring {hours} Stunden {minutes} Minuten {seconds} Sekunde zurück",
+                        "spring {hours} Stunden {minutes} Minute {seconds} Sekunde zurück",
+                        "spring {hours} Stunde {minutes} Minuten {seconds} Sekunde zurück",
+                        "spring {hours} Stunde {minutes} Minute {seconds} Sekunde zurück",
+                        "spring {hours} Stunden {minutes} Minuten zurück",
+                        "spring {hours} Stunden {minutes} Minute zurück",
+                        "spring {hours} Stunde {minutes} Minuten zurück",
+                        "spring {hours} Stunde {minutes} Minute zurück",
+                        "spring {minutes} Minuten {seconds} Sekunden zurück",
+                        "spring {minutes} Minuten {seconds} Sekunde zurück",
+                        "spring {minutes} Minute {seconds} Sekunden zurück",
+                        "spring {minutes} Minute {seconds} Sekunde zurück",
+                        "spring {minutes} Minuten zurück",
+                        "spring {seconds} Sekunden zurück",
+                        "spring {minutes} Minute zurück",
+                        "spring {seconds} Sekunde zurück",
+                        "spring zurück {hours} Stunden",
+                        "spring zurück {hours} Stunde",
+                        "spring zurück {hours} Stunden {minutes} Minuten {seconds} Sekunden",
+                        "spring zurück {hours} Stunden {minutes} Minute {seconds} Sekunden",
+                        "spring zurück {hours} Stunde {minutes} Minuten {seconds} Sekunden",
+                        "spring zurück {hours} Stunde {minutes} Minute {seconds} Sekunden",
+                        "spring zurück {hours} Stunden {minutes} Minuten {seconds} Sekunde",
+                        "spring zurück {hours} Stunden {minutes} Minute {seconds} Sekunde",
+                        "spring zurück {hours} Stunde {minutes} Minuten {seconds} Sekunde",
+                        "spring zurück {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "spring zurück {hours} Stunden {minutes} Minuten",
+                        "spring zurück {hours} Stunden {minutes} Minute",
+                        "spring zurück {hours} Stunde {minutes} Minuten",
+                        "spring zurück {hours} Stunde {minutes} Minute",
+                        "spring zurück {minutes} Minuten {seconds} Sekunden",
+                        "spring zurück {minutes} Minuten {seconds} Sekunde",
+                        "spring zurück {minutes} Minute {seconds} Sekunden",
+                        "spring zurück {minutes} Minute {seconds} Sekunde",
+                        "spring zurück {minutes} Minuten",
+                        "spring zurück {seconds} Sekunden",
+                        "spring zurück {minutes} Minute",
+                        "spring zurück {seconds} Sekunde",
+	                    "geh {hours} Stunden zurück",
+                        "geh {hours} Stunde zurück",
+                        "geh {hours} Stunden {minutes} Minuten {seconds} Sekunden zurück",
+                        "geh {hours} Stunden {minutes} Minute {seconds} Sekunden zurück",
+                        "geh {hours} Stunde {minutes} Minuten {seconds} Sekunden zurück",
+                        "geh {hours} Stunde {minutes} Minute {seconds} Sekunden zurück",
+                        "geh {hours} Stunden {minutes} Minuten {seconds} Sekunde zurück",
+                        "geh {hours} Stunden {minutes} Minute {seconds} Sekunde zurück",
+                        "geh {hours} Stunde {minutes} Minuten {seconds} Sekunde zurück",
+                        "geh {hours} Stunde {minutes} Minute {seconds} Sekunde zurück",
+                        "geh {hours} Stunden {minutes} Minuten zurück",
+                        "geh {hours} Stunden {minutes} Minute zurück",
+                        "geh {hours} Stunde {minutes} Minuten zurück",
+                        "geh {hours} Stunde {minutes} Minute zurück",
+                        "geh {minutes} Minuten {seconds} Sekunden zurück",
+                        "geh {minutes} Minuten {seconds} Sekunde zurück",
+                        "geh {minutes} Minute {seconds} Sekunden zurück",
+                        "geh {minutes} Minute {seconds} Sekunde zurück",
+                        "geh {minutes} Minuten zurück",
+                        "geh {seconds} Sekunden zurück",
+                        "geh {minutes} Minute zurück",
+                        "geh {seconds} Sekunde zurück",
+                        "geh zurück {hours} Stunden",
+                        "geh zurück {hours} Stunde",
+                        "geh zurück {hours} Stunden {minutes} Minuten {seconds} Sekunden",
+                        "geh zurück {hours} Stunden {minutes} Minute {seconds} Sekunden",
+                        "geh zurück {hours} Stunde {minutes} Minuten {seconds} Sekunden",
+                        "geh zurück {hours} Stunde {minutes} Minute {seconds} Sekunden",
+                        "geh zurück {hours} Stunden {minutes} Minuten {seconds} Sekunde",
+                        "geh zurück {hours} Stunden {minutes} Minute {seconds} Sekunde",
+                        "geh zurück {hours} Stunde {minutes} Minuten {seconds} Sekunde",
+                        "geh zurück {hours} Stunde {minutes} Minute {seconds} Sekunde",
+                        "geh zurück {hours} Stunden {minutes} Minuten",
+                        "geh zurück {hours} Stunden {minutes} Minute",
+                        "geh zurück {hours} Stunde {minutes} Minuten",
+                        "geh zurück {hours} Stunde {minutes} Minute",
+                        "geh zurück {minutes} Minuten {seconds} Sekunden",
+                        "geh zurück {minutes} Minuten {seconds} Sekunde",
+                        "geh zurück {minutes} Minute {seconds} Sekunden",
+                        "geh zurück {minutes} Minute {seconds} Sekunde",
+                        "geh zurück {minutes} Minuten",
+                        "geh zurück {seconds} Sekunden",
+                        "geh zurück {minutes} Minute",
+                        "geh zurück {seconds} Sekunde"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}
