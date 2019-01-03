@@ -153,29 +153,7 @@ def build_cardless_speechlet_response(output, reprompt_text, should_end_session)
 def build_audio_speechlet_response(title, output, should_end_session, url, token, offsetInMilliseconds=0):
     return {
         'outputSpeech': {
-            'type': 'PlainText',strings_de = {
-'welcome1':"Willkommen bei Youtube. Sagen Sie zum Beispiel, spiel Videos von The Beatles.",
-'welcome2':"Oder Sie können sagen, misch Songs von Michael Jackson.",
-'help':"Sie können sagen zum Beispiel, spiel Videos von Fall Out Boy ab.",
-'illegal':"Sie können dies mit dieses Skill nicht tun.",
-'gonewrong':"Es tut mir Leid, etwas ist schief gelaufen",
-'playlist':"Die Wiedergabeliste",
-'channel':"Der Kanal",
-'video':"Das Video",
-'notworked':"hat nicht funktioniert, soll ich das nächste versuchen?",
-'playing':"Spielen",
-'pausing':"Pausieren",
-'nomoreitems':"Die Wiedergabeliste enthält keine weiteren Elemente.",
-'resuming':"Fortfahren",
-'noresume':"Ich konnte nicht weiter spielen.",
-'novideo':"Ich konnte dieses Video nicht abspielen.",
-'notitle':"Ich kann den Namen des aktuellen Videos nicht herausfinden.",
-'nowplaying':"Jetzt spielt",
-'nothingplaying':"Es wird momentan nichts abgespielt.",
-'sorryskipby':"Entschuldigung, ich habe nicht gehört, wie viel ich überspringen soll",
-'sorryskipto':"Entschuldigung, ich habe nicht gehört, wo ich überspringen soll",
-'ok':"OK"
-}
+            'type': 'PlainText',
             'text': output
         },
         'card': {
