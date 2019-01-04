@@ -299,6 +299,8 @@ def lambda_handler(event, context):
         strings = strings_it
     elif event['request']['locale'][0:2] == 'de':
         strings = strings_de
+    elif event['request']['locale'][0:2] == 'es':
+        strings = strings_es
     else:
         strings = strings_en
     if event['request']['type'] == "LaunchRequest":
