@@ -1,0 +1,317 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "youtube",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SearchIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "pon musica de {query}",
+                        "pon canciones de {query}",
+                        "pon videos de {query}",
+                        "busca {query}",
+                        "pon {query}",
+                        "reproduce {query}",
+                        "play {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "aleatorio {query}",
+                        "aleatorio canciones {query}",
+                        "aleatorio musica de {query}",
+                        "aleatorio videos de {query}"
+                    ]
+                },
+                {
+                    "name": "PlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "pon una playlist de {query}",
+                        "escucha una playlist de {query}",
+                        "reproduce playlist de {query}"
+                    ]
+                },
+                {
+                    "name": "ShufflePlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "aleatorio playlist de {query}"
+                    ]
+                },
+                {
+                    "name": "ChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "pon al canal {query}",
+                        "comienza  el canal {query}",
+                        "reprodce el canal {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "aleatorio canal {query}"
+                    ]
+                },
+                {
+                    "name": "NowPlayingIntent",
+                    "slots": [],
+                    "samples": [
+                        "quien es",
+                        "que video es",
+                        "que cancion es",
+                        "que es esto",
+                        "que esta sonyo"
+                    ]
+                },
+                {
+                    "name": "SkipToIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "adelanta {hours} horas",
+                        "adelanta {hours} hora",
+                        "adelanta {hours} {minutes} {seconds}",
+                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
+                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
+                        "adelanta {hours} hora {minutes} minuto y {seconds} segundos",
+                        "adelanta {hours} horas {minutes} minuto y {seconds} segundos",
+                        "adelanta {hours} horas {minutes} minutos y {seconds} segundo",
+                        "adelanta {hours} hora {minutes} minutos y {seconds} segundo",
+                        "adelanta {hours} hora {minutes} minuto y {seconds} segundo",
+                        "adelanta {hours} horas {minutes} minuto y {seconds} segundo",
+                        "adelanta {hours} horas {minutes} minutos",
+                        "adelanta {hours} hora {minutes} minutos",
+                        "adelanta {hours} horas {minutes} minuto",
+                        "adelanta {hours} hora {minutes} minuto",
+                        "adelanta {minutes} {seconds}",
+                        "adelanta {minutes} minutos y {seconds} segundos",
+                        "adelanta {minutes} minuto y {seconds} segundos",
+                        "adelanta {minutes} minutos y {seconds} segundo",
+                        "adelanta {minutes} minuto y {seconds} segundo",
+                        "adelanta {minutes} minutos",
+                        "adelanta {minutes} minuto",
+                        "adelanta {seconds} segundos",
+                        "adelanta {seconds} segundo",
+                        "ir a {hours} horas",
+                        "ir a {hours} horas {hours} hora",
+                        "ir a {hours} {minutes} {seconds}",
+                        "ir a {hours} horas {minutes} minutos y {seconds} segundos",
+                        "ir a {hours} hora {minutes} minutos y {seconds} segundos",
+                        "ir a {hours} hora {minutes} minuto y {seconds} segundos",
+                        "ir a {hours} horas {minutes} minuto y {seconds} segundos",
+                        "ir a {hours} horas {minutes} minutos y {seconds} segundo",
+                        "ir a {hours} hora {minutes} minutos y {seconds} segundo",
+                        "ir a {hours} hora {minutes} minuto y {seconds} segundo",
+                        "ir a {hours} horas {minutes} minuto y {seconds} segundo",
+                        "ir a {hours} horas {minutes} minutos",
+                        "ir a {hours} hora {minutes} minutos",
+                        "ir a {hours} horas {minutes} minuto",
+                        "ir a {hours} hora {minutes} minuto",
+                        "ir a {minutes} {seconds}",
+                        "ir a {minutes} minutos y {seconds} segundos",
+                        "ir a {minutes} minuto y {seconds} segundos",
+                        "ir a {minutes} minutos y {seconds} segundo",
+                        "ir a {minutes} minuto y {seconds} segundo",
+                        "ir a {minutes} minutos",
+                        "ir a {minutes} minuto",
+                        "ir a {seconds} segundos",
+                        "ir a {seconds} segundo",
+                        "regresa {hours} hours",
+                        "regresa {hours} hour",
+                        "regresa {hours} {minutes} {seconds}",
+                        "regresa {hours} hours {minutes} minutos y {seconds} segundos",
+                        "regresa {hours} hour {minutes} minutos y {seconds} segundos",
+                        "regresa {hours} hour {minutes} minuto y {seconds} segundos",
+                        "regresa {hours} hours {minutes} minuto y {seconds} segundos",
+                        "regresa {hours} hours {minutes} minutos y {seconds} segundo",
+                        "regresa {hours} hour {minutes} minutos y {seconds} segundo",
+                        "regresa {hours} hour {minutes} minuto y {seconds} segundo",
+                        "regresa {hours} hours {minutes} minuto y {seconds} segundo",
+                        "regresa {hours} hours {minutes} minutos",
+                        "regresa {hours} hour {minutes} minutos",
+                        "regresa {hours} hours {minutes} minuto",
+                        "regresa {hours} hour {minutes} minuto",
+                        "regresa {minutes} {seconds}",
+                        "regresa {minutes} minutos y {seconds} segundo",
+                        "regresa {minutes} minuto y {seconds} segundos",
+                        "regresa {minutes} minutos y {seconds} segundo",
+                        "regresa {minutes} minuto y {seconds} segundo",
+                        "regresa {minutes} minutos",
+                        "regresa {minutes} minuto",
+                        "regresa {seconds} segundos",
+                        "regresa {seconds} segundo"
+                    ]
+                },
+                {
+                    "name": "SkipForwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "adelanta {hours} horas",
+                        "adelanta {hours} hora",
+                        "adelanta {hours} {minutes} {seconds}",
+                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
+                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
+                        "adelanta {hours} hora {minutes} minuto y {seconds} segundos",
+                        "adelanta {hours} horas {minutes} minuto y {seconds} segundos",
+                        "adelanta {hours} horas {minutes} minutos y {seconds} segundo",
+                        "adelanta {hours} hora {minutes} minutos y {seconds} segundo",
+                        "adelanta {hours} hora {minutes} minuto y {seconds} segundo",
+                        "adelanta {hours} horas {minutes} minuto y {seconds} segundo",
+                        "adelanta {hours} horas {minutes} minutos",
+                        "adelanta {hours} hora {minutes} minutos",
+                        "adelanta {hours} horas {minutes} minuto",
+                        "adelanta {hours} hora {minutes} minuto",
+                        "adelanta {minutes} {seconds}",
+                        "adelanta {minutes} minutos y {seconds} segundos",
+                        "adelanta {minutes} minuto y {seconds} segundos",
+                        "adelanta {minutes} minutos y {seconds} segundo",
+                        "adelanta {minutes} minuto y {seconds} segundo",
+                        "adelanta {minutes} minutos",
+                        "adelanta {minutes} minuto",
+                        "adelanta {seconds} segundos",
+                        "adelanta {seconds} segundo",
+                        "ir a {hours} horas",
+                        "ir a {hours} horas {hours} hora",
+                        "ir a {hours} {minutes} {seconds}",
+                        "ir a {hours} horas {minutes} minutos y {seconds} segundos",
+                        "ir a {hours} hora {minutes} minutos y {seconds} segundos",
+                        "ir a {hours} hora {minutes} minuto y {seconds} segundos",
+                        "ir a {hours} horas {minutes} minuto y {seconds} segundos",
+                        "ir a {hours} horas {minutes} minutos y {seconds} segundo",
+                        "ir a {hours} hora {minutes} minutos y {seconds} segundo",
+                        "ir a {hours} hora {minutes} minuto y {seconds} segundo",
+                        "ir a {hours} horas {minutes} minuto y {seconds} segundo",
+                        "ir a {hours} horas {minutes} minutos",
+                        "ir a {hours} hora {minutes} minutos",
+                        "ir a {hours} horas {minutes} minuto",
+                        "ir a {hours} hora {minutes} minuto",
+                        "ir a {minutes} {seconds}",
+                        "ir a {minutes} minutos y {seconds} segundos",
+                        "ir a {minutes} minuto y {seconds} segundos",
+                        "ir a {minutes} minutos y {seconds} segundo",
+                        "ir a {minutes} minuto y {seconds} segundo",
+                        "ir a {minutes} minutos",
+                        "ir a {minutes} minuto",
+                        "ir a {seconds} segundos",
+                        "ir a {seconds} segundo",
+                        "regresa {hours} hours",
+                        "regresa {hours} hour",
+                        "regresa {hours} {minutes} {seconds}",
+                        "regresa {hours} hours {minutes} minutos y {seconds} segundos",
+                        "regresa {hours} hour {minutes} minutos y {seconds} segundos",
+                        "regresa {hours} hour {minutes} minuto y {seconds} segundos",
+                        "regresa {hours} hours {minutes} minuto y {seconds} segundos",
+                        "regresa {hours} hours {minutes} minutos y {seconds} segundo",
+                        "regresa {hours} hour {minutes} minutos y {seconds} segundo",
+                        "regresa {hours} hour {minutes} minuto y {seconds} segundo",
+                        "regresa {hours} hours {minutes} minuto y {seconds} segundo",
+                        "regresa {hours} hours {minutes} minutos",
+                        "regresa {hours} hour {minutes} minutos",
+                        "regresa {hours} hours {minutes} minuto",
+                        "regresa {hours} hour {minutes} minuto",
+                        "regresa {minutes} {seconds}",
+                        "regresa {minutes} minutos y {seconds} segundo",
+                        "regresa {minutes} minuto y {seconds} segundos",
+                        "regresa {minutes} minutos y {seconds} segundo",
+                        "regresa {minutes} minuto y {seconds} segundo",
+                        "regresa {minutes} minutos",
+                        "regresa {minutes} minuto",
+                        "regresa {seconds} segundos",
+                        "regresa {seconds} segundo"
+                    ]
+                },
+                
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}
