@@ -108,7 +108,29 @@ strings_de = {
 'sorryskipto':"Entschuldigung, ich habe nicht gehört, wo ich überspringen soll",
 'ok':"OK"
 }
-
+strings_es = {
+'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon videos de los Beatles.",
+'welcome2':"O puedes decir, aleatorio canciones de Michael Jackson.",
+'help':"por ejemplo di, pon videos de Fall Out Boy",
+'illegal':"Tu no puedes hacer esto con esta skill .",
+'gonewrong':"Lo sentimos, ocurrio un error",
+'playlist':"la playlist",
+'channel':"el canal",
+'video':"el video",
+'notworked':"no ha funcionado desea la siguiente?",
+'playing':"sonando",
+'pausing':"para",
+'nomoreitems':"No hay items en la playlist",
+'resuming':"resumiendo",
+'noresume':"No hay resumen del video",
+'novideo':"No se puede reproducir el video",
+'notitle':"No puedo encontrar el titulo del video",
+'nowplaying':"ahora sonando",
+'nothingplaying':"Nada esta sonando",
+'sorryskipby':"Lo siento no escuche cuando adelantar",
+'sorryskipto':"Lo siento no escuche a donde adelantar",
+'ok':"OK"
+}
 strings = strings_en
 
 # --------------- Helpers that build all of the responses ----------------------
