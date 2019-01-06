@@ -418,7 +418,7 @@ def video_search(query):
             videos.append(search_result['id']['videoId'])
     return videos
 
-def playlist_search(query, sr, shuffle=0):
+def playlist_search(query, sr, do_shuffle='0'):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
@@ -439,11 +439,11 @@ def playlist_search(query, sr, shuffle=0):
                 videos.append(item['snippet']['resourceId']['videoId'])
             except:
                 pass
-    if shuffle:
+    if do_shuffle == '1':
         shuffle(videos)
     return videos[0:50], playlist_title
 
-def channel_search(query, sr, shuffle=0):
+def channel_search(query, sr, do_shuffle='0'):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
@@ -463,7 +463,7 @@ def channel_search(query, sr, shuffle=0):
                 videos.append(item['id']['videoId'])
             except:
                 pass
-    if shuffle:
+    if do_shuffle == '1':
         shuffle(videos)
     return videos[0:50], playlist_title
 
