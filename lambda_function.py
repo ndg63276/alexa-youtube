@@ -431,7 +431,7 @@ def playlist_search(query, sr):
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
     data={'nextPageToken':''}
-    while 'nextPageToken' in data and len(videos) < 25:
+    while 'nextPageToken' in data and len(videos) < 50:
         next_page_token = data['nextPageToken']
         data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/playlistItems?pageToken={}&part=snippet&playlistId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
         for item in data['items']:
@@ -453,7 +453,7 @@ def channel_search(query, sr):
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     data={'nextPageToken':''}
     videos = []
-    while 'nextPageToken' in data and len(videos) < 25:
+    while 'nextPageToken' in data and len(videos) < 50:
         next_page_token = data['nextPageToken']
         data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/search?pageToken={}&part=snippet&channelId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
         for item in data['items']:
