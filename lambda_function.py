@@ -713,6 +713,13 @@ def get_next_url_and_token(current_token, skip):
     loop_mode = int(playlist['l'])
     next_playing = int(playlist['p'])
     number_of_videos = sum('v' in i for i in playlist.keys())
+    if shuffle_mode and skip != 0:
+        for i in range(int(next_playing), number_of_videos-1):
+            playlist['v'+str(i)] = playlist['v'+str(i+1)]
+        del(playlist['v'+str(number_of_videos-1)])
+        number_of_videos = sum('v' in i for i in playlist.keys())
+        if number_of_videos == 0:
+            return None, convert_dict_to_token(playlist), None
     while next_url is None:
         next_playing = next_playing + skip
         if shuffle_mode and skip != 0:
