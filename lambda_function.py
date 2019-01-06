@@ -418,7 +418,7 @@ def video_search(query):
             videos.append(search_result['id']['videoId'])
     return videos
 
-def playlist_search(query, sr):
+def playlist_search(query, sr, shuffle=0):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
@@ -431,7 +431,7 @@ def playlist_search(query, sr):
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
     data={'nextPageToken':''}
-    while 'nextPageToken' in data and len(videos) < 50:
+    while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
         data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/playlistItems?pageToken={}&part=snippet&playlistId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
         for item in data['items']:
@@ -439,9 +439,11 @@ def playlist_search(query, sr):
                 videos.append(item['snippet']['resourceId']['videoId'])
             except:
                 pass
-    return videos, playlist_title
+    if shuffle:
+        shuffle(videos)
+    return videos[0:50], playlist_title
 
-def channel_search(query, sr):
+def channel_search(query, sr, shuffle=0):
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
@@ -453,7 +455,7 @@ def channel_search(query, sr):
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     data={'nextPageToken':''}
     videos = []
-    while 'nextPageToken' in data and len(videos) < 50:
+    while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
         data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/search?pageToken={}&part=snippet&channelId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
         for item in data['items']:
@@ -461,7 +463,9 @@ def channel_search(query, sr):
                 videos.append(item['id']['videoId'])
             except:
                 pass
-    return videos, playlist_title
+    if shuffle:
+        shuffle(videos)
+    return videos[0:50], playlist_title
 
 def get_url_and_title(id):
     logger.info('Getting url for https://www.youtube.com/watch?v='+id)
@@ -506,22 +510,21 @@ def search(intent, session):
     if not sessionAttributes:
         sessionAttributes={'sr':0, 'intent':intent}
     sr = sessionAttributes['sr']
+    playlist = {}
+    playlist['s'] = '0'
+    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent":
+        playlist['s'] = '1'
+    playlist['l'] = '0'
     if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent":
-        videos, playlist_title = playlist_search(query, sr)
+        videos, playlist_title = playlist_search(query, sr, playlist['s'])
         playlist_channel_video = strings['playlist']
     elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
-        videos, playlist_title = channel_search(query, sr)
+        videos, playlist_title = channel_search(query, sr, playlist['s'])
         playlist_channel_video = strings['channel']
     else:
         videos = video_search(query)
         playlist_channel_video = strings['video']
     next_url = None
-    playlist = {}
-    playlist['s'] = '0'
-    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent":
-        shuffle(videos)
-        playlist['s'] = '1'
-    playlist['l'] = '0'
     for i,id in enumerate(videos):
         if playlist_channel_video != 'video' and time() - startTime > 8:
             return build_response(build_cardless_speechlet_response(playlist_channel_video+" "+playlist_title+" " + strings['notworked'], None, False), sessionAttributes)
