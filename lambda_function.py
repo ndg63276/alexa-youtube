@@ -419,14 +419,15 @@ def video_search(query):
     return videos
 
 def playlist_search(query, sr, do_shuffle='0'):
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=10,
-        type='playlist'
-        ).execute()
-    playlist_id = search_response.get('items')[sr]['id']['playlistId']
+#    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+#    search_response = youtube.search().list(
+#        q=query,
+#        part='id,snippet',
+#        maxResults=10,
+#        type='playlist'
+#        ).execute()
+#    playlist_id = search_response.get('items')[sr]['id']['playlistId']
+    playlist_id = 'PLLFnyGeZhCiftnui2P1pBkenb352i0bqb'
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
