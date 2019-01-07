@@ -429,7 +429,8 @@ def playlist_search(query, sr, do_shuffle='0'):
 #    playlist_id = search_response.get('items')[sr]['id']['playlistId']
     playlist_id = 'PLLFnyGeZhCiftnui2P1pBkenb352i0bqb'
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
-    playlist_title = search_response.get('items')[sr]['snippet']['title']
+#    playlist_title = search_response.get('items')[sr]['snippet']['title']
+    playlist_title = 'musique de christophe du nord'
     videos = []
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
