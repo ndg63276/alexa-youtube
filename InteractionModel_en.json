@@ -81,6 +81,22 @@
                     ]
                 },
                 {
+                    "name": "MyPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Start my playlist",
+                        "Listen to my playlist",
+                        "Play my playlist"
+                    ]
+                },
+                {
+                    "name": "ShuffleMyPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Shuffle my playlist"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
