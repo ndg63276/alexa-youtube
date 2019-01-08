@@ -324,6 +324,10 @@ def on_intent(event):
         return search(intent, session)
     elif intent_name == "PlaylistIntent":
         return search(intent, session)
+    elif intent_name == "MyPlaylistIntent":
+        return search(intent, session)
+    elif intent_name == "ShuffleMyPlaylistIntent":
+        return search(intent, session)
     elif intent_name == "ChannelIntent":
         return search(intent, session)
     elif intent_name == "ShuffleIntent":
@@ -419,17 +423,33 @@ def video_search(query):
     return videos
 
 def playlist_search(query, sr, do_shuffle='0'):
-#    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
-#    search_response = youtube.search().list(
-#        q=query,
-#        part='id,snippet',
-#        maxResults=10,
-#        type='playlist'
-#        ).execute()
-#    playlist_id = search_response.get('items')[sr]['id']['playlistId']
+    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+    search_response = youtube.search().list(
+        q=query,
+        part='id,snippet',
+        maxResults=10,
+        type='playlist'
+        ).execute()
+    playlist_id = search_response.get('items')[sr]['id']['playlistId']
+    logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
+    playlist_title = search_response.get('items')[sr]['snippet']['title']
+    videos = []
+    data={'nextPageToken':''}
+    while 'nextPageToken' in data and len(videos) < 200:
+        next_page_token = data['nextPageToken']
+        data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/playlistItems?pageToken={}&part=snippet&playlistId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
+        for item in data['items']:
+            try:
+                videos.append(item['snippet']['resourceId']['videoId'])
+            except:
+                pass
+    if do_shuffle == '1':
+        shuffle(videos)
+    return videos[0:50], playlist_title
+
+def my_playlist(sr, do_shuffle='0'):
     playlist_id = 'PLLFnyGeZhCiftnui2P1pBkenb352i0bqb'
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
-#    playlist_title = search_response.get('items')[sr]['snippet']['title']
     playlist_title = 'musique de christophe du nord'
     videos = []
     data={'nextPageToken':''}
@@ -503,9 +523,10 @@ def yes_intent(session):
 
 def search(intent, session):
     startTime = time()
-    query = intent['slots']['query']['value']
+    if 'query' in intent['slots']:
+        query = intent['slots']['query']['value']
+        logger.info('Looking for: ' + query)
     should_end_session = True
-    logger.info('Looking for: ' + query)
     intent_name = intent['name']
     playlist_title = None
     sessionAttributes = session.get('attributes')
@@ -514,11 +535,14 @@ def search(intent, session):
     sr = sessionAttributes['sr']
     playlist = {}
     playlist['s'] = '0'
-    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent":
+    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistIntent":
         playlist['s'] = '1'
     playlist['l'] = '0'
     if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent":
         videos, playlist_title = playlist_search(query, sr, playlist['s'])
+        playlist_channel_video = strings['playlist']
+    elif intent_name == "MyPlaylistIntent" or intent_name == "ShuffleMyPlaylistIntent":
+        videos, playlist_title = my_playlist(sr, playlist['s'])
         playlist_channel_video = strings['playlist']
     elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
         videos, playlist_title = channel_search(query, sr, playlist['s'])
