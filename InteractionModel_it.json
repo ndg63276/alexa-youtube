@@ -109,6 +109,22 @@
                     ]
                 },
                 {
+                    "name": "MyPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Inizia la mia playlist",
+                        "Ascolta la mia playlist",
+                        "Riprodurre la mia playlist"
+                    ]
+                },
+                {
+                    "name": "ShuffleMyPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Casuale la mia playlist"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
