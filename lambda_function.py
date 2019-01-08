@@ -523,7 +523,7 @@ def yes_intent(session):
 
 def search(intent, session):
     startTime = time()
-    if 'query' in intent['slots']:
+    if 'slots' in intent and 'query' in intent['slots']:
         query = intent['slots']['query']['value']
         logger.info('Looking for: ' + query)
     should_end_session = True
