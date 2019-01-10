@@ -449,8 +449,10 @@ def playlist_search(query, sr, do_shuffle='0'):
 
 def my_playlist(sr, do_shuffle='0'):
     playlist_id = 'PLLFnyGeZhCiftnui2P1pBkenb352i0bqb'
+	if 'MY_PLAYLIST_ID' in environ:
+		playlist_id = environ['MY_PLAYLIST_ID']
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
-    playlist_title = 'musique de christophe du nord'
+    playlist_title = 'your playlist'
     videos = []
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
