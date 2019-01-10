@@ -430,7 +430,11 @@ def playlist_search(query, sr, do_shuffle='0'):
         maxResults=10,
         type='playlist'
         ).execute()
-    playlist_id = search_response.get('items')[sr]['id']['playlistId']
+    for playlist in range(sr, len(search_response.get('items'))):
+        if 'playlistId' in search_response.get('items')[playlist]['id']:
+            playlist_id = search_response.get('items')[playlist]['id']['playlistId']
+            break
+    sr = playlist
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
