@@ -328,6 +328,8 @@ def on_intent(event):
         return search(intent, session)
     elif intent_name == "ShuffleMyPlaylistIntent":
         return search(intent, session)
+    elif intent_name == "NextPlaylistIntent":
+        return next_playlist(event)
     elif intent_name == "ChannelIntent":
         return search(intent, session)
     elif intent_name == "ShuffleIntent":
@@ -522,6 +524,20 @@ def yes_intent(session):
     intent = sessionAttributes['intent']
     session['attributes']['sr'] = sessionAttributes['sr'] + 1
     return search(intent, session)
+    
+def next_playlist(event):
+    intent = event['request']['intent']
+    session = event['session']
+    logger.info(intent)
+    if 'token' not in event['context']['AudioPlayer']:
+        speech_output = strings['nothingplaying']
+        return build_response(build_short_speechlet_response(speech_output, True))
+    current_token = event['context']['AudioPlayer']['token']
+    playlist = convert_token_to_dict(current_token)
+    if 'sr' not in playlist:
+        return build_response(build_cardless_speechlet_response(strings['gonewrong'], None, True))
+    session['attributes']['sr'] = int(playlist['sr']) + 1
+    return search(intent, session)
 
 def search(intent, session):
     startTime = time()
@@ -537,6 +553,7 @@ def search(intent, session):
     sr = sessionAttributes['sr']
     playlist = {}
     playlist['s'] = '0'
+    playlist['sr'] = sr
     if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistIntent":
         playlist['s'] = '1'
     playlist['l'] = '0'
