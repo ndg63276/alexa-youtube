@@ -6,7 +6,6 @@ from pytube import YouTube
 import logging
 from random import shuffle, randint
 from botocore.vendored import requests
-import json
 import urllib
 from time import time
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
@@ -15,6 +14,8 @@ logger.setLevel(logging.INFO)
 DEVELOPER_KEY=environ['DEVELOPER_KEY']
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
+youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+
 
 strings_en = {
 'welcome1':"Welcome to Youtube. Say, for example, play videos by The Beatles.",
@@ -411,7 +412,6 @@ def do_nothing():
     return build_response({})
 
 def video_search(query):
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
@@ -425,7 +425,6 @@ def video_search(query):
     return videos
 
 def playlist_search(query, sr, do_shuffle='0'):
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
@@ -474,7 +473,6 @@ def my_playlist(sr, do_shuffle='0'):
     return videos[0:50], playlist_title
 
 def channel_search(query, sr, do_shuffle='0'):
-    youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
