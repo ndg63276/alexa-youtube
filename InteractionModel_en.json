@@ -90,6 +90,13 @@
                     ]
                 },
                 {
+                    "name": "NextPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Next playlist"
+                    ]
+                },
+                {
                     "name": "ShuffleMyPlaylistIntent",
                     "slots": [],
                     "samples": [

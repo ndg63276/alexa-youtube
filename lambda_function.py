@@ -328,6 +328,8 @@ def on_intent(event):
         return search(intent, session)
     elif intent_name == "ShuffleMyPlaylistIntent":
         return search(intent, session)
+    elif intent_name == "NextPlaylistIntent":
+        return next_playlist(event)
     elif intent_name == "ChannelIntent":
         return search(intent, session)
     elif intent_name == "ShuffleIntent":
@@ -449,7 +451,7 @@ def playlist_search(query, sr, do_shuffle='0'):
                 pass
     if do_shuffle == '1':
         shuffle(videos)
-    return videos[0:50], playlist_title
+    return videos[0:50], playlist_title, sr
 
 def my_playlist(sr, do_shuffle='0'):
     playlist_id = 'PLLFnyGeZhCiftnui2P1pBkenb352i0bqb'
@@ -526,6 +528,23 @@ def yes_intent(session):
     intent = sessionAttributes['intent']
     session['attributes']['sr'] = sessionAttributes['sr'] + 1
     return search(intent, session)
+    
+def next_playlist(event):
+    intent = event['request']['intent']
+    session = event['session']
+    logger.info(intent)
+    if 'token' not in event['context']['AudioPlayer']:
+        speech_output = strings['nothingplaying']
+        return build_response(build_short_speechlet_response(speech_output, True))
+    current_token = event['context']['AudioPlayer']['token']
+    playlist = convert_token_to_dict(current_token)
+    if 'sr' not in playlist or 'query' not in playlist:
+        return build_response(build_cardless_speechlet_response(strings['gonewrong'], None, True))
+    if 'attributes' not in session:
+        session['attributes'] = {}
+    session['attributes']['sr'] = int(playlist['sr']) + 1
+    session['attributes']['query'] = playlist['query']
+    return search(intent, session)
 
 def search(intent, session):
     startTime = time()
@@ -538,14 +557,18 @@ def search(intent, session):
     sessionAttributes = session.get('attributes')
     if not sessionAttributes:
         sessionAttributes={'sr':0, 'intent':intent}
+    if 'query' in sessionAttributes:
+        query = sessionAttributes['query'].replace('_',' ')
     sr = sessionAttributes['sr']
     playlist = {}
     playlist['s'] = '0'
+    playlist['sr'] = sr
+    playlist['query'] = query.replace(' ','_')
     if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistIntent":
         playlist['s'] = '1'
     playlist['l'] = '0'
-    if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent":
-        videos, playlist_title = playlist_search(query, sr, playlist['s'])
+    if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "NextPlaylistIntent":
+        videos, playlist_title, playlist['sr'] = playlist_search(query, sr, playlist['s'])
         playlist_channel_video = strings['playlist']
     elif intent_name == "MyPlaylistIntent" or intent_name == "ShuffleMyPlaylistIntent":
         videos, playlist_title = my_playlist(sr, playlist['s'])
