@@ -441,7 +441,7 @@ def playlist_search(query, sr, do_shuffle='0'):
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
-        data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/playlistItems?pageToken={}&part=snippet&playlistId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
+        data = youtube.playlistItems().list(part='snippet',maxResults=50,playlistId=playlist_id,pageToken=next_page_token).execute()
         for item in data['items']:
             try:
                 videos.append(item['snippet']['resourceId']['videoId'])
@@ -461,7 +461,7 @@ def my_playlist(sr, do_shuffle='0'):
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
-        data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/playlistItems?pageToken={}&part=snippet&playlistId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
+        data = youtube.playlistItems().list(part='snippet',maxResults=50,playlistId=playlist_id,pageToken=next_page_token).execute()
         for item in data['items']:
             try:
                 videos.append(item['snippet']['resourceId']['videoId'])
@@ -485,7 +485,7 @@ def channel_search(query, sr, do_shuffle='0'):
     videos = []
     while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
-        data = json.loads(requests.get('https://www.googleapis.com/youtube/v3/search?pageToken={}&part=snippet&channelId={}&key={}'.format(next_page_token,playlist_id,DEVELOPER_KEY)).text)
+        data = youtube.search().list(part='snippet',maxResults=50,channelId=playlist_id,pageToken=next_page_token).execute()
         for item in data['items']:
             try:
                 videos.append(item['id']['videoId'])
