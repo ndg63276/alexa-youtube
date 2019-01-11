@@ -325,9 +325,9 @@ def on_intent(event):
         return search(intent, session)
     elif intent_name == "PlaylistIntent":
         return search(intent, session)
-    elif intent_name == "MyPlaylistIntent":
+    elif intent_name == "SearchMyPlaylistsIntent":
         return search(intent, session)
-    elif intent_name == "ShuffleMyPlaylistIntent":
+    elif intent_name == "ShuffleMyPlaylistsIntent":
         return search(intent, session)
     elif intent_name == "NextPlaylistIntent":
         return next_playlist(event)
@@ -452,12 +452,24 @@ def playlist_search(query, sr, do_shuffle='0'):
         shuffle(videos)
     return videos[0:50], playlist_title, sr
 
-def my_playlist(sr, do_shuffle='0'):
-    playlist_id = 'PLLFnyGeZhCiftnui2P1pBkenb352i0bqb'
-    if 'MY_PLAYLIST_ID' in environ:
-        playlist_id = environ['MY_PLAYLIST_ID']
+def my_playlists_search(query, sr, do_shuffle='0'):
+    channel_id = ''
+    if 'MY_CHANNEL_ID' in environ:
+        channel_id = environ['MY_CHANNEL_ID']
+    search_response = youtube.search().list(
+        q=query,
+        part='id,snippet',
+        maxResults=10,
+        type='playlist',
+        channelId=channel_id
+        ).execute()
+    for playlist in range(sr, len(search_response.get('items'))):
+        if 'playlistId' in search_response.get('items')[playlist]['id']:
+            playlist_id = search_response.get('items')[playlist]['id']['playlistId']
+            break
+    sr = playlist
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
-    playlist_title = 'your playlist'
+    playlist_title = search_response.get('items')[sr]['snippet']['title']
     videos = []
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
@@ -470,7 +482,7 @@ def my_playlist(sr, do_shuffle='0'):
                 pass
     if do_shuffle == '1':
         shuffle(videos)
-    return videos[0:50], playlist_title
+    return videos[0:50], playlist_title, sr
 
 def channel_search(query, sr, do_shuffle='0'):
     search_response = youtube.search().list(
@@ -562,14 +574,14 @@ def search(intent, session):
     playlist['s'] = '0'
     playlist['sr'] = sr
     playlist['query'] = query.replace(' ','_')
-    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistIntent":
+    if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistsIntent":
         playlist['s'] = '1'
     playlist['l'] = '0'
     if intent_name == "PlaylistIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "NextPlaylistIntent":
         videos, playlist_title, playlist['sr'] = playlist_search(query, sr, playlist['s'])
         playlist_channel_video = strings['playlist']
-    elif intent_name == "MyPlaylistIntent" or intent_name == "ShuffleMyPlaylistIntent":
-        videos, playlist_title = my_playlist(sr, playlist['s'])
+    elif intent_name == "SearchMyPlaylistsIntent" or intent_name == "ShuffleMyPlaylistsIntent":
+        videos, playlist_title = my_playlists_search(query, sr, playlist['s'])
         playlist_channel_video = strings['playlist']
     elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
         videos, playlist_title = channel_search(query, sr, playlist['s'])
