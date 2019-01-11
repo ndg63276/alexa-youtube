@@ -81,12 +81,17 @@
                     ]
                 },
                 {
-                    "name": "MyPlaylistIntent",
-                    "slots": [],
+                    "name": "SearchMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
                     "samples": [
-                        "Start my playlist",
-                        "Listen to my playlist",
-                        "Play my playlist"
+                        "Start my playlist {query}",
+                        "Listen to my playlist {query}",
+                        "Play my playlist {query}"
                     ]
                 },
                 {
@@ -97,10 +102,15 @@
                     ]
                 },
                 {
-                    "name": "ShuffleMyPlaylistIntent",
-                    "slots": [],
+                    "name": "ShuffleMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
                     "samples": [
-                        "Shuffle my playlist"
+                        "Shuffle my playlist {query}"
                     ]
                 },
                 {
