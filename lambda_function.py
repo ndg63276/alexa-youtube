@@ -64,9 +64,9 @@ strings_fr = {
 'ok':"OK"
 }
 strings_it = {
-'welcome1':"Benvenuto su YouTube. Dici, per esempio, riproduci i video dei Beatles.",
+'welcome1':"Benvenuto su YouTube. Dì, per esempio, riproduci video dei Beatles.",
 'welcome2':"Oppure puoi dire, canzoni casuali di Michael Jackson.",
-'help':"Per esempio dici, riproduci i videi dei Fall out Boy",
+'help':"Per esempio dì, riproduci i video dei Fall out Boy",
 'illegal':"Non puoi fare questo con questa skill.",
 'gonewrong':"Spiacente, qualcosa è andato storto",
 'playlist':"La playlist",
@@ -77,7 +77,7 @@ strings_it = {
 'pausing':"Ciao da Youtube",
 'nomoreitems':"Non ci sono più elementi nella playlist.",
 'resuming':"Riprendo",
-'noresume':"Non ero in grado di riprendere la riproduzione.",
+'noresume':"Non ero in grado di riprendere il video.",
 'novideo':"Non ero in grado di riprodurre un video",
 'notitle':"Non riesco a trovare il nome del video corrente.",
 'nowplaying':"Ora riproduco",
