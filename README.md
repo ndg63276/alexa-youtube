@@ -55,7 +55,7 @@ This skill currently runs on my Lambda instance, hopefully it won't get too popu
 
 [tal9000v2](https://github.com/tal9000v2) has put together a handy guide for deploying yourself [here](https://github.com/ndg63276/alexa-youtube/issues/15#issuecomment-447684487).
 
-If you have a specific (public) playlist that you would like to play a lot, without searching, get the playlist ID from youtube. Eg, if your playlist is at https://www.youtube.com/playlist?list=PLLFnyGeZhCiftnui2P1pBkenb352i0bqb, the playlist ID is PLLFnyGeZhCiftnui2P1pBkenb352i0bqb. Then, when you add the environment variable DEVELOPER_KEY, add another environment variable called MY_PLAYLIST_ID, with the value of that your playlist ID. Then you can say, "Alexa, ask YouTube to play my playlist".
+If you have a (public) playlists that you would like to play, get your channel ID from youtube. Find a video you have uploaded, then click on your name beneath it, it should take you to eg https://www.youtube.com/channel/UCDVYQ4Zhbm3S2dlz7P1GBDg, in which case your channel ID is UCDVYQ4Zhbm3S2dlz7P1GBDg. Then, when you add the environment variable DEVELOPER_KEY, add another environment variable called MY_CHANNEL_ID, with the value of that your channel ID. Then you can say, "Alexa, ask YouTube to play my playlist {name of your playlist}".
 
 ## FAQ
 * **Alexa tells me she can't find any supported video skills, what does that mean?**
