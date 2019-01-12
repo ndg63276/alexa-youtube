@@ -581,7 +581,7 @@ def search(intent, session):
         videos, playlist_title, playlist['sr'] = playlist_search(query, sr, playlist['s'])
         playlist_channel_video = strings['playlist']
     elif intent_name == "SearchMyPlaylistsIntent" or intent_name == "ShuffleMyPlaylistsIntent":
-        videos, playlist_title = my_playlists_search(query, sr, playlist['s'])
+        videos, playlist_title, playlist['sr'] = my_playlists_search(query, sr, playlist['s'])
         playlist_channel_video = strings['playlist']
     elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
         videos, playlist_title = channel_search(query, sr, playlist['s'])
