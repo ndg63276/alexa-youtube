@@ -151,6 +151,16 @@
                     ]
                 },
                 {
+                    "name": "SayTimestampIntent",
+                    "slots": [],
+                    "samples": [
+                        "How far into this video are we",
+                        "What is the current timestamp",
+                        "What is the time",
+                        "What is the timestamp"
+                    ]
+                },
+                {
                     "name": "SkipToIntent",
                     "slots": [
                         {
