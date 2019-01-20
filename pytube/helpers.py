@@ -36,10 +36,11 @@ def regex_search(pattern, string, groups=False, group=None, flags=0):
             regex = re.compile(p, flags)
             results = regex.search(string)
             if not results:
-                raise RegexMatchError(
-                    'regex pattern ({pattern}) had zero matches'
-                    .format(pattern=p),
-                )
+                if p == pattern[-1]:
+                    raise RegexMatchError(
+                        'regex pattern ({pattern}) had zero matches'
+                        .format(pattern=p),
+                    )
             else:
                 logger.debug(
                     'finished regex search: %s',
