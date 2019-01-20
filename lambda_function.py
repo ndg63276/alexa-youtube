@@ -38,7 +38,14 @@ strings_en = {
 'nothingplaying':"Nothing is currently playing.",
 'sorryskipby':"Sorry, I didn't hear how much to skip by",
 'sorryskipto':"Sorry, I didn't hear where to skip to",
-'ok':"OK"
+'ok':"OK",
+'currentposition':"The current position is",
+'hours':"hours",
+'hour':"hour",
+'minutes':"minutes",
+'minute':"minute",
+'seconds':"seconds",
+'second':"second",
 }
 strings_fr = {
 'welcome1':"Bienvenue sur Youtube. Dite, par exemple, jouer une vidéo de Madonna.",
@@ -345,6 +352,8 @@ def on_intent(event):
         return skip_by(event, -1)
     elif intent_name == 'SkipToIntent':
         return skip_to(event)
+    elif intent_name == 'SayTimestampIntent':
+        return say_timestamp(event)
     elif intent_name == "AMAZON.YesIntent":
         return yes_intent(session)
     elif intent_name == "AMAZON.NoIntent":
@@ -751,6 +760,30 @@ def say_video_title(event):
             speech_output = strings['notitle']
         else:
             speech_output = strings['nowplaying']+" "+title
+    else:
+        speech_output = strings['nothingplaying']
+    return build_response(build_short_speechlet_response(speech_output, should_end_session))
+
+def say_timestamp(event):
+    should_end_session = True
+    if 'offsetInMilliseconds' in event['context']['AudioPlayer']:
+        current_offsetInMilliseconds = int(event['context']['AudioPlayer']['offsetInMilliseconds'])
+        hours = current_offsetInMilliseconds / 3600000
+        minutes = (current_offsetInMilliseconds - hours*3600000) / 60000
+        seconds = (current_offsetInMilliseconds - hours*3600000 - minutes*60000) / 1000
+        speech_output = strings['currentposition']
+        if hours >= 2:
+            speech_output += ' ' + str(hours) + ' ' + strings['hours'] + ', '
+        elif hours == 1:
+            speech_output += ' ' + str(hours) + ' ' + strings['hour'] + ', '
+        if minutes == 1:
+            speech_output += ' ' + str(minutes) + ' ' + strings['minute'] + ', '
+        else:
+            speech_output += ' ' + str(minutes) + ' ' + strings['minutes'] + ', '
+        if seconds == 1:
+            speech_output += ' ' + str(seconds) + ' ' + strings['second'] + ', '
+        else:
+            speech_output += ' ' + str(seconds) + ' ' + strings['seconds'] + ', '
     else:
         speech_output = strings['nothingplaying']
     return build_response(build_short_speechlet_response(speech_output, should_end_session))
