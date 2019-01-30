@@ -328,23 +328,8 @@ def on_intent(event):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
     # Dispatch to your skill's intent handlers
-    if intent_name == "SearchIntent":
-        return search(intent, session)
-    elif intent_name == "PlaylistIntent":
-        return search(intent, session)
-    elif intent_name == "SearchMyPlaylistsIntent":
-        return search(intent, session)
-    elif intent_name == "ShuffleMyPlaylistsIntent":
-        return search(intent, session)
-    elif intent_name == "NextPlaylistIntent":
-        return next_playlist(event)
-    elif intent_name == "ChannelIntent":
-        return search(intent, session)
-    elif intent_name == "ShuffleIntent":
-        return search(intent, session)
-    elif intent_name == "ShufflePlaylistIntent":
-        return search(intent, session)
-    elif intent_name == "ShuffleChannelIntent":
+    search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "MyPlaylistIntent", "ShuffleMyPlaylistIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent"]
+    if intent_name in search_intents:
         return search(intent, session)
     elif intent_name == 'SkipForwardIntent':
         return skip_by(event, 1)
@@ -600,7 +585,9 @@ def search(intent, session):
         playlist_channel_video = strings['video']
     next_url = None
     for i,id in enumerate(videos):
-        if playlist_channel_video != 'video' and time() - startTime > 8:
+        if intent_name == "PlayOneIntent" and next_url is not None:
+            break
+        if playlist_channel_video != strings['video'] and time() - startTime > 8:
             return build_response(build_cardless_speechlet_response(playlist_channel_video+" "+playlist_title+" " + strings['notworked'], None, False), sessionAttributes)
         playlist['v'+str(i)]=id
         if next_url is None:
