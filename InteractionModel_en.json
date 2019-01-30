@@ -40,6 +40,23 @@
                     ]
                 },
                 {
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "play the song {query}",
+                        "play the video {query}",
+                        "play the track {query}",
+                        "play one song {query}",
+                        "play one video {query}",
+                        "play one track {query}"
+                    ]
+                },
+                {
                     "name": "ShuffleIntent",
                     "slots": [
                         {
