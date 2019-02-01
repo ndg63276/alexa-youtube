@@ -168,6 +168,27 @@
                     ]
                 },
                 {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "Turn on autoplay",
+                        "Turn autoplay on",
+                        "Switch autoplay on",
+                        "Switch on autoplay"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "Turn off autoplay",
+                        "Turn autoplay off",
+                        "Switch autoplay off",
+                        "Switch off autoplay",
+                        "Play this one video"
+                    ]
+                },
+                {
                     "name": "SayTimestampIntent",
                     "slots": [],
                     "samples": [
@@ -602,6 +623,10 @@
                 },
                 {
                     "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
                 }
             ],
