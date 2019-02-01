@@ -16,7 +16,6 @@ YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
-
 strings_en = {
 'welcome1':"Welcome to Youtube. Say, for example, play videos by The Beatles.",
 'welcome2':"Or you can say, shuffle songs by Michael Jackson.",
@@ -296,7 +295,6 @@ def build_response(speechlet_response, sessionAttributes={}):
         'response': speechlet_response
     }
 
-
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
@@ -339,6 +337,10 @@ def on_intent(event):
         return skip_to(event)
     elif intent_name == 'SayTimestampIntent':
         return say_timestamp(event)
+    elif intent_name == 'AutoplayOffIntent':
+        return change_mode(event, 'a', 0)
+    elif intent_name == 'AutoplayOnIntent':
+        return change_mode(event, 'a', 1)
     elif intent_name == "AMAZON.YesIntent":
         return yes_intent(session)
     elif intent_name == "AMAZON.NoIntent":
@@ -532,7 +534,7 @@ def yes_intent(session):
     intent = sessionAttributes['intent']
     session['attributes']['sr'] = sessionAttributes['sr'] + 1
     return search(intent, session)
-    
+
 def next_playlist(event):
     intent = event['request']['intent']
     session = event['session']
@@ -567,6 +569,7 @@ def search(intent, session):
     playlist = {}
     playlist['s'] = '0'
     playlist['sr'] = sr
+    playlist['a'] = '1'
     playlist['query'] = query.replace(' ','_')
     if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistsIntent":
         playlist['s'] = '1'
@@ -797,6 +800,9 @@ def get_next_url_and_token(current_token, skip):
     shuffle_mode = int(playlist['s'])
     loop_mode = int(playlist['l'])
     next_playing = int(playlist['p'])
+    autoplay = int(playlist['a'])
+    if not autoplay and skip != 0:
+        return None, convert_dict_to_token(playlist), None
     number_of_videos = sum('v' in i for i in playlist.keys())
     if shuffle_mode and skip != 0:
         for i in range(int(next_playing), number_of_videos-1):
