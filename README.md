@@ -5,10 +5,10 @@
 * 2nd June 2018: The skill now handles playlists or channels where none of the videos exist (eg copyrighted deletions). It will now ask you if you want to try the next playlist or channel. If you have already created the skill, you will need to update the Interaction Model json file in your Alexa skill, ie step 7 under Setup Instructions.
 * 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
 * 4th January 2019: Now works in 5 languages, thanks to everyone who helped!
+* 1st February 2019: Live videos don't seem to be working. Have updated the list of commands.
 
 ## Features
 * Play audio (currently no video) from YouTube videos
-* Live videos are supported as much as possible
 
 ## Skill Commands
 
@@ -18,12 +18,21 @@
 4. You can replace "play" with "shuffle" to get a randomized version of the search results/channel/playlist, eg "Alexa, ask YouTube to shuffle channel Nicki Minaj"
 5. Next / Previous / Start Over / Pause / Resume should all work
 6. Ask what is playing by "Alexa, ask YouTube what song is playing" (or just "Alexa, can you repeat that?" should tell you)
+7. Skip forward or back in the video by "Alexa, ask YouTube to skip forward/backward to/by one minute and one second"
+8. Just play one video by "Alexa, ask YouTube to play one video Gangnam Style". You can switch in and out of "autoplay" mode by "Alexa, ask YouTube to turn on/off autoplay."
+9. Find the current time in the video by "Alexa, ask YouTube what is the timestamp?"
+10. If you want to play your own playlists, and the search feature finds other people's, if you follow the Advanced instructions below you can specify your own channel id.
+
+Command 7 doesn't seem to work on Generation 1 Echo's, no idea why.
+Commands 8, 9 and 10 are only available in English at the moment.
 
 ## Known issues
 
 1. Some videos just fail, it's not clear why, they work locally. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
 2. It doesn't play video, because I don't have an Echo Show or Echo Spot to test on. If you want to buy me one, get in touch!
 3. Apparently it doesn't work on Sonos devices. Sorry about that, email Sonos and ask them to support mp4.
+4. Live videos don't seem to be working any more.
+
 
 ## Setup Instructions
 
@@ -62,6 +71,8 @@ If you have (public) playlists that you would like to play, first get your chann
 Alexa is trying to be too clever, and not launching this skill. Start your request by saying 'Alexa, open YouTube' and then when she says 'Welcome to YouTube', ask for the video you want.
 * **She still says she can't find any video skills.**
 Make sure to follow step 15 above, enabling Testing for Development.
+* **She still says she can't find any video skills!**
+Try using a different word to start the skill. In English, say "Alexa, launch YouTube". In German, say "Alexa, öffne YouTube". In Italian, say "Alexa, avvia YouTube".
 * **I am getting another issue, can you fix it?**
 Hopefully. Create an issue on github, with the exact wording of what you ask Alexa, so I can try and reproduce it.
 * **Can you add another language?**
