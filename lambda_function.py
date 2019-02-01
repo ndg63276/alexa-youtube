@@ -570,6 +570,8 @@ def search(intent, session):
     playlist['s'] = '0'
     playlist['sr'] = sr
     playlist['a'] = '1'
+    if intent_name == "PlayOneIntent":
+        playlist['a'] = '0'
     playlist['query'] = query.replace(' ','_')
     if intent_name == "ShuffleIntent" or intent_name == "ShufflePlaylistIntent" or intent_name == "ShuffleChannelIntent" or intent_name == "ShuffleMyPlaylistsIntent":
         playlist['s'] = '1'
@@ -588,8 +590,6 @@ def search(intent, session):
         playlist_channel_video = strings['video']
     next_url = None
     for i,id in enumerate(videos):
-        if intent_name == "PlayOneIntent" and next_url is not None:
-            break
         if playlist_channel_video != strings['video'] and time() - startTime > 8:
             return build_response(build_cardless_speechlet_response(playlist_channel_video+" "+playlist_title+" " + strings['notworked'], None, False), sessionAttributes)
         playlist['v'+str(i)]=id
