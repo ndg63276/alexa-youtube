@@ -6,7 +6,6 @@ from pytube import YouTube
 import logging
 from random import shuffle, randint
 from botocore.vendored import requests
-import json
 import urllib
 import ast
 from time import time
@@ -706,7 +705,7 @@ def skip_by(event, direction):
         return build_response(build_short_speechlet_response(speech_output, True))
     current_offsetInMilliseconds = event['context']['AudioPlayer']['offsetInMilliseconds']
     skip_by_offsetInMilliseconds = direction * (hours * 3600000 + minutes * 60000 + seconds * 1000)
-    return resume(event, offsetInMilliseconds = current_offsetInMilliseconds + skip_by_offsetInMilliseconds)
+    return resume(event, current_offsetInMilliseconds+skip_by_offsetInMilliseconds)
 
 def skip_to(event):
     intent = event['request']['intent']
@@ -742,9 +741,9 @@ def skip_to(event):
         speech_output = strings['sorryskipto']
         return build_response(build_short_speechlet_response(speech_output, True))
     offsetInMilliseconds = hours * 3600000 + minutes * 60000 + seconds * 1000
-    return resume(event, offsetInMilliseconds = offsetInMilliseconds)
+    return resume(event, offsetInMilliseconds)
 
-def resume(event, say_title = False, offsetInMilliseconds = None):
+def resume(event, offsetInMilliseconds=None):
     if 'token' not in event['context']['AudioPlayer']:
         return get_welcome_response()
     current_token = event['context']['AudioPlayer']['token']
