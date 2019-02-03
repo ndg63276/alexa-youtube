@@ -6,9 +6,11 @@
 * 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
 * 4th January 2019: Now works in 5 languages, thanks to everyone who helped!
 * 1st February 2019: Live videos don't seem to be working. Have updated the list of commands.
+* 3rd February 2019: Live videos fixed on video devices, not audio.
 
 ## Features
-* Play audio (currently no video) from YouTube videos
+* Play audio from YouTube videos
+* Play video (if supported) on live videos or if you ask for just one specific video (command 8)
 
 ## Skill Commands
 
@@ -29,10 +31,8 @@ Commands 8, 9 and 10 are only available in English at the moment.
 ## Known issues
 
 1. Some videos just fail, it's not clear why, they work locally. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
-2. It doesn't play video, because I don't have an Echo Show or Echo Spot to test on. If you want to buy me one, get in touch!
-3. Apparently it doesn't work on Sonos devices. Sorry about that, email Sonos and ask them to support mp4.
-4. Live videos don't seem to be working any more.
-
+2. Apparently it doesn't work on Sonos devices. Sorry about that, email Sonos and ask them to support mp4.
+3. Live videos only work on video devices, eg Spot or Show. (Alexa doesn't keep downloading the m3u8 file, so she plays the first 5s and then thinks it has finished)
 
 ## Setup Instructions
 
@@ -44,7 +44,7 @@ Commands 8, 9 and 10 are only available in English at the moment.
 6. On the left hand side, click "JSON Editor".
 7. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 8. Click "Save Model" at the top.
-9. Click "Interfaces" in the menu on the left, and enable "Audio Player". Click "Save Interfaces".
+9. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
 10. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put:
 
 ```
@@ -79,5 +79,7 @@ Hopefully. Create an issue on github, with the exact wording of what you ask Ale
 Yes, as long as you can translate for me. Click on 'Issues' at the top, then 'New Issue', and let me know what language you can help with, and I'll let you know what I need translating.
 * **If I try and test in the Developer Console, it says 'Unsupported Directive. AudioPlayer is currently an unsupported namespace. Check the device log for more information.'**
 That is normal, the Developer Console doesn't play audio. You just need to enable testing through the Developer Console, then you can use the skill through your Alexa device.
+* **Why don't more videos work as video?**
+Alexa doesn't provide any ability to enqueue videos, so you only get one video, then it stops. So it only plays videos if you ask for one specific video, or if it is a live video.
 
 
