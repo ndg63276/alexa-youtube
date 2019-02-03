@@ -6,8 +6,7 @@ from pytube import YouTube
 import logging
 from random import shuffle, randint
 from botocore.vendored import requests
-import urllib
-import ast
+import re
 from time import time
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 logger = logging.getLogger()
@@ -550,14 +549,11 @@ def get_url_and_title(id):
 
 def get_live_video_url_and_title(id):
     logger.info('Live video?')
-    info_url = 'https://www.youtube.com/get_video_info?&video_id='+id
-    r = requests.get(info_url)
-    info = convert_token_to_dict(r.text)
     try:
-        f = info['player_response']
-        u = urllib.unquote(f).replace('\\u0026','&').replace('true','True').replace('false','False')
-        a = ast.literal_eval(u)
-        url = a['streamingData']['hlsManifestUrl']
+        u = 'https://www.youtube.com/watch?v='+id
+        r = requests.get(u)
+        a = re.search('https:[%\_\-\\\/\.a-z0-9]+m3u8', r.text, re.I)
+        url = a.group().replace('\\/','/')
         logger.info(url)
         video_or_audio[1] = 'video'
         return url, 'live video'

@@ -6,7 +6,7 @@
 * 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
 * 4th January 2019: Now works in 5 languages, thanks to everyone who helped!
 * 1st February 2019: Live videos don't seem to be working. Have updated the list of commands.
-* 3rd February 2019: Live videos fixed on video devices, not audio.
+* 3rd February 2019: Live videos fixed, for Gen 2 devices at least.
 
 ## Features
 * Play audio from YouTube videos
@@ -32,7 +32,7 @@ Commands 8, 9 and 10 are only available in English at the moment.
 
 1. Some videos just fail, it's not clear why, they work locally. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
 2. Apparently it doesn't work on Sonos devices. Sorry about that, email Sonos and ask them to support mp4.
-3. Live videos only work on video devices, eg Spot or Show. (Alexa doesn't keep downloading the m3u8 file, so she plays the first 5s and then thinks it has finished)
+3. Live videos work on Gen 2 devices onwards, not on the original Gen 1 Echo.
 
 ## Setup Instructions
 
