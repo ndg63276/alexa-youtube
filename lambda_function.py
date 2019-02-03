@@ -6,7 +6,9 @@ from pytube import YouTube
 import logging
 from random import shuffle, randint
 from botocore.vendored import requests
+import json
 import urllib
+import ast
 from time import time
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 logger = logging.getLogger()
@@ -178,6 +180,12 @@ def build_cardless_speechlet_response(output, reprompt_text, should_end_session)
         'shouldEndSession': should_end_session
     }
 
+def build_audio_or_video_response(title, output, should_end_session, url, token, offsetInMilliseconds=0):
+    if video_or_audio == [True,'video']:
+        return build_video_response(title, output, url)
+    else:
+        return build_audio_speechlet_response(title, output, should_end_session, url, token, offsetInMilliseconds=0)
+
  
 def build_audio_speechlet_response(title, output, should_end_session, url, token, offsetInMilliseconds=0):
     return {
@@ -295,6 +303,23 @@ def build_response(speechlet_response, sessionAttributes={}):
         'response': speechlet_response
     }
 
+def build_video_response(title, output, url):
+    return {
+        'outputSpeech': {
+            'type': 'PlainText',
+            'text': output
+        },
+        'directives': [{
+            'type': 'VideoApp.Launch',
+            'videoItem': {
+                'source': url,
+                'metadata': {
+                    'title': title,
+                }
+            }
+        }]
+    }
+
 # --------------- Main handler ------------------
 
 def lambda_handler(event, context):
@@ -309,6 +334,13 @@ def lambda_handler(event, context):
         strings = strings_es
     else:
         strings = strings_en
+    global video_or_audio
+    video_or_audio = [False, 'audio']
+    if 'VideoApp' in event['context']['System']['device']['supportedInterfaces']:
+        video_or_audio[0] = True
+        if event['request']['type'] == "IntentRequest":
+            if event['request']['intent']['name'] == 'PlayOneIntent':
+                video_or_audio[1] = 'video'
     if event['request']['type'] == "LaunchRequest":
         return get_welcome_response()
     elif event['request']['type'] == "IntentRequest":
@@ -507,7 +539,10 @@ def get_url_and_title(id):
     logger.info('Getting url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id)
-        first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
+        if video_or_audio[1] == 'video':
+            first_stream = yt.streams.filter(progressive=True).first()
+        else:
+            first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
         logger.info(first_stream.url)
         return first_stream.url, yt.title
     except:
@@ -520,8 +555,12 @@ def get_live_video_url_and_title(id):
     r = requests.get(info_url)
     info = convert_token_to_dict(r.text)
     try:
-        raw_url = info['hlsvp']
-        url = urllib.unquote(raw_url)
+        f = info['player_response']
+        u = urllib.unquote(f).replace('\\u0026','&').replace('true','True').replace('false','False')
+        a = ast.literal_eval(u)
+        url = a['streamingData']['hlsManifestUrl']
+        logger.info(url)
+        video_or_audio[1] = 'video'
         return url, 'live video'
     except:
         logger.info('Unable to get hlsvp')
@@ -602,7 +641,7 @@ def search(intent, session):
     else:
         speech_output = strings['playing'] + ' ' + playlist_title
     card_title = "Youtube"
-    return build_response(build_audio_speechlet_response(card_title, speech_output, should_end_session, next_url, next_token))
+    return build_response(build_audio_or_video_response(card_title, speech_output, should_end_session, next_url, next_token))
 
 def stop(intent, session):
     should_end_session = True
