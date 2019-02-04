@@ -549,16 +549,20 @@ def get_url_and_title(id):
 
 def get_live_video_url_and_title(id):
     logger.info('Live video?')
+    title = 'live video'
     try:
         u = 'https://www.youtube.com/watch?v='+id
         r = requests.get(u)
         a = re.search('https:[%\_\-\\\/\.a-z0-9]+m3u8', r.text, re.I)
         url = a.group().replace('\\/','/')
         logger.info(url)
+        t = re.search('<title>(.+) - youtube</title>', r.text, re.I)
+        if t:
+            title = t.groups()[0]
         video_or_audio[1] = 'video'
-        return url, 'live video'
+        return url, title
     except:
-        logger.info('Unable to get hlsvp')
+        logger.info('Unable to get m3u8')
         return None, None
 
 def yes_intent(session):
