@@ -24,9 +24,10 @@
 8. Just play one video by "Alexa, ask YouTube to play one video Gangnam Style". You can switch in and out of "autoplay" mode by "Alexa, ask YouTube to turn on/off autoplay."
 9. Find the current time in the video by "Alexa, ask YouTube what is the timestamp?"
 10. If you want to play your own playlists, and the search feature finds other people's, if you follow the Advanced instructions below you can specify your own channel id.
+11. Play related videos, by "Alexa, ask YouTube to play more like this". This is a YouTube feature, don't ask me why it plays what it plays.
 
 Command 7 doesn't seem to work on Generation 1 Echo's, no idea why.
-Commands 8, 9 and 10 are only available in English at the moment.
+Commands 8, 9, 10 and 11 are only available in English at the moment.
 
 ## Known issues
 
