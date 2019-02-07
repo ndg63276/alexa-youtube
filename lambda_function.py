@@ -399,6 +399,8 @@ def on_intent(event):
         return start_over(event)
     elif intent_name == "AMAZON.StopIntent" or intent_name == "AMAZON.PauseIntent":
         return stop(intent, session)
+    elif intent_name == "PlayMoreLikeThisIntent":
+        return play_more_like_this(event)
     else:
         raise ValueError("Invalid intent")
         
@@ -437,11 +439,12 @@ def illegal_action():
 def do_nothing():
     return build_response({})
 
-def video_search(query):
+def video_search(query, relatedToVideoId=None):
     search_response = youtube.search().list(
         q=query,
         part='id,snippet',
         maxResults=50,
+        relatedToVideoId=relatedToVideoId,
         type='video'
         ).execute()
     videos = []
@@ -660,6 +663,23 @@ def nearly_finished(event):
     if title is None:
         return do_nothing()
     return build_response(build_audio_enqueue_response(should_end_session, next_url, current_token, next_token))
+
+def play_more_like_this(event):
+    should_end_session = True
+    current_token = event['context']['AudioPlayer']['token']
+    playlist = convert_token_to_dict(current_token)
+    now_playing = playlist['p']
+    now_playing_id = playlist['v'+now_playing]
+    videos = video_search(None, now_playing_id)
+    next_url = None
+    for i,id in enumerate(videos):
+        playlist['v'+str(i)]=id
+        if next_url is None:
+            playlist['p'] = i
+            next_url, title = get_url_and_title(id)
+    next_token = convert_dict_to_token(playlist)
+    speech_output = strings['playing']+' '+title
+    return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
 
 def skip_action(event, skip):
     logger.info("event:")

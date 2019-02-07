@@ -168,6 +168,15 @@
                     ]
                 },
                 {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "Play more like this",
+                        "Play videos like this",
+                        "Play similar videos"
+                    ]
+                },
+                {
                     "name": "AutoplayOnIntent",
                     "slots": [],
                     "samples": [
