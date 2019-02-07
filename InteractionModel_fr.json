@@ -81,6 +81,32 @@
                     ]
                 },
                 {
+                    "name": "SearchMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Démarrer ma playlist {query}",
+                        "Lire ma playlist {query}",
+                        "Jouer ma playlist {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Ma playlist aléatoire {query}"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
