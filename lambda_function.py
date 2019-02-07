@@ -356,7 +356,7 @@ def on_intent(event):
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
     # Dispatch to your skill's intent handlers
-    search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "MyPlaylistIntent", "ShuffleMyPlaylistIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent"]
+    search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "SearchMyPlaylistsIntent", "ShuffleMyPlaylistsIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent"]
     if intent_name in search_intents:
         return search(intent, session)
     elif intent_name == 'SkipForwardIntent':
