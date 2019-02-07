@@ -479,7 +479,8 @@ def playlist_search(query, sr, do_shuffle='0'):
     return videos[0:50], playlist_title, sr
 
 def my_playlists_search(query, sr, do_shuffle='0'):
-    channel_id = ''
+    channel_id = None
+    playlist_id = None
     if 'MY_CHANNEL_ID' in environ:
         channel_id = environ['MY_CHANNEL_ID']
     search_response = youtube.search().list(
@@ -493,6 +494,8 @@ def my_playlists_search(query, sr, do_shuffle='0'):
         if 'playlistId' in search_response.get('items')[playlist]['id']:
             playlist_id = search_response.get('items')[playlist]['id']['playlistId']
             break
+    if playlist_id is None:
+        return [], None, 0
     sr = playlist
     logger.info('Playlist info: https://www.youtube.com/playlist?list='+playlist_id)
     playlist_title = search_response.get('items')[sr]['snippet']['title']
@@ -626,6 +629,8 @@ def search(intent, session):
     else:
         videos = video_search(query)
         playlist_channel_video = strings['video']
+    if videos == []:
+        return build_response(build_cardless_speechlet_response(strings['novideo'], None, True))
     next_url = None
     for i,id in enumerate(videos):
         if playlist_channel_video != strings['video'] and time() - startTime > 8:
