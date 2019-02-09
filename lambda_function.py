@@ -614,6 +614,7 @@ def search(intent, session):
     playlist['s'] = '0'
     playlist['sr'] = sr
     playlist['a'] = '1'
+    playlist['i'] = intent_name.replace('Intent','')
     if intent_name == "PlayOneIntent":
         playlist['a'] = '0'
     playlist['query'] = query.replace(' ','_')
@@ -661,7 +662,16 @@ def nearly_finished(event):
     skip = 1
     next_url, next_token, title = get_next_url_and_token(current_token, skip)
     if title is None:
-        return do_nothing()
+        playlist = convert_token_to_dict(next_token)
+        if playlist['i'] != 'ShuffleMyPlaylists':
+            return do_nothing()
+        videos, playlist_title, playlist['sr'] = my_playlists_search(playlist['query'], int(playlist['sr']), playlist['s'])
+        for i,id in enumerate(videos):
+            playlist['v'+str(i)]=id
+            if next_url is None:
+                playlist['p'] = i
+                next_url, title = get_url_and_title(id)
+        next_token = convert_dict_to_token(playlist)
     return build_response(build_audio_enqueue_response(should_end_session, next_url, current_token, next_token))
 
 def play_more_like_this(event):
@@ -690,8 +700,17 @@ def skip_action(event, skip):
     current_token = event['context']['AudioPlayer']['token']
     next_url, next_token, title = get_next_url_and_token(current_token, skip)
     if title is None:
-        speech_output = strings['nomoreitems']
-        return build_response(build_short_speechlet_response(speech_output, should_end_session))
+        playlist = convert_token_to_dict(next_token)
+        if playlist['i'] != 'ShuffleMyPlaylists':
+            speech_output = strings['nomoreitems']
+            return build_response(build_short_speechlet_response(speech_output, should_end_session))
+        videos, playlist_title, playlist['sr'] = my_playlists_search(playlist['query'], int(playlist['sr']), playlist['s'])
+        for i,id in enumerate(videos):
+            playlist['v'+str(i)]=id
+            if next_url is None:
+                playlist['p'] = i
+                next_url, title = get_url_and_title(id)
+        next_token = convert_dict_to_token(playlist)
     speech_output = strings['playing']+' '+title
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
 
