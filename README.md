@@ -83,5 +83,5 @@ That is normal, the Developer Console doesn't play audio. You just need to enabl
 * **Why don't more videos work as video?**
 Alexa doesn't provide any ability to enqueue videos, so you only get one video, then it stops. So it only plays videos if you ask for one specific video, or if it is a live video.
 * **How can I support this skill?**
-If you are in the UK, and are looking for cheap, renewable energy, join Bulb using [this link](bulb.co.uk/refer/mark7441), and both you and me get £50 credit.
+If you are in the UK, and are looking for cheap, renewable energy, join Bulb using [this link](https://bulb.co.uk/refer/mark7441), and both you and me get £50 credit.
 
