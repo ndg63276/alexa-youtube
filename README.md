@@ -82,6 +82,8 @@ Yes, as long as you can translate for me. Click on 'Issues' at the top, then 'Ne
 That is normal, the Developer Console doesn't play audio. You just need to enable testing through the Developer Console, then you can use the skill through your Alexa device.
 * **Why don't more videos work as video?**
 Alexa doesn't provide any ability to enqueue videos, so you only get one video, then it stops. So it only plays videos if you ask for one specific video, or if it is a live video.
-* **How can I support this skill?**
-If you are in the UK, and are looking for cheap, renewable energy, join Bulb using [this link](https://bulb.co.uk/refer/mark7441), and both you and me get £50 credit.
-
+* **Did I hear an advert?**
+Yes, that was me. If you are in the UK, and are looking for cheap, renewable energy, join Bulb using [this link](https://bulb.co.uk/refer/mark7441), and both you and me get £50 credit.
+* **Why have you put in an advert?**
+Writing this skill has taken a large amount of my time, and continues to do so. This is a way to support me.
+You will only hear it if you are in the UK, and even then only 10% of the time (overall, it's random). If you deploy your own lambda instance, you won't hear it. 
