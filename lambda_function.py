@@ -162,12 +162,14 @@ def build_speechlet_response(title, output, reprompt_text, should_end_session):
         'shouldEndSession': should_end_session
     }
 
-
-def build_cardless_speechlet_response(output, reprompt_text, should_end_session):
+def build_cardless_speechlet_response(output, reprompt_text, should_end_session, speech_type='PlainText'):
+    text_or_ssml = 'text'
+    if speech_type == 'SSML':
+        text_or_ssml = 'ssml'
     return {
         'outputSpeech': {
-            'type': 'PlainText',
-            'text': output
+            'type': speech_type,
+            text_or_ssml: output
         },
         'reprompt': {
             'outputSpeech': {
@@ -340,7 +342,7 @@ def lambda_handler(event, context):
             if event['request']['intent']['name'] == 'PlayOneIntent':
                 video_or_audio[1] = 'video'
     if event['request']['type'] == "LaunchRequest":
-        return get_welcome_response()
+        return get_welcome_response(event)
     elif event['request']['type'] == "IntentRequest":
         return on_intent(event)
     elif event['request']['type'] == "SessionEndedRequest":
@@ -419,11 +421,17 @@ def handle_playback(event):
 
 # --------------- Functions that control the skill's behavior ------------------
 
-def get_welcome_response():
+def get_welcome_response(event):
+    advert1 = '<voice name="Brian"><prosody rate="fast">Do you want cheaper energy? '
+    advert2 = 'Go to <emphasis level="strong">bulb</emphasis>.co.uk/refer/<break time="0.1s"/>'
+    advert3 = 'mark<break time="0.1s"/><say-as interpret-as="digits">7441</say-as>, and when you join, you\'ll get £50 of credit.</prosody></voice> '
     speech_output = strings['welcome1']
     reprompt_text = strings['welcome2']
     should_end_session = False
-    return build_response(build_cardless_speechlet_response(speech_output, reprompt_text, should_end_session))
+    if event['request']['locale'] == 'en-GB' and 'PLAY_ADVERT' in environ and randint(1,10) == 10:
+        speech_output = advert1 + advert2 + advert3 + speech_output
+    speech_output = '<speak>' + speech_output + '</speak>'
+    return build_response(build_cardless_speechlet_response(speech_output, reprompt_text, should_end_session, 'SSML'))
         
 def get_help():
     speech_output = strings['help']
