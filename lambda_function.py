@@ -797,7 +797,7 @@ def skip_to(event):
 
 def resume(event, offsetInMilliseconds=None):
     if 'token' not in event['context']['AudioPlayer']:
-        return get_welcome_response()
+        return get_welcome_response(event)
     current_token = event['context']['AudioPlayer']['token']
     should_end_session = True
     speech_output = strings['ok']
