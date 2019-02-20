@@ -46,11 +46,14 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 7. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 8. Click "Save Model" at the top.
 9. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
-10. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put:
+10. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put whichever of these is closest to you:
 
-```
-arn:aws:lambda:eu-west-1:175548706300:function:YouTube
-```
+| Location   | ARN |
+| ---------- | --- |
+| EU/Ireland | `arn:aws:lambda:eu-west-1:175548706300:function:YouTube` |
+| Asia/Tokyo | `arn:aws:lambda:ap-northeast-1:175548706300:function:YouTube` |
+| US East    | `arn:aws:lambda:us-east-1:175548706300:function:YouTube` |
+| US West    | `arn:aws:lambda:us-west-2:175548706300:function:YouTube` |
 
 11. Click "Save Endpoints"
 12. Click "Invocation" in the menu on the left.
