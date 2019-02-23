@@ -353,14 +353,13 @@ def lambda_handler(event, context):
 # --------------- Events ------------------
 
 def on_intent(event):
-    intent_request = event['request']
-    session = event['session']
-    intent = intent_request['intent']
-    intent_name = intent_request['intent']['name']
+    intent_name = event['request']['intent']['name']
     # Dispatch to your skill's intent handlers
     search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "SearchMyPlaylistsIntent", "ShuffleMyPlaylistsIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent"]
     if intent_name in search_intents:
-        return search(intent, session)
+        return search(event)
+    elif intent_name == 'NextPlaylistIntent':
+        return next_playlist(event)
     elif intent_name == 'SkipForwardIntent':
         return skip_by(event, 1)
     elif intent_name == 'SkipBackwardIntent':
@@ -374,7 +373,7 @@ def on_intent(event):
     elif intent_name == 'AutoplayOnIntent':
         return change_mode(event, 'a', 1)
     elif intent_name == "AMAZON.YesIntent":
-        return yes_intent(session)
+        return yes_intent(event)
     elif intent_name == "AMAZON.NoIntent":
         return do_nothing()
     elif intent_name == "AMAZON.HelpIntent":
@@ -400,7 +399,7 @@ def on_intent(event):
     elif intent_name == "AMAZON.StartOverIntent":
         return start_over(event)
     elif intent_name == "AMAZON.StopIntent" or intent_name == "AMAZON.PauseIntent":
-        return stop(intent, session)
+        return stop()
     elif intent_name == "PlayMoreLikeThisIntent":
         return play_more_like_this(event)
     else:
@@ -430,6 +429,9 @@ def get_welcome_response(event):
     should_end_session = False
     if event['request']['locale'] == 'en-GB' and 'PLAY_ADVERT' in environ and randint(1,10) == 10:
         speech_output = advert1 + advert2 + advert3 + speech_output
+        userId = event['context']['System']['user']['userId']
+        payload = {'value1': userId}
+        r = requests.get(environ['PLAY_ADVERT'], params=payload)
     speech_output = '<speak>' + speech_output + '</speak>'
     return build_response(build_cardless_speechlet_response(speech_output, reprompt_text, should_end_session, 'SSML'))
         
@@ -579,13 +581,14 @@ def get_live_video_url_and_title(id):
         logger.info('Unable to get m3u8')
         return None, None
 
-def yes_intent(session):
+def yes_intent(event):
+    session = event['session']
     sessionAttributes = session.get('attributes')
     if not sessionAttributes or 'intent' not in sessionAttributes or 'sr' not in sessionAttributes:
         return build_response(build_cardless_speechlet_response(strings['gonewrong'], None, True))
     intent = sessionAttributes['intent']
     session['attributes']['sr'] = sessionAttributes['sr'] + 1
-    return search(intent, session)
+    return search(event)
 
 def next_playlist(event):
     intent = event['request']['intent']
@@ -602,9 +605,11 @@ def next_playlist(event):
         session['attributes'] = {}
     session['attributes']['sr'] = int(playlist['sr']) + 1
     session['attributes']['query'] = playlist['query']
-    return search(intent, session)
+    return search(event)
 
-def search(intent, session):
+def search(event):
+    session = event['session']
+    intent = event['request']['intent']
     startTime = time()
     if 'slots' in intent and 'query' in intent['slots']:
         query = intent['slots']['query']['value']
@@ -659,7 +664,7 @@ def search(intent, session):
     card_title = "Youtube"
     return build_response(build_audio_or_video_response(card_title, speech_output, should_end_session, next_url, next_token))
 
-def stop(intent, session):
+def stop():
     should_end_session = True
     speech_output = strings['pausing']
     return build_response(build_stop_speechlet_response(speech_output, should_end_session))
