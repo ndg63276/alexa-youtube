@@ -65,6 +65,14 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 17. Click "Build Model". This will take a minute, be patient. It should tell you if it succeeded.
 18. **Important:** At the top, click "Test". Where it says "Test is disabled for this skill", change the dropdown from "Off" to "Development". 
 
+## Keeping a list of what you have played
+This skill can make a list of the last 90 videos played, but you have to give it permissions in the Alexa app:
+1. Go to the Alexa app on your phone. In the menu, go to "Skills & Games", then "Your Skills", then scroll to the right and click on "Dev".
+2. Click on your YouTube skill. You should see a button marked "Settings", click that. 
+3. Then press on "Manage Settings", and tick the boxes marked "Lists Read Access" and "Lists Write Access", and press "Save Settings".
+4. Say "Alexa, launch YouTube", that will create the list, and from then on, videos will be added to it.
+The list can be viewed in the Alexa app, click Lists from the main menu.
+
 That's it!
 
 ## Deploying yourself (optional, advanced)
