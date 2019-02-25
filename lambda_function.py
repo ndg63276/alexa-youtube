@@ -8,6 +8,9 @@ from random import shuffle, randint
 from botocore.vendored import requests
 import re
 from time import time
+import json
+from datetime import datetime
+from dateutil import tz
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -15,6 +18,21 @@ DEVELOPER_KEY=environ['DEVELOPER_KEY']
 YOUTUBE_API_SERVICE_NAME = 'youtube'
 YOUTUBE_API_VERSION = 'v3'
 youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+
+locales = {
+    'en-GB': 'Europe/London',
+    'en-US': 'America/New York',
+    'en-CA': 'America/New York',
+    'en-AU': 'Australia/Sydney',
+    'en-IN': 'Asia/Kolkata',
+    'fr-FR': 'Europe/Paris',
+    'fr-CA': 'America/New York',
+    'de-DE': 'Europe/Berlin',
+    'it-IT': 'Europe/Rome',
+    'es-ES': 'Europe/Madrid',
+    'es-MX': 'America/Mexico City',
+    'ja-JP': 'Asia/Tokyo'
+}
 
 strings_en = {
 'welcome1':"Welcome to Youtube. Say, for example, play videos by The Beatles.",
@@ -420,7 +438,121 @@ def handle_playback(event):
 
 # --------------- Functions that control the skill's behavior ------------------
 
+def create_list(event):
+    apiAccessToken = event['context']['System']['apiAccessToken']
+    apiEndpoint = event['context']['System']['apiEndpoint']
+    endpoint = '/v2/householdlists/'
+    data = {
+        "name": "YouTube",
+        "state": "active"
+    }
+    headers = {
+        'Authorization': 'Bearer '+apiAccessToken,
+        'Content-Type': 'application/json'
+    }
+    url = apiEndpoint + endpoint
+    r = requests.post(url, headers=headers, data=json.dumps(data))
+    if r.status_code == 201:
+        logger.info('List created')
+        return True
+    elif r.status_code == 409:
+        logger.info('List already exists')
+        return True
+    elif r.status_code == 403:
+        logger.info('List permissions not granted')
+        return False
+    else:
+        logger.info(r.status_code)
+        logger.info(r.json())
+        return True
+
+def get_list_id(event):
+    apiAccessToken = event['context']['System']['apiAccessToken']
+    apiEndpoint = event['context']['System']['apiEndpoint']
+    endpoint = '/v2/householdlists/'
+    headers = {
+        'Authorization': 'Bearer '+apiAccessToken,
+        'Content-Type': 'application/json'
+    }
+    url = apiEndpoint + endpoint
+    r = requests.get(url, headers=headers)
+    try:
+        lists = r.json()['lists']
+    except:
+        return None
+    for list in lists:
+        if list['name'] == 'YouTube' and list['state'] == 'active':
+            return list['listId']
+    return None
+
+def create_list_item(event, listId, title):
+    apiAccessToken = event['context']['System']['apiAccessToken']
+    apiEndpoint = event['context']['System']['apiEndpoint']
+    endpoint = '/v2/householdlists/'+listId+'/items/'
+    headers = {
+        'Authorization': 'Bearer '+apiAccessToken,
+        'Content-Type': 'application/json'
+    }
+    timestamp = event['request']['timestamp']
+    utc = datetime.strptime(timestamp,'%Y-%m-%dT%H:%M:%SZ')
+    from_zone = tz.tzutc()
+    timezone = 'Europe/London'
+    if event['request']['locale'] in locales:
+        timezone = locales[event['request']['locale']]
+    to_zone = tz.gettz(timezone)
+    utc = utc.replace(tzinfo=from_zone)
+    local = utc.astimezone(to_zone)
+    the_date = local.strftime('%b %d %Y %H:%M:%S')
+    data = {
+        "value": the_date+' '+title,
+        "status": "active"
+    }
+    url = apiEndpoint + endpoint
+    r = requests.post(url, headers=headers, data=json.dumps(data))
+
+def get_list(event, listId):
+    apiAccessToken = event['context']['System']['apiAccessToken']
+    apiEndpoint = event['context']['System']['apiEndpoint']
+    endpoint = '/v2/householdlists/'+listId+'/active/'
+    headers = {
+        'Authorization': 'Bearer '+apiAccessToken,
+        'Content-Type': 'application/json'
+    }
+    url = apiEndpoint + endpoint
+    r = requests.get(url, headers=headers)
+    if 'items' in r.json():
+        return r.json()['items']
+    return None
+
+def trim_list(event, listId):
+    items = get_list(event, listId)
+    if items is not None:
+        maxLength = 90
+        for item in items[maxLength:]:
+            itemId = item['id']
+            delete_list_item(event, listId, itemId)
+
+def delete_list_item(event, listId, itemId):
+    apiAccessToken = event['context']['System']['apiAccessToken']
+    apiEndpoint = event['context']['System']['apiEndpoint']
+    endpoint = '/v2/householdlists/'+listId+'/items/'+itemId
+    headers = {
+        'Authorization': 'Bearer '+apiAccessToken,
+        'Content-Type': 'application/json'
+    }
+    url = apiEndpoint + endpoint
+    r = requests.delete(url, headers=headers)
+
+def add_to_list(event, title):
+    listId = get_list_id(event)
+    logger.info(listId)
+    if listId is not None:
+        create_list_item(event, listId, title)
+        logger.info('Created item')
+        trim_list(event, listId)
+
 def get_welcome_response(event):
+    list_created = create_list(event)
     advert1 = '<voice name="Brian"><prosody rate="fast">Do you want cheaper energy? '
     advert2 = 'Go to <emphasis level="strong">bulb</emphasis>.co.uk/refer/<break time="0.1s"/>'
     advert3 = 'mark<break time="0.1s"/><say-as interpret-as="digits">7441</say-as>, and when you join, you\'ll get £50 of credit.</prosody></voice> '
@@ -934,7 +1066,13 @@ def stopped(event):
 
 def started(event):
     logger.info("Started")
-    token = event['request']['token']
+    logger.info(event)
+    current_token = event['context']['AudioPlayer']['token']
+    playlist = convert_token_to_dict(current_token)
+    now_playing = playlist['p']
+    id = playlist['v'+now_playing]
+    next_url, title = get_url_and_title(id)
+    add_to_list(event, title)
 
 def finished(event):
     logger.info('finished')

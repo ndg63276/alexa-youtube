@@ -11,6 +11,7 @@
 ## Features
 * Play audio from YouTube videos
 * Play video (if supported) on live videos or if you ask for just one specific video (command 8)
+* Makes a list of all the videos played, in the Alexa app
 
 ## Skill Commands
 
@@ -48,18 +49,21 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 9. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
 10. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put whichever of these is closest to you:
 
-| Location   | ARN |
-| ---------- | --- |
-| EU/Ireland | `arn:aws:lambda:eu-west-1:175548706300:function:YouTube` |
-| Asia/Tokyo | `arn:aws:lambda:ap-northeast-1:175548706300:function:YouTube` |
-| US East    | `arn:aws:lambda:us-east-1:175548706300:function:YouTube` |
-| US West    | `arn:aws:lambda:us-west-2:175548706300:function:YouTube` |
+| Your Location | What to put in "Default Region" |
+| ------------- | --- |
+| EU/Ireland    | `arn:aws:lambda:eu-west-1:175548706300:function:YouTube` |
+| Asia/Tokyo    | `arn:aws:lambda:ap-northeast-1:175548706300:function:YouTube` |
+| US East       | `arn:aws:lambda:us-east-1:175548706300:function:YouTube` |
+| US West       | `arn:aws:lambda:us-west-2:175548706300:function:YouTube` |
 
 11. Click "Save Endpoints"
-12. Click "Invocation" in the menu on the left.
-13. If you want to call the skill anything other than "youtube", change it here. Click "Save Model" if you change anything.
-14. Click "Build Model". This will take a minute, be patient. It should tell you if it succeeded.
-15. **Important:** At the top, click "Test". Where it says "Test is disabled for this skill", change the dropdown from "Off" to "Development". 
+12. Click "Permissions", at the very bottom on the left.
+13. Turn on "Lists Read" and "Lists Write".
+14. Click "Custom" in the menu on the left.
+15. Click "Invocation" in the menu on the left.
+16. If you want to call the skill anything other than "youtube", change it here. Click "Save Model" if you change anything.
+17. Click "Build Model". This will take a minute, be patient. It should tell you if it succeeded.
+18. **Important:** At the top, click "Test". Where it says "Test is disabled for this skill", change the dropdown from "Off" to "Development". 
 
 That's it!
 
