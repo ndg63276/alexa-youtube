@@ -156,6 +156,36 @@ strings_es = {
 'sorryskipto':"Lo siento no escuche a donde adelantar",
 'ok':"OK"
 }
+strings_ja = {
+'welcome1':"ユーチューブへようこそ.  例えば, ｢ビートルズのビデオを再生｣ と話しかけてください.",
+'welcome2':"それとも, ｢マイケル・ジャクソンの曲をシャッフル再生｣ と話しかけてください.",
+'help':"例えば, マイケル・ジャクソンの曲をシャッフル再生と話しかけてください.",
+'illegal':"このスキルはその動作に対応しておりません.",
+'gonewrong':"すいません, なにか問題が起きたようです.",
+'playlist':"プレイリスト",
+'channel':"チャンネル",
+'video':"動画",
+'notworked':"は正常に動作しませんでした. 次を試しますか?",
+'playing':"再生中",
+'pausing':"停止中",
+'nomoreitems':"プレイリストにこれ以上動画はありません.",
+'resuming':"再開中",
+'noresume':"再生を再開できませんでした.",
+'novideo':"動画を再生できませんでした.",
+'notitle':"現在再生中の動画の名前はわかりませんでした.",
+'nowplaying':"再生中",
+'nothingplaying':"現在何も流れていません.",
+'sorryskipby':"すいません. どれだけスキップするか聞き取れませんでした.",
+'sorryskipto':"すいません. どこまでスキップするか聞き取れませんでした.",
+'ok':"はい.",
+'currentposition':"現在の再生位置は,",
+'hours':"時間",
+'hour':"時間",
+'minutes':"分",
+'minute':"分",
+'seconds':"秒",
+'second':"秒",
+}
 strings = strings_en
 
 # --------------- Helpers that build all of the responses ----------------------
