@@ -583,13 +583,13 @@ def add_to_list(event, title):
 
 def get_welcome_response(event):
     list_created = create_list(event)
-    advert1 = '<voice name="Brian"><prosody rate="fast">Do you want cheaper energy? '
-    advert2 = 'Go to <emphasis level="strong">bulb</emphasis>.co.uk/refer/<break time="0.1s"/>'
-    advert3 = 'mark<break time="0.1s"/><say-as interpret-as="digits">7441</say-as>, and when you join, you\'ll get £50 of credit.</prosody></voice> '
     speech_output = strings['welcome1']
     reprompt_text = strings['welcome2']
     should_end_session = False
     if event['request']['locale'] == 'en-GB' and 'PLAY_ADVERT' in environ and randint(1,10) == 10:
+        advert1 = '<voice name="Brian"><prosody rate="fast">Do you want cheaper energy? '
+        advert2 = 'Go to <emphasis level="strong">bulb</emphasis>.co.uk/refer/<break time="0.1s"/>'
+        advert3 = 'mark<break time="0.1s"/><say-as interpret-as="digits">7441</say-as>, and when you join, you\'ll get £50 of credit.</prosody></voice> '
         speech_output = advert1 + advert2 + advert3 + speech_output
         userId = event['context']['System']['user']['userId']
         payload = {'value1': userId}
