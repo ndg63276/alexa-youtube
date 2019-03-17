@@ -1,0 +1,416 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "youtube",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SearchIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "{query} の音楽をかけて",
+                        "{query} の音楽を流して",
+                        "{query} の音楽を探して",
+                        "{query} の曲をかけて",
+                        "{query} の曲を流して",
+                        "{query} の曲を探して",
+                        "{query} の動画を流して",
+                        "{query} の動画を探して",
+                        "{query} を探して",
+                        "{query} をかけて",
+                        "{query} を流して"
+                    ]
+                },
+                {
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "{query} の音楽だけをかけて",
+                        "{query} の音楽だけを流して",
+                        "{query} の音楽だけを探して",
+                        "{query} の曲だけをかけて",
+                        "{query} の曲だけを流して",
+                        "{query} の曲だけを探して",
+                        "{query} の動画だけを流して",
+                        "{query} の動画だけを探して",
+                        "{query} だけを探して",
+                        "{query} だけをかけて",
+                        "{query} だけを流して"
+                    ]
+                },
+                {
+                    "name": "ShuffleIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "{query} をシャッフル",
+                        "{query} をシャッフル再生",
+                        "{query} の曲をシャッフル",
+                        "{query} の曲をシャッフル再生",
+                        "{query} の音楽をシャッフル",
+                        "{query} の音楽をシャッフル再生",
+                        "{query} の動画をシャッフル",
+                        "{query} の動画をシャッフル再生"
+                    ]
+                },
+                {
+                    "name": "PlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "{query} プレイリストをかける",
+                        "プレイリスト {query} をかける",
+                        "{query} プレイリストを聴く",
+                        "プレイリスト {query} を聴く",
+                        "{query} プレイリストを流す",
+                        "プレイリスト {query} を流す"
+                    ]
+                },
+                {
+                    "name": "ShufflePlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "プレイリスト {query} をシャッフル再生"
+                    ]
+                },
+                {
+                    "name": "SearchMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "私のプレイリスト {query} を始める",
+                        "私のプレイリスト {query} を聴く",
+                        "私のプレイリスト {query} を流す",
+                        "僕のプレイリスト {query} を始める",
+                        "僕のプレイリスト {query} を聴く",
+                        "僕のプレイリスト {query} を流す",
+                        "俺のプレイリスト {query} を始める",
+                        "俺のプレイリスト {query} を聴く",
+                        "俺のプレイリスト {query} を流す"
+                    ]
+                },
+                {
+                    "name": "NextPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Next playlist"
+                    ]
+                },
+                {
+                    "name": "ShuffleMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "私の {query} プレイリストをシャッフル再生",
+                        "僕の {query} プレイリストをシャッフル再生",
+                        "俺の {query} プレイリストをシャッフル再生"
+                    ]
+                },
+                {
+                    "name": "ChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "{query} チャンネルを聴く",
+                        "{query} チャンネルをかける",
+                        "{query} チャンネルを始める",
+                        "{query} チャンネルを流す"
+                    ]
+                },
+                {
+                    "name": "ShuffleChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "{query} チャンネルをシャッフル"
+                    ]
+                },
+                {
+                    "name": "NowPlayingIntent",
+                    "slots": [],
+                    "samples": [
+                        "これ誰",
+                        "なんの動画流れてる",
+                        "なんの曲流れてる",
+                        "なにこれ",
+                        "何が流れてる"
+                    ]
+                },
+                {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "こんなのを流して",
+                        "こんな動画を流して",
+                        "似た動画を流して"
+                    ]
+                },
+                {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "自動再生を始めて",
+                        "自動再生をして",
+                        "自動再生にして",
+                        "自動再生をつけて"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "自動再生を終わらせて",
+                        "自動生成を消して",
+                        "自動再生を終わる",
+                        "自動再生を切って",
+                        "この動画だけにして"
+                    ]
+                },
+                {
+                    "name": "SayTimestampIntent",
+                    "slots": [],
+                    "samples": [
+                        "今どこ",
+                        "今の再生時刻は",
+                        "今の時刻は",
+                        "今の時間は"
+                    ]
+                },
+                {
+                    "name": "SkipToIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{hours} 時間に飛ぶ",
+                        "{hours} {minutes} {seconds} に飛ぶ",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒に飛ぶ",
+                        "{hours} 時間 {minutes} 分に飛ぶ",
+                        "{minutes} {seconds} に飛ぶ",
+                        "{minutes} 分 {seconds} 秒に飛ぶ",
+                        "{minutes} 分に飛ぶ",
+                        "{seconds} 秒に飛ぶ",
+                        "{hours} 時間にスキップする",
+                        "{hours} {minutes} {seconds} にスキップする",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒にスキップする",
+                        "{hours} 時間 {minutes} 分にスキップする",
+                        "{minutes} {seconds}",
+                        "{minutes} 分 {seconds} 秒にスキップする",
+                        "{minutes} 分にスキップする",
+                        "{seconds} 秒にスキップする",
+                        "{hours} 時間に行く",
+                        "{hours} {minutes} {seconds} に行く",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒に行く",
+                        "{hours} 時間 {minutes} 分に行く",
+                        "{minutes} {seconds}",
+                        "{minutes} 分 {seconds} 秒に行く",
+                        "{minutes} 分に行く",
+                        "{seconds} 秒に行く",
+                        "{hours} 時間にジャンプする",
+                        "{hours} {minutes} {seconds} にジャンプする",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒にジャンプする",
+                        "{hours} 時間 {minutes} 分にジャンプする",
+                        "{minutes} {seconds}",
+                        "{minutes} 分 {seconds} 秒にジャンプする",
+                        "{minutes} 分にジャンプする",
+                        "{seconds} 秒にジャンプする",
+                        "{hours} 時間に戻る",
+                        "{hours} {minutes} {seconds} に戻る",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒に戻る",
+                        "{hours} 時間 {minutes} 分に戻る",
+                        "{minutes} {seconds}",
+                        "{minutes} 分 {seconds} 秒に戻る",
+                        "{minutes} 分に戻る",
+                        "{seconds} 秒に戻る"
+                    ]
+                },
+                {
+                    "name": "SkipForwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{hours} 時間早送り",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒早送り",
+                        "{hours} 時間 {minutes} 分早送り",
+                        "{minutes} 分 {seconds} 秒",
+                        "{minutes} 分早送り",
+                        "{seconds} 秒早送り",
+                        "{hours} 時間後に飛ぶ",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒後に飛ぶ",
+                        "{hours} 時間 {minutes} 分後に飛ぶ",
+                        "{minutes} 分 {seconds} 秒後に飛ぶ",
+                        "{minutes} 分後に飛ぶ",
+                        "{seconds} 秒後に飛ぶ",
+                        "{hours} 時間飛ぶ",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒飛ぶ",
+                        "{hours} 時間 {minutes} 分飛ぶ",
+                        "{minutes} 分 {seconds} 秒飛ぶ",
+                        "{minutes} 分飛ぶ",
+                        "{seconds} 秒飛ぶ",
+                        "{hours} 時間後にジャンプする",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒後にジャンプする",
+                        "{hours} 時間 {minutes} 分後にジャンプする",
+                        "{minutes} 分 {seconds} 秒後にジャンプする",
+                        "{minutes} 分後にジャンプする",
+                        "{seconds} 秒後にジャンプする",
+                        "{hours} 時間ジャンプする",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒ジャンプする",
+                        "{hours} 時間 {minutes} 分ジャンプする",
+                        "{minutes} 分 {seconds} 秒ジャンプする",
+                        "{minutes} 分ジャンプする",
+                        "{seconds} 秒ジャンプする",
+                        "{hours} 時間後に行く",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒後に行く",
+                        "{hours} 時間 {minutes} 分後に行く",
+                        "{minutes} 分 {seconds} 秒後に行く",
+                        "{minutes} 分後に行く",
+                        "{seconds} 秒後に行く"
+                    ]
+                },
+                {
+                    "name": "SkipBackwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{hours} 時間巻き戻す",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒巻き戻す",
+                        "{hours} 時間 {minutes} 分巻き戻す",
+                        "{minutes} 分 {seconds} 秒巻き戻す",
+                        "{minutes} 分巻き戻す",
+                        "{seconds} 秒巻き戻す",
+                        "{hours} 時間戻る",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒戻る",
+                        "{hours} 時間 {minutes} 分戻る",
+                        "{minutes} 分 {seconds} 秒戻る",
+                        "{minutes} 分戻る",
+                        "{seconds} 秒戻る",
+                        "{hours} 時間戻す",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒戻す",
+                        "{hours} 時間 {minutes} 分戻す",
+                        "{minutes} 分 {seconds} 秒戻す",
+                        "{minutes} 分戻す",
+                        "{seconds} 秒戻す",
+                        "{hours} 時間前にジャンプする",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒前にジャンプする",
+                        "{hours} 時間 {minutes} 分前にジャンプする",
+                        "{minutes} 分 {seconds} 秒前にジャンプする",
+                        "{minutes} 分前にジャンプする",
+                        "{seconds} 秒前にジャンプする",
+                        "{hours} 時間前に行く",
+                        "{hours} 時間 {minutes} 分 {seconds} 秒前に行く",
+                        "{hours} 時間 {minutes} 分前に行く",
+                        "{minutes} 分 {seconds} 秒前に行く",
+                        "{minutes} 分前に行く",
+                        "{seconds} 秒前に行く"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}
