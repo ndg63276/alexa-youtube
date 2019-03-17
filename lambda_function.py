@@ -380,6 +380,8 @@ def lambda_handler(event, context):
         strings = strings_de
     elif event['request']['locale'][0:2] == 'es':
         strings = strings_es
+    elif event['request']['locale'][0:2] == 'ja':
+        strings = strings_ja
     else:
         strings = strings_en
     global video_or_audio
