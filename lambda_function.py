@@ -347,11 +347,8 @@ def get_list_id(event, list_title):
     return None
 
 def read_list_item(event, listId):
-    headers = get_headers(event)
-    url = event['context']['System']['apiEndpoint'] + event['context']['System']['apiEndpoint']
-    r = requests.get(url, headers=headers)
-    items = r.json()['items']
-    if len(items) > 0:
+    items = get_list(event, listId)
+    if items is not None and len(items) > 0:
         return items[0]['id'], items[0]['value'], items[0]['version']
     return None, None, None
 
