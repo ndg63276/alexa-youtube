@@ -32,6 +32,8 @@
                         }
                     ],
                     "samples": [
+						"Ponme {query}",
+						"Play {query}",
                         "Pon musica de {query}",
                         "Pon canciones de {query}",
 						"Pon temas de {query}",
