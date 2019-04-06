@@ -32,13 +32,37 @@
                         }
                     ],
                     "samples": [
-                        "pon musica de {query}",
-                        "pon canciones de {query}",
-                        "pon videos de {query}",
-                        "busca {query}",
-                        "pon {query}",
-                        "reproduce {query}",
-                        "play {query}"
+						"Ponme {query}",
+						"Play {query}",
+                        "Pon musica de {query}",
+                        "Pon canciones de {query}",
+						"Pon temas de {query}",
+						"Pon tracks de {query}",
+                        "Pon videos de {query}",
+						"Busca musica de {query}",
+                        "Busca canciones de {query}",
+						"Busca temas de {query}",
+						"Busca tracks de {query}",
+                        "Busca videos de {query}"
+                    ]
+                },
+				{
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Pon la cancion {query}",
+                        "Pon una cancion de {query}",
+						"Pon el tema {query}",
+						"Pon un tema de {query}",
+                        "Pon el video {query}",
+						"Pon un video de {query}",
+                        "Pon el track {query}",
+						"Pon un track de {query}"
                     ]
                 },
                 {
@@ -50,10 +74,22 @@
                         }
                     ],
                     "samples": [
-                        "aleatorio {query}",
-                        "aleatorio canciones {query}",
-                        "aleatorio musica de {query}",
-                        "aleatorio videos de {query}"
+						"Canciones en aleatorio de {query}",
+						"Canciones aleatorias de {query}",
+						"Temas en aleatorio de {query}",
+						"Temas aleatorios de {query}",
+						"Tracks en aleatorio de {query}",
+						"Tracks aleatorios de {query}",
+						"Videos en aleatorio de {query}",
+						"Videos aleatorios de {query}",
+						"Pon canciones en aleatorio de {query}",
+						"Pon canciones aleatorias de {query}",
+						"Pon musica en aleatorio de {query}",
+						"Pon musica aleatoria de {query}",
+						"Pon temas en aleatorio de {query}",
+						"Pon temas aleatorios de {query}",
+						"Pon tracks en aleatorio de {query}",
+						"Pon tracks aleatorios de {query}"
                     ]
                 },
                 {
@@ -65,9 +101,14 @@
                         }
                     ],
                     "samples": [
-                        "pon una playlist de {query}",
-                        "escucha una playlist de {query}",
-                        "reproduce playlist de {query}"
+						"Pon playlist {query}",
+						"Pon lista {query}",
+                        "Pon una playlist de {query}",
+						"Pon una lista de {query}",
+						"Pon la playlist {query}",
+						"Pon la lista {query}",
+                        "Reproduce playlist de {query}"
+						
                     ]
                 },
                 {
@@ -79,7 +120,49 @@
                         }
                     ],
                     "samples": [
-                        "aleatorio playlist de {query}"
+						"Pon playlist aleatoria {query}",
+						"Pon lista aleatoria {query}",
+						"Pon en aleatorio la lista {query}",
+						"Pon en aleatorio la playlist {query}",
+						"Lista aleatoria {query}",
+						"Playlist aleatoria {query}"
+                    ]
+                },
+                {
+                    "name": "SearchMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Pon mi lista {query}",
+						"Pon mi playlist {query}",
+						"Abre mi lista {query}",
+                        "Reproduce mi lista {query}",
+						"Reproduce mi playlist {query}"
+                    ]
+                },
+                {
+                    "name": "NextPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Siguiente playlist",
+						"Siguiente lista"
+                    ]
+                },
+                {
+                    "name": "ShuffleMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Remueve mi lista {query}",
+						"Pon en aleatorio mi lista {query}"
                     ]
                 },
                 {
@@ -91,9 +174,9 @@
                         }
                     ],
                     "samples": [
-                        "pon al canal {query}",
-                        "comienza  el canal {query}",
-                        "reprodce el canal {query}"
+                        "Pon el canal {query}",
+						"Abre el canal {query}",
+                        "Reproduce el canal {query}"
                     ]
                 },
                 {
@@ -105,18 +188,114 @@
                         }
                     ],
                     "samples": [
-                        "aleatorio canal {query}"
+						"Pon en aleatorio el canal {query}",
+						"Pon en aleatorio el canal de {query}",
+						"Canal en aleatorio {query}",
+                        "Canal aleatorio {query}"
                     ]
                 },
                 {
                     "name": "NowPlayingIntent",
                     "slots": [],
                     "samples": [
-                        "quien es",
-                        "que video es",
-                        "que cancion es",
-                        "que es esto",
-                        "que esta sonyo"
+						"Que esta sonando",
+						"Que suena",
+                        "Quien es",
+						"Quien canta",
+						"Quien toca",
+						"Quien suena",
+                        "Que video es",
+                        "Que cancion es",
+						"Que cancion suena",
+                        "Que es esto",
+						"Que se oye",
+						"Que se esta oyendo"
+                    ]
+                },
+                {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "Pon mas de esto",
+						"Pon mas como esto",
+						"Pon mas videos como este",
+						"Pon mas videos parecidos a este",
+						"Pon mas musica como esta",
+						"Pon mas musica parecida a esta",
+						"Pon una cancion similar",
+						"Pon una cancion parecida",
+						"Pon una cancion como esta",
+						"Pon un tema similar",
+						"Pon un tema parecido",
+						"Pon un tema como este",
+                        "Pon videos similares",
+						"Pon videos parecidos",
+						"Pon videos como este",
+						"Pon canciones similares",
+						"Pon canciones parecidas",
+						"Pon canciones como esta",
+						"Pon temas similares",
+						"Pon temas parecidos",
+						"Pon temas como este",
+						"Pon artistas similares",
+						"Pon artistas parecidos",
+						"Pon artistas como este",
+						"Pon musica parecida",
+						"Pon musica similar",
+						"Pon musica como esta",
+						"Busca mas de esto",
+						"Busca mas como esto",
+						"Busca mas videos como este",
+						"Busca mas videos parecidos a este",
+						"Busca mas musica como esta",
+						"Busca mas musica parecida a esta",
+						"Busca una cancion similar",
+						"Busca una cancion parecida",
+						"Busca una cancion como esta",
+						"Busca un tema similar",
+						"Busca un tema parecido",
+						"Busca un tema como este",
+                        "Busca videos similares",
+						"Busca videos parecidos",
+						"Busca videos como este",
+						"Busca canciones similares",
+						"Busca canciones parecidas",
+						"Busca canciones como esta",
+						"Busca temas similares",
+						"Busca temas parecidos",
+						"Busca temas como este",
+						"Busca artistas similares",
+						"Busca artistas parecidos",
+						"Busca artistas como este",
+						"Busca musica parecida",
+						"Busca musica similar",
+						"Busca musica como esta"
+                    ]
+                },
+                {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "Enciende autoplay",
+						"Enciende el autoplay"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "Apaga autoplay",
+						"Apaga el autoplay"
+                    ]
+                },
+                {
+                    "name": "SayTimestampIntent",
+                    "slots": [],
+                    "samples": [
+                        "Que minuto es",
+                        "Que minuto del video es",
+                        "Que minuto de la cancion es",
+                        "Cual es la marca de tiempo"
                     ]
                 },
                 {
@@ -135,79 +314,28 @@
                             "type": "AMAZON.NUMBER"
                         }
                     ],
-                    "samples": [
-                        "adelanta {hours} horas",
-                        "adelanta {hours} hora",
-                        "adelanta {hours} {minutes} {seconds}",
-                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
-                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
-                        "adelanta {hours} hora {minutes} minuto y {seconds} segundos",
-                        "adelanta {hours} horas {minutes} minuto y {seconds} segundos",
-                        "adelanta {hours} horas {minutes} minutos y {seconds} segundo",
-                        "adelanta {hours} hora {minutes} minutos y {seconds} segundo",
-                        "adelanta {hours} hora {minutes} minuto y {seconds} segundo",
-                        "adelanta {hours} horas {minutes} minuto y {seconds} segundo",
-                        "adelanta {hours} horas {minutes} minutos",
-                        "adelanta {hours} hora {minutes} minutos",
-                        "adelanta {hours} horas {minutes} minuto",
-                        "adelanta {hours} hora {minutes} minuto",
-                        "adelanta {minutes} {seconds}",
-                        "adelanta {minutes} minutos y {seconds} segundos",
-                        "adelanta {minutes} minuto y {seconds} segundos",
-                        "adelanta {minutes} minutos y {seconds} segundo",
-                        "adelanta {minutes} minuto y {seconds} segundo",
-                        "adelanta {minutes} minutos",
-                        "adelanta {minutes} minuto",
-                        "adelanta {seconds} segundos",
-                        "adelanta {seconds} segundo",
-                        "ir a {hours} horas",
-                        "ir a {hours} horas {hours} hora",
-                        "ir a {hours} {minutes} {seconds}",
-                        "ir a {hours} horas {minutes} minutos y {seconds} segundos",
-                        "ir a {hours} hora {minutes} minutos y {seconds} segundos",
-                        "ir a {hours} hora {minutes} minuto y {seconds} segundos",
-                        "ir a {hours} horas {minutes} minuto y {seconds} segundos",
-                        "ir a {hours} horas {minutes} minutos y {seconds} segundo",
-                        "ir a {hours} hora {minutes} minutos y {seconds} segundo",
-                        "ir a {hours} hora {minutes} minuto y {seconds} segundo",
-                        "ir a {hours} horas {minutes} minuto y {seconds} segundo",
-                        "ir a {hours} horas {minutes} minutos",
-                        "ir a {hours} hora {minutes} minutos",
-                        "ir a {hours} horas {minutes} minuto",
-                        "ir a {hours} hora {minutes} minuto",
-                        "ir a {minutes} {seconds}",
-                        "ir a {minutes} minutos y {seconds} segundos",
-                        "ir a {minutes} minuto y {seconds} segundos",
-                        "ir a {minutes} minutos y {seconds} segundo",
-                        "ir a {minutes} minuto y {seconds} segundo",
-                        "ir a {minutes} minutos",
-                        "ir a {minutes} minuto",
-                        "ir a {seconds} segundos",
-                        "ir a {seconds} segundo",
-                        "regresa {hours} horas",
-                        "regresa {hours} hora",
-                        "regresa {hours} {minutes} {seconds}",
-                        "regresa {hours} horas {minutes} minutos y {seconds} segundos",
-                        "regresa {hours} hora {minutes} minutos y {seconds} segundos",
-                        "regresa {hours} hora {minutes} minuto y {seconds} segundos",
-                        "regresa {hours} horas {minutes} minuto y {seconds} segundos",
-                        "regresa {hours} horas {minutes} minutos y {seconds} segundo",
-                        "regresa {hours} hora {minutes} minutos y {seconds} segundo",
-                        "regresa {hours} hora {minutes} minuto y {seconds} segundo",
-                        "regresa {hours} horas {minutes} minuto y {seconds} segundo",
-                        "regresa {hours} horas {minutes} minutos",
-                        "regresa {hours} hora {minutes} minutos",
-                        "regresa {hours} horas {minutes} minuto",
-                        "regresa {hours} hora {minutes} minuto",
-                        "regresa {minutes} {seconds}",
-                        "regresa {minutes} minutos y {seconds} segundo",
-                        "regresa {minutes} minuto y {seconds} segundos",
-                        "regresa {minutes} minutos y {seconds} segundo",
-                        "regresa {minutes} minuto y {seconds} segundo",
-                        "regresa {minutes} minutos",
-                        "regresa {minutes} minuto",
-                        "regresa {seconds} segundos",
-                        "regresa {seconds} segundo"
+                    "samples": [	
+						"Hora {hours}",
+						"Minuto {minutes}",
+						"Segundo {seconds}",
+						"Minuto {minutes} segundo {seconds}",						
+						"Hora {hours} minuto {minutes}",
+					    "Hora {hours} minuto {minutes} segundo {seconds}",					
+						"Salta {minutes} {seconds}",
+					    "Salta {hours} {minutes} {seconds}",
+						"Salta a la hora {hours}",
+						"Salta al minuto {minutes}",
+                        "Salta al segundo {seconds}",
+						"Salta al minuto {minutes} y al segundo {seconds}",
+						"Salta a la hora {hours} y al minuto {minutes}",
+						"Salta a la hora {hours} al minuto {minutes} y al segundo {seconds}",
+						"Ve a {minutes} {seconds}",
+					    "Ve a {hours} {minutes} {seconds}",
+						"Ve a la hora {hours}",
+						"Ve al minuto {minutes}",
+                        "Ve al segundo {seconds}",
+						"Ve a la hora {hours} y al minuto {minutes}",
+						"Ve a la hora {hours} al minuto {minutes} y al segundo {seconds}"
                     ]
                 },
                 {
@@ -227,87 +355,107 @@
                         }
                     ],
                     "samples": [
-                        "adelanta {hours} horas",
-                        "adelanta {hours} hora",
-                        "adelanta {hours} {minutes} {seconds}",
-                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
-                        "adelanta {hours} hora {minutes} minutos y {seconds} segundos",
-                        "adelanta {hours} hora {minutes} minuto y {seconds} segundos",
-                        "adelanta {hours} horas {minutes} minuto y {seconds} segundos",
-                        "adelanta {hours} horas {minutes} minutos y {seconds} segundo",
-                        "adelanta {hours} hora {minutes} minutos y {seconds} segundo",
-                        "adelanta {hours} hora {minutes} minuto y {seconds} segundo",
-                        "adelanta {hours} horas {minutes} minuto y {seconds} segundo",
-                        "adelanta {hours} horas {minutes} minutos",
-                        "adelanta {hours} hora {minutes} minutos",
-                        "adelanta {hours} horas {minutes} minuto",
-                        "adelanta {hours} hora {minutes} minuto",
-                        "adelanta {minutes} {seconds}",
-                        "adelanta {minutes} minutos y {seconds} segundos",
-                        "adelanta {minutes} minuto y {seconds} segundos",
-                        "adelanta {minutes} minutos y {seconds} segundo",
-                        "adelanta {minutes} minuto y {seconds} segundo",
-                        "adelanta {minutes} minutos",
-                        "adelanta {minutes} minuto",
-                        "adelanta {seconds} segundos",
-                        "adelanta {seconds} segundo",
-                        "ir a {hours} horas",
-                        "ir a {hours} horas {hours} hora",
-                        "ir a {hours} {minutes} {seconds}",
-                        "ir a {hours} horas {minutes} minutos y {seconds} segundos",
-                        "ir a {hours} hora {minutes} minutos y {seconds} segundos",
-                        "ir a {hours} hora {minutes} minuto y {seconds} segundos",
-                        "ir a {hours} horas {minutes} minuto y {seconds} segundos",
-                        "ir a {hours} horas {minutes} minutos y {seconds} segundo",
-                        "ir a {hours} hora {minutes} minutos y {seconds} segundo",
-                        "ir a {hours} hora {minutes} minuto y {seconds} segundo",
-                        "ir a {hours} horas {minutes} minuto y {seconds} segundo",
-                        "ir a {hours} horas {minutes} minutos",
-                        "ir a {hours} hora {minutes} minutos",
-                        "ir a {hours} horas {minutes} minuto",
-                        "ir a {hours} hora {minutes} minuto",
-                        "ir a {minutes} {seconds}",
-                        "ir a {minutes} minutos y {seconds} segundos",
-                        "ir a {minutes} minuto y {seconds} segundos",
-                        "ir a {minutes} minutos y {seconds} segundo",
-                        "ir a {minutes} minuto y {seconds} segundo",
-                        "ir a {minutes} minutos",
-                        "ir a {minutes} minuto",
-                        "ir a {seconds} segundos",
-                        "ir a {seconds} segundo",
-                        "regresa {hours} hours",
-                        "regresa {hours} hour",
-                        "regresa {hours} {minutes} {seconds}",
-                        "regresa {hours} hours {minutes} minutos y {seconds} segundos",
-                        "regresa {hours} hour {minutes} minutos y {seconds} segundos",
-                        "regresa {hours} hour {minutes} minuto y {seconds} segundos",
-                        "regresa {hours} hours {minutes} minuto y {seconds} segundos",
-                        "regresa {hours} hours {minutes} minutos y {seconds} segundo",
-                        "regresa {hours} hour {minutes} minutos y {seconds} segundo",
-                        "regresa {hours} hour {minutes} minuto y {seconds} segundo",
-                        "regresa {hours} hours {minutes} minuto y {seconds} segundo",
-                        "regresa {hours} hours {minutes} minutos",
-                        "regresa {hours} hour {minutes} minutos",
-                        "regresa {hours} hours {minutes} minuto",
-                        "regresa {hours} hour {minutes} minuto",
-                        "regresa {minutes} {seconds}",
-                        "regresa {minutes} minutos y {seconds} segundo",
-                        "regresa {minutes} minuto y {seconds} segundos",
-                        "regresa {minutes} minutos y {seconds} segundo",
-                        "regresa {minutes} minuto y {seconds} segundo",
-                        "regresa {minutes} minutos",
-                        "regresa {minutes} minuto",
-                        "regresa {seconds} segundos",
-                        "regresa {seconds} segundo"
+						"Avanza {minutes} {seconds}",
+					    "Avanza {hours} {minutes} {seconds}",
+						"Avanza {hours} hora",
+                        "Avanza {hours} horas",
+						"Avanza {minutes} minuto",
+						"Avanza {minutes} minutos",
+                        "Avanza {seconds} segundo",
+                        "Avanza {seconds} segundos",
+						"Avanza {hours} hora y {minutes} minuto",
+						"Avanza {hours} hora y {minutes} minutos",
+						"Avanza {hours} horas y {minutes} minuto",
+						"Avanza {hours} horas y {minutes} minutos",
+						"Avanza {hours} hora {minutes} minuto y {seconds} segundo",
+						"Avanza {hours} hora {minutes} minuto y {seconds} segundos",
+						"Avanza {hours} hora {minutes} minutos y {seconds} segundos",
+						"Avanza {hours} horas {minutes} minuto y {seconds} segundo",
+						"Avanza {hours} horas {minutes} minuto y {seconds} segundos",
+						"Avanza {hours} horas {minutes} minutos y {seconds} segundos",
+						"Adelanta {minutes} {seconds}",
+					    "Adelanta {hours} {minutes} {seconds}",
+						"Adelanta {hours} hora",
+                        "Adelanta {hours} horas",
+						"Adelanta {minutes} minuto",
+						"Adelanta {minutes} minutos",
+                        "Adelanta {seconds} segundo",
+                        "Adelanta {seconds} segundos",
+						"Adelanta {hours} hora y {minutes} minuto",
+						"Adelanta {hours} hora y {minutes} minutos",
+						"Adelanta {hours} horas y {minutes} minuto",
+						"Adelanta {hours} horas y {minutes} minutos",
+						"Adelanta {hours} hora {minutes} minuto y {seconds} segundo",
+						"Adelanta {hours} hora {minutes} minuto y {seconds} segundos",
+						"Adelanta {hours} hora {minutes} minutos y {seconds} segundos",
+						"Adelanta {hours} horas {minutes} minuto y {seconds} segundo",
+						"Adelanta {hours} horas {minutes} minuto y {seconds} segundos",
+						"Adelanta {hours} horas {minutes} minutos y {seconds} segundos",
+						"Salta {hours} hora",
+                        "Salta {hours} horas",
+						"Salta {minutes} minuto",
+						"Salta {minutes} minutos",
+                        "Salta {seconds} segundo",
+                        "Salta {seconds} segundos",
+						"Salta {hours} hora y {minutes} minuto",
+						"Salta {hours} hora y {minutes} minutos",
+						"Salta {hours} horas y {minutes} minuto",
+						"Salta {hours} horas y {minutes} minutos",
+						"Salta {hours} hora {minutes} minuto y {seconds} segundo",
+						"Salta {hours} hora {minutes} minuto y {seconds} segundos",
+						"Salta {hours} hora {minutes} minutos y {seconds} segundos",
+						"Salta {hours} horas {minutes} minuto y {seconds} segundo",
+						"Salta {hours} horas {minutes} minuto y {seconds} segundos",
+						"Salta {hours} horas {minutes} minutos y {seconds} segundos"
                     ]
                 },
-                
+                {
+                    "name": "SkipBackwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+						"Retrocede {minutes} {seconds}",
+					    "Retrocede {hours} {minutes} {seconds}",
+						"Retrocede {hours} hora",
+                        "Retrocede {hours} horas",
+						"Retrocede {minutes} minuto",
+						"Retrocede {minutes} minutos",
+                        "Retrocede {seconds} segundo",
+                        "Retrocede {seconds} segundos",
+						"Retrocede {hours} hora y {minutes} minuto",
+						"Retrocede {hours} hora y {minutes} minutos",
+						"Retrocede {hours} horas y {minutes} minuto",
+						"Retrocede {hours} horas y {minutes} minutos",
+						"Retrocede {hours} hora {minutes} minuto y {seconds} segundo",
+						"Retrocede {hours} hora {minutes} minuto y {seconds} segundos",
+						"Retrocede {hours} hora {minutes} minutos y {seconds} segundos",
+						"Retrocede {hours} horas {minutes} minuto y {seconds} segundo",
+						"Retrocede {hours} horas {minutes} minuto y {seconds} segundos",
+						"Retrocede {hours} horas {minutes} minutos y {seconds} segundos"
+                    ]
+                },                
                 {
                     "name": "AMAZON.YesIntent",
                     "samples": []
                 },
                 {
                     "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
                 }
             ],
