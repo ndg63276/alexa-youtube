@@ -115,9 +115,9 @@ strings_de = {
 'ok':"OK"
 }
 strings_es = {
-'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon música de los Beatles.",
-'welcome2':"O puedes decir, canciones en aleatorio de Michael Jackson.",
-'help':"Por ejemplo di, pon vídeos de Relajación. O pon una lista de sonidos de tormenta.",
+'welcome1':"Bienvenido a Youtube. Di, por ejemplo, ponme Mozart.",
+'welcome2':"O puedes decir, canciones en aleatorio de Vivaldi.",
+'help':"Por ejemplo di, pon un vídeo de Relajación. O pon una lista aleatoria de sonidos de lluvia.",
 'illegal':"No puedes hacer eso con esta skill.",
 'gonewrong':"Lo siento, ha ocurrido un error.",
 'playlist':"La playlist",
