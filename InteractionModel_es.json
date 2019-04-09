@@ -39,6 +39,7 @@
 						"Pon temas de {query}",
 						"Pon tracks de {query}",
                         "Pon videos de {query}",
+						"Pon sonidos de {query}",
 						"Busca musica de {query}",
                         "Busca canciones de {query}",
 						"Busca temas de {query}",
@@ -74,6 +75,7 @@
                         }
                     ],
                     "samples": [
+						"Aleatorio canciones de {query}",					
 						"Canciones en aleatorio de {query}",
 						"Canciones aleatorias de {query}",
 						"Temas en aleatorio de {query}",
@@ -108,7 +110,6 @@
 						"Pon la playlist {query}",
 						"Pon la lista {query}",
                         "Reproduce playlist de {query}"
-						
                     ]
                 },
                 {
@@ -120,11 +121,19 @@
                         }
                     ],
                     "samples": [
+						"Aleatorio playlist de {query}",
 						"Pon playlist aleatoria {query}",
 						"Pon lista aleatoria {query}",
+						"Pon una playlist aleatoria de {query}",
+						"Pon una lista aleatoria de {query}",
 						"Pon en aleatorio la lista {query}",
 						"Pon en aleatorio la playlist {query}",
+						"Haz una mezcla de la lista {query}",
+						"Haz un remix de la lista {query}",
 						"Lista aleatoria {query}",
+						"Aleatorio lista {query}",
+						"Mezcla la lista {query}",
+						"Remezcla la lista {query}",
 						"Playlist aleatoria {query}"
                     ]
                 },
@@ -162,6 +171,10 @@
                     ],
                     "samples": [
                         "Remueve mi lista {query}",
+						"Mezcla mi lista {query}",
+						"Remezcla mi lista {query}",
+						"Haz una mezcla de mi lista {query}",
+						"Haz una remix de mi lista {query}",
 						"Pon en aleatorio mi lista {query}"
                     ]
                 },
@@ -216,6 +229,8 @@
                     "name": "PlayMoreLikeThisIntent",
                     "slots": [],
                     "samples": [
+						"Similar",
+						"Parecido",
                         "Pon mas de esto",
 						"Pon mas como esto",
 						"Pon mas videos como este",
@@ -320,7 +335,7 @@
 						"Segundo {seconds}",
 						"Minuto {minutes} segundo {seconds}",						
 						"Hora {hours} minuto {minutes}",
-					    "Hora {hours} minuto {minutes} segundo {seconds}",					
+					    "Hora {hours} minuto {minutes} segundo {seconds}",			
 						"Salta {minutes} {seconds}",
 					    "Salta {hours} {minutes} {seconds}",
 						"Salta a la hora {hours}",
@@ -443,7 +458,25 @@
 						"Retrocede {hours} hora {minutes} minutos y {seconds} segundos",
 						"Retrocede {hours} horas {minutes} minuto y {seconds} segundo",
 						"Retrocede {hours} horas {minutes} minuto y {seconds} segundos",
-						"Retrocede {hours} horas {minutes} minutos y {seconds} segundos"
+						"Retrocede {hours} horas {minutes} minutos y {seconds} segundos",
+						"Atrasa {minutes} {seconds}",
+					    "Atrasa {hours} {minutes} {seconds}",
+						"Atrasa {hours} hora",
+                        "Atrasa {hours} horas",
+						"Atrasa {minutes} minuto",
+						"Atrasa {minutes} minutos",
+                        "Atrasa {seconds} segundo",
+                        "Atrasa {seconds} segundos",
+						"Atrasa {hours} hora y {minutes} minuto",
+						"Atrasa {hours} hora y {minutes} minutos",
+						"Atrasa {hours} horas y {minutes} minuto",
+						"Atrasa {hours} horas y {minutes} minutos",
+						"Atrasa {hours} hora {minutes} minuto y {seconds} segundo",
+						"Atrasa {hours} hora {minutes} minuto y {seconds} segundos",
+						"Atrasa {hours} hora {minutes} minutos y {seconds} segundos",
+						"Atrasa {hours} horas {minutes} minuto y {seconds} segundo",
+						"Atrasa {hours} horas {minutes} minuto y {seconds} segundos",
+						"Atrasa {hours} horas {minutes} minutos y {seconds} segundos"
                     ]
                 },                
                 {
