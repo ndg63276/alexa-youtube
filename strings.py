@@ -92,10 +92,10 @@ strings_it = {
 'ok':"OK"
 }
 strings_de = {
-'welcome1':"Willkommen bei Youtube. Sagen Sie zum Beispiel, spiel Videos von The Beatles.",
-'welcome2':"Oder Sie können sagen, misch Songs von Michael Jackson.",
-'help':"Sie können sagen zum Beispiel, spiel Videos von Fall Out Boy ab.",
-'illegal':"Sie können dies mit dieses Skill nicht tun.",
+'welcome1':"Willkommen bei Youtube. Du kannst zum Beispiel 'spiel Videos von The Beatles' sagen.",
+'welcome2':"Oder du kannst 'misch Songs von Michael Jackson' sagen.",
+'help':"Sag zum Beispiel 'spiel Videos von Fall Out Boy ab' um Videos von Fall Out Boy abzuspielen.",
+'illegal':"Du kannst dies mit dieses Skill nicht tun.",
 'gonewrong':"Es tut mir Leid, etwas ist schief gelaufen",
 'playlist':"Die Wiedergabeliste",
 'channel':"Der Kanal",
