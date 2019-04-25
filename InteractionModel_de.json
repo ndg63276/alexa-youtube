@@ -35,7 +35,7 @@
                         "spiel Musik von {query}",
                         "spiel Lieder von {query}",
                         "spiel Videos von {query}",
-                        "such nach {query}",
+                        "suche nach {query}",
                         "spiel {query}"
                     ]
                 },
@@ -112,7 +112,7 @@
                     "samples": [
                         "Wer ist das",
                         "Welches Video spielt",
-                        "Wleche Musik spielt",
+                        "Welche Musik spielt",
                         "Was ist das",
                         "Was spielt"
                     ]
