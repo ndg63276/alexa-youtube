@@ -1,6 +1,11 @@
 # alexa-youtube
 **Unofficial YouTube skill for Alexa**
 
+## Skill is now full
+* This skill has become so popular, I am close to hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
+* I have removed the ARNs from below, so don't start following the instructions, you will get stuck!
+* If you have your own lambda instance and would like to host some of the load, please raise an issue and I will be in touch.
+
 ## Updates
 * 2nd June 2018: The skill now handles playlists or channels where none of the videos exist (eg copyrighted deletions). It will now ask you if you want to try the next playlist or channel. If you have already created the skill, you will need to update the Interaction Model json file in your Alexa skill, ie step 7 under Setup Instructions.
 * 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
@@ -52,10 +57,10 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 
 | Your Location | What to put in "Default Region" |
 | ------------- | --- |
-| EU/Ireland    | `arn:aws:lambda:eu-west-1:175548706300:function:YouTube` |
-| Asia/Tokyo    | `arn:aws:lambda:ap-northeast-1:175548706300:function:YouTube` |
-| US East       | `arn:aws:lambda:us-east-1:175548706300:function:YouTube` |
-| US West       | `arn:aws:lambda:us-west-2:175548706300:function:YouTube` |
+| EU/Ireland    |  |
+| Asia/Tokyo    |  |
+| US East       |  |
+| US West       |  |
 
 12. Click "Save Endpoints"
 13. Click "Permissions", at the very bottom on the left.
