@@ -3,7 +3,7 @@
 
 ## Skill is now full
 * This skill has become so popular, I am close to hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
-* I have removed the ARNs from below, so don't start following the instructions, you will get stuck!
+* I have removed the ARNs from below, so only start following the instructions if you are capable of deploying your own lambda instance.
 * If you have your own lambda instance and would like to host some of the load, please raise an issue and I will be in touch.
 
 ## Updates
@@ -53,15 +53,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 9. Click "Save Model" at the top.
 10. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
-11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put whichever of these is closest to you:
-
-| Your Location | What to put in "Default Region" |
-| ------------- | --- |
-| EU/Ireland    |  |
-| Asia/Tokyo    |  |
-| US East       |  |
-| US West       |  |
-
+11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put ~~my ARN~~ the ARN you get from the section "Deploying Yourself" below.
 12. Click "Save Endpoints"
 13. Click "Permissions", at the very bottom on the left.
 14. Turn on "Lists Read" and "Lists Write".
@@ -81,7 +73,7 @@ The list can be viewed in the Alexa app, click Lists from the main menu.
 
 That's it!
 
-## Deploying yourself (optional, advanced)
+## Deploying yourself (~~optional~~, advanced)
 This skill currently runs on my Lambda instance, hopefully it won't get too popular. If you want to, and know how, you can deploy it on your own Lambda, you just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
 
 [tal9000v2](https://github.com/tal9000v2) has put together a handy guide for deploying yourself [here](https://github.com/ndg63276/alexa-youtube/wiki/Running-your-own-lambda-instance).
