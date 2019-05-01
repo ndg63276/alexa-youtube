@@ -11,7 +11,7 @@ from __future__ import absolute_import
 
 import json
 import logging
-from threading import Thread
+
 from pytube import Caption
 from pytube import CaptionQuery
 from pytube import extract
@@ -147,10 +147,7 @@ class YouTube(object):
         self.initialize_caption_objects()
         logger.info('init finished successfully')
 
-    def do_get(self, url, result, index):
-        result[index] = request.get(url=url)
-
-    def prefetch(self, multithread = True):
+    def prefetch(self):
         """Eagerly download all necessary data.
 
         Eagerly executes all necessary network requests so all other
@@ -160,19 +157,10 @@ class YouTube(object):
         :rtype: None
 
         """
-        if multithread:
-            threads, results = [None] * 2, [None] * 2
-            for i, url in enumerate([self.watch_url, self.embed_url]):
-                threads[i] = Thread(target=self.do_get, args=(url, results, i))
-                threads[i].start()
-            for i in range(len(threads)):
-                threads[i].join()
-            self.watch_html, self.embed_html = results
-        else:
-            self.watch_html = request.get(url=self.watch_url)
-            self.embed_html = request.get(url=self.embed_url)
+        self.watch_html = request.get(url=self.watch_url)
         if '<img class="icon meh" src="/yts/img' not in self.watch_html:
             raise VideoUnavailable('This video is unavailable.')
+        self.embed_html = request.get(url=self.embed_url)
         self.age_restricted = extract.is_age_restricted(self.watch_html)
         self.vid_info_url = extract.video_info_url(
             video_id=self.video_id,
@@ -181,26 +169,10 @@ class YouTube(object):
             embed_html=self.embed_html,
             age_restricted=self.age_restricted,
         )
-        if multithread:
-            threads, results = [None] * 2, [None] * 2
-            threads[0] = Thread(target=self.do_get, args=(self.vid_info_url, results, 0))
-            threads[0].start()
-        else:
-            self.vid_info = request.get(self.vid_info_url)
+        self.vid_info = request.get(self.vid_info_url)
         if not self.age_restricted:
             self.js_url = extract.js_url(self.watch_html, self.age_restricted)
-            if multithread:
-                threads[1] = Thread(target=self.do_get, args=(self.js_url, results, 1))
-                threads[1].start()
-                threads[0].join()
-                threads[1].join()
-            else:
-                self.js = request.get(self.js_url)
-        else:
-            threads[0].join()
-        if multithread:
-            self.vid_info, self.js = results
-
+            self.js = request.get(self.js_url)
 
     def initialize_stream_objects(self, fmt):
         """Convert manifest data to instances of :class:`Stream <Stream>`.
@@ -297,7 +269,12 @@ class YouTube(object):
         :rtype: str
 
         """
-        return self.player_config_args['avg_rating']
+        return (
+            self.player_config_args
+            .get('player_response', {})
+            .get('videoDetails', {})
+            .get('averageRating')
+        )
 
     @property
     def length(self):
@@ -315,7 +292,12 @@ class YouTube(object):
         :rtype: str
 
         """
-        return self.player_config_args['view_count']
+        return (
+            self.player_config_args
+            .get('player_response', {})
+            .get('videoDetails', {})
+            .get('viewCount')
+        )
 
     def register_on_progress_callback(self, func):
         """Register a download progress callback function post initialization.
