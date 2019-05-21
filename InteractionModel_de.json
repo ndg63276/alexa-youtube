@@ -80,6 +80,39 @@
                         "misch Playlist {query}"
                     ]
                 },
+		{
+                    "name": "SearchMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Start meine Playlist {query}",
+                        "Hör meine Playlist {query}",
+                        "Spiel meine Playlist {query}"
+                    ]
+                },
+		{
+                    "name": "NextPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Nächste Playlist"
+                    ]
+                },
+		{
+                    "name": "ShuffleMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Mische meine Playlist {query}"
+                    ]
+                },
                 {
                     "name": "ChannelIntent",
                     "slots": [
