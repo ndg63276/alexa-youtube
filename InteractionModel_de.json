@@ -150,6 +150,17 @@
                         "Was spielt"
                     ]
                 },
+		{
+                    "name": "SayTimestampIntent",
+                    "slots": [],
+                    "samples": [
+                        "An welcher Position sind wir",
+                        "Was ist die aktuelle Position",
+                        "Aktuelle Zeit",
+                        "Aktuelle Position",
+			"Zeitstempel"
+                    ]
+                },
                 {
                     "name": "SkipToIntent",
                     "slots": [
