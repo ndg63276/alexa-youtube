@@ -112,7 +112,14 @@ strings_de = {
 'nothingplaying':"Es wird momentan nichts abgespielt.",
 'sorryskipby':"Entschuldigung, ich habe nicht gehört, wie viel ich überspringen soll",
 'sorryskipto':"Entschuldigung, ich habe nicht gehört, wo ich überspringen soll",
-'ok':"OK"
+'ok':"OK",
+'currentposition':"Die aktuelle Position ist",
+'hours':"Stunden",
+'hour':"Stunde",
+'minutes':"Minuten",
+'minute':"Minute",
+'seconds':"Sekunden",
+'second':"Sekunde",
 }
 strings_es = {
 'welcome1':"Bienvenido a Youtube. Di, por ejemplo, ponme Mozart.",
