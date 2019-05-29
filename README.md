@@ -38,7 +38,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 ## Known issues
 
 1. Some videos just fail, it's not clear why, they work locally. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
-2. Apparently it doesn't work on Sonos devices. Sorry about that, email Sonos and ask them to support mp4.
+2. It appears this skill only works on Amazon Echo products, not on 3rd party products that support Alexa. If you get it to work on another device, please let me know.
 3. Live videos work on Gen 2 devices onwards, not on the original Gen 1 Echo.
 
 ## Setup Instructions
