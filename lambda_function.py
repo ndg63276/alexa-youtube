@@ -312,12 +312,12 @@ def get_headers(event):
         }
         return headers
     else:
+        logger.info('apiAccessToken not found')
         return False
 
 def create_list(event, list_title):
     headers = get_headers(event)
     if not headers:
-        logger.info('apiAccessToken not found')
         return False
     data = {
         "name": list_title,
@@ -341,15 +341,16 @@ def create_list(event, list_title):
 
 def get_list_id(event, list_title):
     headers = get_headers(event)
-    url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'
-    r = requests.get(url, headers=headers)
-    try:
-        lists = r.json()['lists']
-    except:
-        return None
-    for list in lists:
-        if list['name'] == list_title and list['state'] == 'active':
-            return list['listId']
+    if headers:
+        url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'
+        r = requests.get(url, headers=headers)
+        try:
+            lists = r.json()['lists']
+        except:
+            return None
+        for list in lists:
+            if list['name'] == list_title and list['state'] == 'active':
+                return list['listId']
     return None
 
 def read_list_item(event, listId):
@@ -360,40 +361,43 @@ def read_list_item(event, listId):
 
 def update_list_item(event, listId, itemId, itemValue, itemVersion, itemStatus='completed'):
     headers = get_headers(event)
-    data = {
-        "value": itemValue,
-        "status": itemStatus,
-        "version": itemVersion
-    }
-    url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/items/'+itemId
-    r = requests.put(url, headers=headers, data=json.dumps(data))
-    logger.info(r.json())
+    if headers:
+        data = {
+            "value": itemValue,
+            "status": itemStatus,
+            "version": itemVersion
+        }
+        url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/items/'+itemId
+        r = requests.put(url, headers=headers, data=json.dumps(data))
+        logger.info(r.json())
 
 def create_list_item(event, listId, title):
     headers = get_headers(event)
-    timestamp = event['request']['timestamp']
-    utc = datetime.strptime(timestamp,'%Y-%m-%dT%H:%M:%SZ')
-    from_zone = tz.tzutc()
-    timezone = 'Europe/London'
-    if event['request']['locale'] in locales:
-        timezone = locales[event['request']['locale']]
-    to_zone = tz.gettz(timezone)
-    utc = utc.replace(tzinfo=from_zone)
-    local = utc.astimezone(to_zone)
-    the_date = local.strftime('%b %d %Y %H:%M:%S')
-    data = {
-        "value": the_date+' '+title,
-        "status": "active"
-    }
-    url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/items/'
-    r = requests.post(url, headers=headers, data=json.dumps(data))
+    if headers:
+        timestamp = event['request']['timestamp']
+        utc = datetime.strptime(timestamp,'%Y-%m-%dT%H:%M:%SZ')
+        from_zone = tz.tzutc()
+        timezone = 'Europe/London'
+        if event['request']['locale'] in locales:
+            timezone = locales[event['request']['locale']]
+        to_zone = tz.gettz(timezone)
+        utc = utc.replace(tzinfo=from_zone)
+        local = utc.astimezone(to_zone)
+        the_date = local.strftime('%b %d %Y %H:%M:%S')
+        data = {
+            "value": the_date+' '+title,
+            "status": "active"
+        }
+        url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/items/'
+        r = requests.post(url, headers=headers, data=json.dumps(data))
 
 def get_list(event, listId):
     headers = get_headers(event)
-    url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/active/'
-    r = requests.get(url, headers=headers)
-    if 'items' in r.json():
-        return r.json()['items']
+    if headers:
+        url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/active/'
+        r = requests.get(url, headers=headers)
+        if 'items' in r.json():
+            return r.json()['items']
     return None
 
 def trim_list(event, listId):
@@ -406,8 +410,9 @@ def trim_list(event, listId):
 
 def delete_list_item(event, listId, itemId):
     headers = get_headers(event)
-    url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/items/'+itemId
-    r = requests.delete(url, headers=headers)
+    if headers:
+        url = event['context']['System']['apiEndpoint'] + '/v2/householdlists/'+listId+'/items/'+itemId
+        r = requests.delete(url, headers=headers)
 
 def add_to_list(event, title):
     listId = get_list_id(event, 'YouTube')
