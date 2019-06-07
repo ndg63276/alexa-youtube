@@ -304,15 +304,21 @@ def handle_playback(event):
 # --------------- Functions that control the skill's behavior ------------------
 
 def get_headers(event):
-    apiAccessToken = event['context']['System']['apiAccessToken']
-    headers = {
+    if 'apiAccessToken' in event['context']['System']:
+        apiAccessToken = event['context']['System']['apiAccessToken']
+        headers = {
         'Authorization': 'Bearer '+apiAccessToken,
         'Content-Type': 'application/json'
-    }
-    return headers
+        }
+        return headers
+    else:
+        return False
 
 def create_list(event, list_title):
     headers = get_headers(event)
+    if not headers:
+        logger.info('apiAccessToken not found')
+        return False
     data = {
         "name": list_title,
         "state": "active"
