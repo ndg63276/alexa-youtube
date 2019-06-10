@@ -88,9 +88,9 @@ If you have (public) playlists that you would like to play, first get your chann
 
 ## FAQ
 * **Alexa tells me she can't find any supported video skills, what does that mean?**
-Alexa is trying to be too clever, and not launching this skill. Start your request by saying 'Alexa, open YouTube' and then when she says 'Welcome to YouTube', ask for the video you want.
+Alexa is trying to be too clever, and not launching this skill. Start your request by saying 'Alexa, launch YouTube' and then when she says 'Welcome to YouTube', ask for the video you want.
 * **She still says she can't find any video skills.**
-Make sure to follow step 15 above, enabling Testing for Development.
+Make sure to follow step 19 above, enabling Testing for Development.
 * **She still says she can't find any video skills!**
 Try using a different word to start the skill. In English, say "Alexa, launch YouTube". In German, say "Alexa, öffne YouTube". In Italian, say "Alexa, avvia YouTube". In Spanish, say "Alexa, abrir YouTube".
 * **I am getting another issue, can you fix it?**
