@@ -18,6 +18,12 @@
 * Play video (if supported) on live videos or if you ask for just one specific video (command 8)
 * Makes a list of all the videos played, in the Alexa app
 
+## Launching
+* In English, say "Alexa, launch YouTube". 
+* In German, say "Alexa, öffne YouTube". 
+* In Italian, say "Alexa, avvia YouTube".
+* In Spanish, say "Alexa, abrir YouTube".
+
 ## Skill Commands
 
 1. Play a video, eg "Alexa, ask YouTube to play Gangnam Style"
@@ -86,7 +92,7 @@ Alexa is trying to be too clever, and not launching this skill. Start your reque
 * **She still says she can't find any video skills.**
 Make sure to follow step 15 above, enabling Testing for Development.
 * **She still says she can't find any video skills!**
-Try using a different word to start the skill. In English, say "Alexa, launch YouTube". In German, say "Alexa, öffne YouTube". In Italian, say "Alexa, avvia YouTube".
+Try using a different word to start the skill. In English, say "Alexa, launch YouTube". In German, say "Alexa, öffne YouTube". In Italian, say "Alexa, avvia YouTube". In Spanish, say "Alexa, abrir YouTube".
 * **I am getting another issue, can you fix it?**
 Hopefully. Create an issue on github, with the exact wording of what you ask Alexa, so I can try and reproduce it.
 * **Can you add another language?**
