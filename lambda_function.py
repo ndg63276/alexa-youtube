@@ -692,6 +692,9 @@ def nearly_finished(event):
 
 def play_more_like_this(event):
     should_end_session = True
+    if 'token' not in event['context']['AudioPlayer']:
+        speech_output = strings['nothingplaying']
+        return build_response(build_short_speechlet_response(speech_output, True))
     current_token = event['context']['AudioPlayer']['token']
     playlist = convert_token_to_dict(current_token)
     now_playing = playlist['p']
