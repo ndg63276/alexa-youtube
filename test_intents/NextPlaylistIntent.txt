@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "session": {
+    "new": true,
+    "sessionId": "amzn1.echo-api.session.",
+    "application": {
+      "applicationId": "amzn1.ask.skill."
+    },
+    "user": {
+      "userId": "amzn1.ask.account."
+    }
+  },
+  "context": {
+    "AudioPlayer": {
+      "playerActivity": "IDLE",
+      "token": "v30=VJDJs9dumZI&v31=U_O1QKQCsGs&v18=_71w4UA2Oxo&v19=pOxAqhTaXzw&v34=IRF6nmqcbxo&v35=2RicaUqd9Hg&v36=XT4pwRi2JmY&v37=q-9Y-QLjU0Y&v12=UelDrZ1aFeY&v13=WrAV5EVI4tU&v10=usNsCeOV4GM&v11=HtUH9z_Oey8&v16=45cYwDMibGo&v17=kle2xHhRHg4&v14=SyNt5zm3U_M&v15=2Q_ZzBGPdqE&v33=ZbyDmU-gvnw&v46=naoknj1ebqI&query=the_Beatles&v40=1A8sOOKianA&v41=_J9NpHKrKMw&v38=EyHKuyGsu4U&v43=l8WMGBuNaus&v42=VtXl8xAPAtA&v45=HCTunqv1Xt4&v44=v2Kk5IG2b8E&v47=0C58ttB2-Qg&v39=mNcbF0n63fU&v49=no-nuFTHetE&v48=WoBLi5eE-wY&v32=OdIB9hfpJSo&v23=BGLGzRXY5Bw&v22=A_MjCqQoLLA&v21=uLRiGX3L-kw&v20=8MWVo1fjRsQ&v27=yYvkICbTZIQ&v26=HMAf4Uq9mrs&v25=HuS5NuXRb5Y&v24=wXTJBr9tt8Q&v29=cK5G8fPmWeA&v28=fG2evigIJIc&v0=Qyclqo_AV2M&v1=m2uTFF_3MaA&v2=ZhfWiU8wGCc&v3=YkgkThdzX-8&v4=Pb6zxVhwI0c&v5=81ZtmBAA_NE&v6=8qJTJNfzvr8&v7=NCtzkaL2t_Y&v8=S-rB0pHI9fU&v9=rblYSKz_VnI&sr=1&l=0&p=0&s=0"
+    },
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill."
+      },
+      "user": {
+        "userId": "amzn1.ask.account."
+      },
+      "device": {
+        "deviceId": "amzn1.ask.device.",
+        "supportedInterfaces": {
+          "AudioPlayer": {}
+        }
+      },
+      "apiEndpoint": "https://api.eu.amazonalexa.com",
+      "apiAccessToken": ""
+    },
+    "Viewport": {
+      "experiences": [
+        {
+          "arcMinuteWidth": 246,
+          "arcMinuteHeight": 144,
+          "canRotate": false,
+          "canResize": false
+        }
+      ],
+      "shape": "RECTANGLE",
+      "pixelWidth": 1024,
+      "pixelHeight": 600,
+      "dpi": 160,
+      "currentPixelWidth": 1024,
+      "currentPixelHeight": 600,
+      "touch": [
+        "SINGLE"
+      ]
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "amzn1.echo-api.request.",
+    "timestamp": "2019-01-10T11:27:13Z",
+    "locale": "en-GB",
+    "intent": {
+      "name": "NextPlaylistIntent",
+      "confirmationStatus": "NONE"
+    }
+  }
+}
