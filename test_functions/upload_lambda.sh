@@ -2,7 +2,13 @@
 
 gitroot=`git rev-parse --show-toplevel`
 
-aws lambda --region eu-west-1 update-function-code --function-name arn:aws:lambda:eu-west-1:175548706300:function:YouTube --zip-file fileb://$gitroot/lambda_function.zip
-aws lambda --region ap-northeast-1 update-function-code --function-name arn:aws:lambda:ap-northeast-1:175548706300:function:YouTube --zip-file fileb://$gitroot/lambda_function.zip
-aws lambda --region us-east-1 update-function-code --function-name arn:aws:lambda:us-east-1:175548706300:function:YouTube --zip-file fileb://$gitroot/lambda_function.zip
-aws lambda --region us-west-2 update-function-code --function-name arn:aws:lambda:us-west-2:175548706300:function:YouTube --zip-file fileb://$gitroot/lambda_function.zip
+regions="us-east-1
+eu-west-1
+us-west-2
+ap-northeast-1
+"
+
+for region in $regions; do
+  arn="arn:aws:lambda:$region:175548706300:function:YouTube"
+  aws lambda --region $region update-function-code --function-name $arn --zip-file fileb://$gitroot/lambda_function.zip
+done
