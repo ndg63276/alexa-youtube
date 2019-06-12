@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "session": {
+    "new": false,
+    "sessionId": "amzn1.echo-api.session.",
+    "application": {
+      "applicationId": "amzn1.ask.skill."
+    },
+    "user": {
+      "userId": "amzn1.ask.account."
+    }
+  },
+  "context": {
+    "AudioPlayer": {
+      "playerActivity": "IDLE"
+    },
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill."
+      },
+      "user": {
+        "userId": "amzn1.ask.account."
+      },
+      "device": {
+        "deviceId": "amzn1.ask.device.",
+        "supportedInterfaces": {
+          "AudioPlayer": {}
+        }
+      },
+      "apiEndpoint": "https://api.eu.amazonalexa.com",
+      "apiAccessToken": ""
+    },
+    "Viewport": {
+      "experiences": [
+        {
+          "arcMinuteWidth": 246,
+          "arcMinuteHeight": 144,
+          "canRotate": false,
+          "canResize": false
+        }
+      ],
+      "shape": "RECTANGLE",
+      "pixelWidth": 1024,
+      "pixelHeight": 600,
+      "dpi": 160,
+      "currentPixelWidth": 1024,
+      "currentPixelHeight": 600,
+      "touch": [
+        "SINGLE"
+      ]
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "amzn1.echo-api.request.",
+    "timestamp": "2019-01-11T23:57:55Z",
+    "locale": "en-GB",
+    "intent": {
+      "name": "SearchMyPlaylistsIntent",
+      "confirmationStatus": "NONE",
+      "slots": {
+        "query": {
+          "name": "query",
+          "value": "2019 nfl honors",
+          "confirmationStatus": "NONE",
+          "source": "USER"
+        }
+      }
+    }
+  }
+}
