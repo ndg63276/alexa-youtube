@@ -80,7 +80,7 @@
                         "misch Playlist {query}"
                     ]
                 },
-		{
+        {
                     "name": "SearchMyPlaylistsIntent",
                     "slots": [
                         {
@@ -94,14 +94,14 @@
                         "Spiel meine Playlist {query}"
                     ]
                 },
-		{
+        {
                     "name": "NextPlaylistIntent",
                     "slots": [],
                     "samples": [
                         "Nächste Playlist"
                     ]
                 },
-		{
+        {
                     "name": "ShuffleMyPlaylistsIntent",
                     "slots": [
                         {
@@ -150,7 +150,7 @@
                         "Was spielt"
                     ]
                 },
-		{
+        {
                     "name": "SayTimestampIntent",
                     "slots": [],
                     "samples": [
@@ -158,7 +158,7 @@
                         "Was ist die aktuelle Position",
                         "Aktuelle Zeit",
                         "Aktuelle Position",
-			"Zeitstempel"
+            "Zeitstempel"
                     ]
                 },
                 {
@@ -415,7 +415,7 @@
                         "spring zurück {seconds} Sekunden",
                         "spring zurück {minutes} Minute",
                         "spring zurück {seconds} Sekunde",
-	                    "geh {hours} Stunden zurück",
+                        "geh {hours} Stunden zurück",
                         "geh {hours} Stunde zurück",
                         "geh {hours} Stunden {minutes} Minuten {seconds} Sekunden zurück",
                         "geh {hours} Stunden {minutes} Minute {seconds} Sekunden zurück",
