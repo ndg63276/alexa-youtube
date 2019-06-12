@@ -122,7 +122,7 @@ strings_de = {
 'second':"Sekunde",
 }
 strings_es = {
-'welcome1':"Bienvenido a Youtube. Di, por ejemplo, ponme Mozart.",
+'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon musica de Mozart.",
 'welcome2':"O puedes decir, canciones en aleatorio de Vivaldi.",
 'help':"Por ejemplo di, pon un vídeo de Relajación. O pon una lista aleatoria de sonidos de lluvia.",
 'illegal':"No puedes hacer eso con esta skill.",
@@ -131,7 +131,7 @@ strings_es = {
 'channel':"El canal",
 'video':"El vídeo",
 'notworked':"No ha funcionado, pruebo con la siguiente?",
-'playing':"Sonando.",
+'playing':"Sonando",
 'pausing':"Para.",
 'nomoreitems':"No hay mas items en la playlist.",
 'resuming':"Resumiendo.",
