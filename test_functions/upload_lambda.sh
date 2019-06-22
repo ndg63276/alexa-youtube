@@ -2,13 +2,26 @@
 
 gitroot=`git rev-parse --show-toplevel`
 
-regions="us-east-1
-eu-west-1
-us-west-2
-ap-northeast-1
-"
+. config.cfg
 
-for region in $regions; do
-  arn="arn:aws:lambda:$region:175548706300:function:YouTube"
-  aws lambda --region $region update-function-code --function-name $arn --zip-file fileb://$gitroot/lambda_function.zip
-done
+function upload {
+  local -n arr=$1
+  if [[ ${arr[type]} == 'live' ]]; then
+    region=${arr[region]}
+    arn_no=${arr[arn]}
+    name=${arr[name]}
+    arn=arn:aws:lambda:$region:$arn_no:function:$name
+    aws lambda --region $region update-function-code --function-name $arn --zip-file fileb://$gitroot/lambda_function.zip
+  fi
+}
+
+upload config1
+upload config2
+upload config3
+upload config4
+upload config5
+upload config6
+upload config7
+upload config8
+upload config9
+upload config10
