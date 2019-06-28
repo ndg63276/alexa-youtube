@@ -6,7 +6,7 @@ gitroot=`git rev-parse --show-toplevel`
 
 function invoke {
   intent=$1
-  local -n arr=$2
+  eval "declare -A arr="${2#*=}
   if [[ ${arr[type]} == 'live' ]]; then
     region=${arr[region]}
     arn_no=${arr[arn]}
@@ -20,14 +20,14 @@ function invoke {
 intents=`ls $gitroot/test_intents/`
 
 for intent in $intents; do
-  invoke $intent config1
-  invoke $intent config2
-  invoke $intent config3
-  invoke $intent config4
-  invoke $intent config5
-  invoke $intent config6
-  invoke $intent config7
-  invoke $intent config8
-  invoke $intent config9
-  invoke $intent config10
+  if [[ ${config1[type]} != "" ]]; then invoke $intent "$(declare -p config1)"; fi
+  if [[ ${config2[type]} != "" ]]; then invoke $intent "$(declare -p config2)"; fi
+  if [[ ${config3[type]} != "" ]]; then invoke $intent "$(declare -p config3)"; fi
+  if [[ ${config4[type]} != "" ]]; then invoke $intent "$(declare -p config4)"; fi
+  if [[ ${config5[type]} != "" ]]; then invoke $intent "$(declare -p config5)"; fi
+  if [[ ${config6[type]} != "" ]]; then invoke $intent "$(declare -p config6)"; fi
+  if [[ ${config7[type]} != "" ]]; then invoke $intent "$(declare -p config7)"; fi
+  if [[ ${config8[type]} != "" ]]; then invoke $intent "$(declare -p config8)"; fi
+  if [[ ${config9[type]} != "" ]]; then invoke $intent "$(declare -p config9)"; fi
+  if [[ ${config10[type]} != "" ]]; then invoke $intent "$(declare -p config10)"; fi
 done
