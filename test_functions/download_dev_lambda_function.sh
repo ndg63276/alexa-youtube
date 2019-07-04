@@ -2,7 +2,7 @@
 
 gitroot=`git rev-parse --show-toplevel`
 
-. config.cfg
+. $gitroot/test_functions/config.cfg
 
 have_downloaded=false
 
