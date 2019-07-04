@@ -453,18 +453,21 @@ def do_nothing():
     return build_response({})
 
 def video_search(query, relatedToVideoId=None):
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=50,
-        relatedToVideoId=relatedToVideoId,
-        type='video'
-        ).execute()
+    try:
+        search_response = youtube.search().list(
+            q=query,
+            part='id,snippet',
+            maxResults=50,
+            relatedToVideoId=relatedToVideoId,
+            type='video'
+            ).execute()
+    except:
+        return False, "Sorry, this skill has hit it's usage limit for today. Please consider deploying the skill yourself for unlimited use"
     videos = []
     for search_result in search_response.get('items', []):
         if 'videoId' in search_result['id']:
             videos.append(search_result['id']['videoId'])
-    return videos
+    return videos, ""
 
 def playlist_search(query, sr, do_shuffle='0'):
     search_response = youtube.search().list(
@@ -647,8 +650,10 @@ def search(event):
         videos, playlist_title = channel_search(query, sr, playlist['s'])
         playlist_channel_video = strings['channel']
     else:
-        videos = video_search(query)
+        videos, errorMessage = video_search(query)
         playlist_channel_video = strings['video']
+    if videos == False:
+        return build_response(build_cardless_speechlet_response(errorMessage, None, True))
     if videos == []:
         return build_response(build_cardless_speechlet_response(strings['novideo'], None, True))
     next_url = None
@@ -699,7 +704,9 @@ def play_more_like_this(event):
     playlist = convert_token_to_dict(current_token)
     now_playing = playlist['p']
     now_playing_id = playlist['v'+now_playing]
-    videos = video_search(None, now_playing_id)
+    videos, errorMessage = video_search(None, now_playing_id)
+    if videos == False:
+        return build_response(build_short_speechlet_response(errorMessage, True))
     next_url = None
     for i,id in enumerate(videos):
         playlist['v'+str(i)]=id
