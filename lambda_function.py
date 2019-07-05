@@ -2,6 +2,7 @@
 from __future__ import print_function
 from os import environ
 from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 from pytube import YouTube
 import logging
 from random import shuffle, randint
@@ -461,8 +462,11 @@ def video_search(query, relatedToVideoId=None):
             relatedToVideoId=relatedToVideoId,
             type='video'
             ).execute()
-    except:
-        return False, "Sorry, this skill has hit it's usage limit for today. Please consider deploying the skill yourself for unlimited use"
+    except HttpError as err:
+        if json.loads(err.content.decode('utf-8'))['error']['code'] == 403:
+            return False, "Sorry, this skill has hit it's usage limit for today. Please consider deploying the skill yourself for unlimited use"
+        else:
+            return False, "Sorry, there was a problem with the Youtube API key"
     videos = []
     for search_result in search_response.get('items', []):
         if 'videoId' in search_result['id']:
