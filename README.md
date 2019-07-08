@@ -4,9 +4,7 @@
 ## Skill is no longer full
 * This skill has become so popular, I am close to hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
 * If you have your own lambda instance and would like to host some of the load, please raise an issue and I will be in touch.
-
-## Hosting
-Rybot666 offered to host, so there is now ARNs below
+* Currently the ARNs in the readme belong to Rybot666
 
 ## Updates
 * 2nd June 2018: The skill now handles playlists or channels where none of the videos exist (eg copyrighted deletions). It will now ask you if you want to try the next playlist or channel. If you have already created the skill, you will need to update the Interaction Model json file in your Alexa skill, ie step 7 under Setup Instructions.
