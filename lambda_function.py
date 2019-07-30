@@ -4,6 +4,7 @@ from os import environ
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from pytube import YouTube
+from pytube.exceptions import LiveStreamError
 import logging
 from random import shuffle, randint
 from botocore.vendored import requests
@@ -563,15 +564,18 @@ def get_url_and_title(id):
     logger.info('Getting url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id)
-        if video_or_audio[1] == 'video':
-            first_stream = yt.streams.filter(progressive=True).first()
-        else:
-            first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
-        logger.info(first_stream.url)
-        return first_stream.url, yt.title
+    except LiveStreamError:
+        logger.info(id+' is a live video')
+        return get_live_video_url_and_title(id)
     except:
         logger.info('Unable to get URL for '+id)
-        return get_live_video_url_and_title(id)
+        return None,None
+    if video_or_audio[1] == 'video':
+        first_stream = yt.streams.filter(progressive=True).first()
+    else:
+        first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
+    logger.info(first_stream.url)
+    return first_stream.url, yt.title
 
 def get_live_video_url_and_title(id):
     logger.info('Live video?')
