@@ -5,6 +5,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from pytube import YouTube
 from pytube.exceptions import LiveStreamError
+from urllib2 import HTTPError
 import logging
 from random import shuffle, randint
 from botocore.vendored import requests
@@ -567,6 +568,9 @@ def get_url_and_title(id):
     except LiveStreamError:
         logger.info(id+' is a live video')
         return get_live_video_url_and_title(id)
+    except HTTPError, e:
+        logger.info('HTTPError code '+str(e.code))
+        return False,False
     except:
         logger.info('Unable to get URL for '+id)
         return None,None
@@ -672,6 +676,8 @@ def search(event):
         if next_url is None:
             playlist['p'] = i
             next_url, title = get_url_and_title(id)
+    if next_url == False:
+        return build_response(build_short_speechlet_response('This skill is being throttled by YouTube, please try again later', True))
     next_token = convert_dict_to_token(playlist)
     if playlist_title is None:
         speech_output = strings['playing'] + ' ' + title
@@ -701,6 +707,8 @@ def nearly_finished(event):
                 playlist['p'] = i
                 next_url, title = get_url_and_title(id)
         next_token = convert_dict_to_token(playlist)
+    if next_url == False:
+        return do_nothing()
     return build_response(build_audio_enqueue_response(should_end_session, next_url, current_token, next_token))
 
 def play_more_like_this(event):
@@ -721,6 +729,8 @@ def play_more_like_this(event):
         if next_url is None:
             playlist['p'] = i
             next_url, title = get_url_and_title(id)
+    if next_url == False:
+        return build_response(build_short_speechlet_response('This skill is being throttled by YouTube, please try again later', True))
     next_token = convert_dict_to_token(playlist)
     speech_output = strings['playing']+' '+title
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
@@ -745,6 +755,8 @@ def skip_action(event, skip):
                 playlist['p'] = i
                 next_url, title = get_url_and_title(id)
         next_token = convert_dict_to_token(playlist)
+    if next_url == False:
+        return build_response(build_short_speechlet_response('This skill is being throttled by YouTube, please try again later', True))
     speech_output = strings['playing']+' '+title
     return build_response(build_cardless_audio_speechlet_response(speech_output, should_end_session, next_url, next_token))
 
@@ -961,7 +973,8 @@ def started(event):
     now_playing = playlist['p']
     id = playlist['v'+now_playing]
     next_url, title = get_url_and_title(id)
-    add_to_list(event, title)
+    if title:
+        add_to_list(event, title)
 
 def finished(event):
     logger.info('finished')
