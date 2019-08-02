@@ -122,7 +122,7 @@ strings_de = {
 'second':"Sekunde",
 }
 strings_es = {
-'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon musica de Mozart.",
+'welcome1':"Bienvenido a Youtube. Di, por ejemplo, pon canciones de Mozart.",
 'welcome2':"O puedes decir, canciones en aleatorio de Vivaldi.",
 'help':"Por ejemplo di, pon un vídeo de Relajación. O pon una lista aleatoria de sonidos de lluvia.",
 'illegal':"No puedes hacer eso con esta skill.",
