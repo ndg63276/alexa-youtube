@@ -456,6 +456,13 @@
                     ]
                 },
                 {
+                    "name": "PlayMyLatestVideoIntent",
+                    "slots": [],
+                    "samples": [
+                        "Riproduci il mio ultimo video"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
