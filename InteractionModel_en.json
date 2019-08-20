@@ -131,6 +131,13 @@
                     ]
                 },
                 {
+                    "name": "PlayMyLatestVideoIntent",
+                    "slots": [],
+                    "samples": [
+                        "Play my latest video"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
