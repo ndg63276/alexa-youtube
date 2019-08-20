@@ -241,7 +241,7 @@ def lambda_handler(event, context):
 def on_intent(event):
     intent_name = event['request']['intent']['name']
     # Dispatch to your skill's intent handlers
-    search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "SearchMyPlaylistsIntent", "ShuffleMyPlaylistsIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent"]
+    search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "SearchMyPlaylistsIntent", "ShuffleMyPlaylistsIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent", "PlayMyLatestVideoIntent"]
     if intent_name in search_intents:
         return search(event)
     elif intent_name == 'NextPlaylistIntent':
@@ -538,6 +538,25 @@ def my_playlists_search(query, sr, do_shuffle='0'):
         shuffle(videos)
     return videos[0:50], playlist_title, sr
 
+def my_latest_video():
+    channel_id = None
+    if 'MY_CHANNEL_ID' in environ:
+        channel_id = environ['MY_CHANNEL_ID']
+    if channel_id is None:
+        return build_response(build_short_speechlet_response('You do not have a channel id set', True))
+    search_response = youtube.search().list(
+        part='id,snippet',
+        maxResults=50,
+        type='video',
+        order='date',
+        channelId=channel_id
+        ).execute()
+    videos = []
+    for search_result in search_response.get('items', []):
+        if 'videoId' in search_result['id']:
+            videos.append(search_result['id']['videoId'])
+    return videos
+
 def channel_search(query, sr, do_shuffle='0'):
     search_response = youtube.search().list(
         q=query,
@@ -629,6 +648,7 @@ def search(event):
     session = event['session']
     intent = event['request']['intent']
     startTime = time()
+    query = ''
     if 'slots' in intent and 'query' in intent['slots']:
         query = intent['slots']['query']['value']
         logger.info('Looking for: ' + query)
@@ -661,6 +681,9 @@ def search(event):
     elif intent_name == "ChannelIntent" or intent_name == "ShuffleChannelIntent":
         videos, playlist_title = channel_search(query, sr, playlist['s'])
         playlist_channel_video = strings['channel']
+    elif intent_name == "PlayMyLatestVideoIntent":
+        videos = my_latest_video()
+        playlist_channel_video = strings['video']
     else:
         videos, errorMessage = video_search(query)
         playlist_channel_video = strings['video']
