@@ -63,7 +63,7 @@
                         }
                     ],
                     "samples": [
-                        "start Playlist {query}",
+                        "starte Playlist {query}",
                         "hör Playlist {query} an",
                         "spiel Playlist {query} ab"
                     ]
@@ -89,7 +89,7 @@
                         }
                     ],
                     "samples": [
-                        "Start meine Playlist {query}",
+                        "Starte meine Playlist {query}",
                         "Hör meine Playlist {query}",
                         "Spiel meine Playlist {query}"
                     ]
@@ -123,7 +123,7 @@
                     ],
                     "samples": [
                         "hör Kanal {query} an",
-                        "start Kanal {query} ",
+                        "starte Kanal {query} ",
                         "spiel Kanal {query} ab"
                     ]
                 },
@@ -144,8 +144,8 @@
                     "slots": [],
                     "samples": [
                         "Wer ist das",
-                        "Welches Video spielt",
-                        "Welche Musik spielt",
+                        "Welches Video wird gespielt",
+                        "Welche Musik wird gespielt",
                         "Was ist das",
                         "Was spielt"
                     ]
