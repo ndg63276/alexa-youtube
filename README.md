@@ -1,17 +1,11 @@
 # alexa-youtube
 **Unofficial YouTube skill for Alexa**
 
-## Skill is no longer full
-* This skill has become so popular, I am close to hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
-* If you have your own lambda instance and would like to host some of the load, please raise an issue and I will be in touch.
-* Currently the ARNs in the readme belong to Rybot666
-
-## Updates
-* 2nd June 2018: The skill now handles playlists or channels where none of the videos exist (eg copyrighted deletions). It will now ask you if you want to try the next playlist or channel. If you have already created the skill, you will need to update the Interaction Model json file in your Alexa skill, ie step 7 under Setup Instructions.
-* 22nd August 2018: Fixed a bug where channels turn up in video search results, eg in Play videos by The Beatles.
-* 4th January 2019: Now works in 5 languages, thanks to everyone who helped!
-* 1st February 2019: Live videos don't seem to be working. Have updated the list of commands.
-* 3rd February 2019: Live videos fixed, for Gen 2 devices at least.
+## Skill is now full
+* This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
+* Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
+* So I am now asking for donations through https://www.patreon.com/alexayoutube. For $1/month, I will give you a unique ARN which you can use to run this skill.
+* If you don't want to sponsor me, you can host your own lambda instance, there are instructions in the wiki.
 
 ## Features
 * Play audio from YouTube videos
@@ -59,7 +53,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 9. Click "Save Model" at the top.
 10. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
-11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put ~~my ARN~~ `arn:aws:lambda:us-west-2:827204026059:function:YouTube` or the ARN you get from the section "Deploying Yourself" below.
+11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put the ARN. You can get an ARN by sponsoring me on https://www.patreon.com/alexayoutube, or make your own using the instructions under "Deploying yourself", below.
 12. Click "Save Endpoints"
 13. Click "Permissions", at the very bottom on the left.
 14. Turn on "Lists Read" and "Lists Write".
@@ -80,7 +74,7 @@ The list can be viewed in the Alexa app, click Lists from the main menu.
 That's it!
 
 ## Deploying yourself (optional)
-This skill currently runs on my and Rybot's Lambda instance, hopefully it won't get too popular. If you want to, and know how, you can deploy it on your own Lambda, you just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
+If you want to, and know how, you can deploy this skill on your own Lambda, you just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
 
 [tal9000v2](https://github.com/tal9000v2) has put together a handy guide for deploying yourself [here](https://github.com/ndg63276/alexa-youtube/wiki/Running-your-own-lambda-instance).
 
@@ -95,14 +89,7 @@ Make sure to follow step 19 above, enabling Testing for Development.
 Try using a different word to start the skill. In English, say "Alexa, launch YouTube". In German, say "Alexa, öffne YouTube". In Italian, say "Alexa, avvia YouTube". In Spanish, say "Alexa, abrir YouTube".
 * **I am getting another issue, can you fix it?**
 Hopefully. Create an issue on github, with the exact wording of what you ask Alexa, so I can try and reproduce it.
-* **Can you add another language?**
-Yes, as long as you can translate for me. Click on 'Issues' at the top, then 'New Issue', and let me know what language you can help with, and I'll let you know what I need translating.
 * **If I try and test in the Developer Console, it says 'Unsupported Directive. AudioPlayer is currently an unsupported namespace. Check the device log for more information.'**
 That is normal, the Developer Console doesn't play audio. You just need to enable testing through the Developer Console, then you can use the skill through your Alexa device.
 * **Why don't more videos work as video?**
 Alexa doesn't provide any ability to enqueue videos, so you only get one video, then it stops. So it only plays videos if you ask for one specific video, or if it is a live video.
-* **Did I hear an advert?**
-Yes, that was me. If you are in the UK, and are looking for cheap, renewable energy, join Bulb using [this link](https://bulb.co.uk/refer/mark7441), and both you and me get £50 credit.
-* **Why have you put in an advert?**
-Writing this skill has taken a large amount of my time, and continues to do so. This is a way to support me.
-You will only hear it if you are in the UK, and even then only 10% of the time (overall, it's random). If you deploy your own lambda instance, you won't hear it. 
