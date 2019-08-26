@@ -54,7 +54,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 3. Once you are logged into your account click "Create Skill" on the right hand side.
 4. Give your skill any name, eg "My YouTube Skill".
 5. **Important** Set the language to whatever your Echo device is set to. If you are not sure, go to the Alexa app, go to Settings, Device Settings, then click on your Echo device, and look under Language. If your Echo is set to English (UK), then the skill must be English (UK), other types of English will not work!
-6. Choose "Custom" as your model, and click "Create Skill".
+6. Choose "Custom" as your model, and "Provision Your Own" as your method, then click "Create Skill". On the template page, choose "Start from scratch".
 7. On the left hand side, click "JSON Editor".
 8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 9. Click "Save Model" at the top.
