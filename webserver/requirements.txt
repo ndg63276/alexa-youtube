@@ -1,0 +1,11 @@
+asgiref
+botocore
+google-api-python-client
+httplib2
+oauth2client
+pyasn1
+pyasn1_modules
+pytube
+rsa
+six
+PyYAML

@@ -1,0 +1,3 @@
+certfile: /path/to/certfile
+keyfile: /path/to/keyfile
+youtube_api_key: API_KEY
