@@ -14,6 +14,7 @@
     "AudioPlayer": {
       "playerActivity": "IDLE"
     },
+    "Display": {},
     "System": {
       "application": {
         "applicationId": "amzn1.ask.skill."
@@ -24,40 +25,32 @@
       "device": {
         "deviceId": "amzn1.ask.device.",
         "supportedInterfaces": {
-          "AudioPlayer": {}
+          "AudioPlayer": {},
+          "Display": {
+            "templateVersion": "1.0",
+            "markupVersion": "1.0"
+          }
         }
       },
       "apiEndpoint": "https://api.eu.amazonalexa.com",
       "apiAccessToken": ""
-    },
-    "Viewport": {
-      "experiences": [
-        {
-          "arcMinuteWidth": 246,
-          "arcMinuteHeight": 144,
-          "canRotate": false,
-          "canResize": false
-        }
-      ],
-      "shape": "RECTANGLE",
-      "pixelWidth": 1024,
-      "pixelHeight": 600,
-      "dpi": 160,
-      "currentPixelWidth": 1024,
-      "currentPixelHeight": 600,
-      "touch": [
-        "SINGLE"
-      ]
     }
   },
   "request": {
     "type": "IntentRequest",
     "requestId": "amzn1.echo-api.request.",
-    "timestamp": "2019-01-08T09:19:32Z",
+    "timestamp": "2018-04-23T22:13:09Z",
     "locale": "en-GB",
     "intent": {
-      "name": "MyPlaylistIntent",
-      "confirmationStatus": "NONE"
+      "name": "ShuffleChannelIntent",
+      "confirmationStatus": "NONE",
+      "slots": {
+        "query": {
+          "name": "query",
+          "value": "fall out boy",
+          "confirmationStatus": "NONE"
+        }
+      }
     }
   }
 }
