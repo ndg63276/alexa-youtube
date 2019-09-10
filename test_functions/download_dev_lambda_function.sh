@@ -2,7 +2,12 @@
 
 gitroot=`git rev-parse --show-toplevel`
 
-. $gitroot/test_functions/config.cfg
+if [[ $# == 0 ]]; then
+  echo "No cfg file specified"
+  exit
+fi
+
+. $1
 
 have_downloaded=false
 

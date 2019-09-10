@@ -2,19 +2,22 @@
 
 gitroot=`git rev-parse --show-toplevel`
 
-. $gitroot/test_functions/config.cfg
+if [[ $# == 0 ]]; then
+  echo "No cfg file specified"
+  exit
+fi
+
+. $1
 
 function invoke {
   intent=$1
   eval "declare -A arr="${2#*=}
-  if [[ ${arr[type]} == 'live' ]]; then
-    region=${arr[region]}
-    arn_no=${arr[arn]}
-    name=${arr[name]}
-    arn=arn:aws:lambda:$region:$arn_no:function:$name
-    echo $arn $intent $region
-    aws lambda --region $region invoke --function-name $arn --payload fileb://$gitroot/test_intents/$intent /dev/null | grep StatusCode
-  fi
+  region=${arr[region]}
+  arn_no=${arr[arn]}
+  name=${arr[name]}
+  arn=arn:aws:lambda:$region:$arn_no:function:$name
+  echo $arn $intent $region
+  aws lambda --region $region invoke --function-name $arn --payload fileb://$gitroot/test_intents/$intent /dev/null | grep StatusCode
 }
 
 intents=`ls $gitroot/test_intents/`
