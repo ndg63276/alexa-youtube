@@ -2,17 +2,20 @@
 
 gitroot=`git rev-parse --show-toplevel`
 
-. $gitroot/test_functions/config.cfg
+if [[ $# == 0 ]]; then
+  echo "No cfg file specified"
+  exit
+fi
+
+. $1
 
 function upload {
   eval "declare -A arr="${1#*=}
-  if [[ ${arr[type]} == 'live' ]]; then
-    region=${arr[region]}
-    arn_no=${arr[arn]}
-    name=${arr[name]}
-    arn=arn:aws:lambda:$region:$arn_no:function:$name
-    aws lambda --region $region update-function-code --function-name $arn --zip-file fileb://$gitroot/lambda_function.zip
-  fi
+  region=${arr[region]}
+  arn_no=${arr[arn]}
+  name=${arr[name]}
+  arn=arn:aws:lambda:$region:$arn_no:function:$name
+  aws lambda --region $region update-function-code --function-name $arn --zip-file fileb://$gitroot/lambda_function.zip
 }
 
 if [[ ${config1[type]} != "" ]]; then upload "$(declare -p config1)"; fi
