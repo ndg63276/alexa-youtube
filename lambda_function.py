@@ -587,7 +587,7 @@ def get_url_and_title(id):
     except LiveStreamError:
         logger.info(id+' is a live video')
         return get_live_video_url_and_title(id)
-    except HTTPError, e:
+    except HTTPError as e:
         logger.info('HTTPError code '+str(e.code))
         return False,False
     except:
