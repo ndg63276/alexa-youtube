@@ -5,6 +5,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from pytube import YouTube
 from pytube.exceptions import LiveStreamError
+import youtube_dl
 from urllib2 import HTTPError
 import logging
 from random import shuffle, randint
@@ -581,6 +582,17 @@ def channel_search(query, sr, do_shuffle='0'):
     return videos[0:50], playlist_title
 
 def get_url_and_title(id):
+    # switch to youtube_dl for now
+    return get_url_and_title_youtube_dl(id)
+
+def get_url_and_title_youtube_dl(id):
+    logger.info('Getting url for https://www.youtube.com/watch?v='+id)
+    with youtube_dl.YoutubeDL({'format': 'bestaudio'}) as ydl:
+        yt_url = 'http://www.youtube.com/watch?v='+id
+        info = ydl.extract_info(yt_url, download=False)
+    return info['url'], info['title']
+
+def get_url_and_title_pytube(id):
     logger.info('Getting url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id)
