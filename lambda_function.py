@@ -3,9 +3,6 @@ from __future__ import print_function
 from os import environ
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from pytube import YouTube
-from pytube.exceptions import LiveStreamError
-import youtube_dl
 from urllib2 import HTTPError
 import logging
 from random import shuffle, randint
@@ -586,6 +583,7 @@ def get_url_and_title(id):
     return get_url_and_title_youtube_dl(id)
 
 def get_url_and_title_youtube_dl(id):
+    import youtube_dl
     logger.info('Getting url for https://www.youtube.com/watch?v='+id)
     with youtube_dl.YoutubeDL({'format': 'bestaudio'}) as ydl:
         yt_url = 'http://www.youtube.com/watch?v='+id
@@ -593,6 +591,8 @@ def get_url_and_title_youtube_dl(id):
     return info['url'], info['title']
 
 def get_url_and_title_pytube(id):
+    from pytube import YouTube
+    from pytube.exceptions import LiveStreamError
     logger.info('Getting url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id)
