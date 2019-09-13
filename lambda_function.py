@@ -580,20 +580,27 @@ def channel_search(query, sr, do_shuffle='0'):
 
 def get_url_and_title(id):
     # switch to youtube_dl for now
-    return get_url_and_title_pytube(id)
+    return get_url_and_title_youtube_dl(id)
 
 def get_url_and_title_youtube_dl(id):
     import youtube_dl
-    logger.info('Getting url for https://www.youtube.com/watch?v='+id)
-    with youtube_dl.YoutubeDL({'format': 'bestaudio'}) as ydl:
+    logger.info('Getting youtube-dl url for https://www.youtube.com/watch?v='+id)
+    with youtube_dl.YoutubeDL({}) as ydl:
         yt_url = 'http://www.youtube.com/watch?v='+id
         info = ydl.extract_info(yt_url, download=False)
-    return info['url'], info['title']
+    if info['is_live'] == True:
+        return info['url'], info['title']
+        #return get_live_video_url_and_title(id) # Test both of these
+    for f in info['formats']:
+        if f['vcodec'] == 'none' and f['ext'] == 'm4a':
+            return f['url'], info['title'] # Test this
+    logger.info('Unable to get URL for '+id)
+    return None, None
 
 def get_url_and_title_pytube(id):
     from pytube import YouTube
     from pytube.exceptions import LiveStreamError
-    logger.info('Getting url for https://www.youtube.com/watch?v='+id)
+    logger.info('Getting pytube url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id)
     except LiveStreamError:
