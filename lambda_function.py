@@ -580,7 +580,7 @@ def channel_search(query, sr, do_shuffle='0'):
 
 def get_url_and_title(id):
     # switch to youtube_dl for now
-    return get_url_and_title_youtube_dl(id)
+    return get_url_and_title_pytube(id)
 
 def get_url_and_title_youtube_dl(id):
     import youtube_dl
