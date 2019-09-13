@@ -589,10 +589,13 @@ def get_url_and_title_youtube_dl(id):
         yt_url = 'http://www.youtube.com/watch?v='+id
         info = ydl.extract_info(yt_url, download=False)
     if info['is_live'] == True:
+        video_or_audio[1] = 'video'
         return info['url'], info['title']
         #return get_live_video_url_and_title(id) # Test both of these
     for f in info['formats']:
-        if f['vcodec'] == 'none' and f['ext'] == 'm4a':
+        if video_or_audio[1] == 'audio' and f['vcodec'] == 'none' and f['ext'] == 'm4a':
+            return f['url'], info['title'] # Test this
+        if video_or_audio[1] == 'video' and f['vcodec'] != 'none' and f['acodec'] != 'none':
             return f['url'], info['title'] # Test this
     logger.info('Unable to get URL for '+id)
     return None, None
