@@ -579,7 +579,7 @@ def channel_search(query, sr, do_shuffle='0'):
     return videos[0:50], playlist_title
 
 def get_url_and_title(id):
-    if 'youtube-dl' in environ and environ['youtube-dl'].lower() == 'true':
+    if 'youtube_dl' in environ and environ['youtube_dl'].lower() == 'true':
         return get_url_and_title_youtube_dl(id)
     else:
         return get_url_and_title_pytube(id)
