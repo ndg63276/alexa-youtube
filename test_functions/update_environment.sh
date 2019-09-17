@@ -1,34 +1,28 @@
 #!/bin/bash
 
-if [[ $# == 0 ]]; then
-  echo "Usage: $0 [cfg] [key] [val]"
-  exit
-fi
-
-. $1
-new_key=$2
-new_val=$3
+new_key=$1
+new_val=$2
 
 function update {
-  eval "declare -A arr="${1#*=}
-  region=${arr[region]}
-  arn_no=${arr[arn]}
-  name=${arr[name]}
-  arn=arn:aws:lambda:$region:$arn_no:function:$name
-  function_config=`aws lambda --region $region get-function-configuration --function-name $arn`
-  old_environment=`echo "$function_config" | jq  ".Environment"`
-  new_environment=`echo "$old_environment" | jq ".Variables.$new_key = \"$new_val\""`
-  aws lambda --region $region update-function-configuration --function-name $arn --environment "$new_environment"
+	region=$1
+	arn=$2
+	function_config=`aws lambda --region $region get-function-configuration --function-name $arn`
+	old_environment=`echo "$function_config" | jq  ".Environment"`
+	new_environment=`echo "$old_environment" | jq ".Variables.$new_key = \"$new_val\""`
+	aws lambda --region $region update-function-configuration --function-name $arn --environment "$new_environment"
 }
 
-if [[ ${config1[type]} != "" ]]; then update "$(declare -p config1)"; fi
-if [[ ${config2[type]} != "" ]]; then update "$(declare -p config2)"; fi
-if [[ ${config3[type]} != "" ]]; then update "$(declare -p config3)"; fi
-if [[ ${config4[type]} != "" ]]; then update "$(declare -p config4)"; fi
-if [[ ${config5[type]} != "" ]]; then update "$(declare -p config5)"; fi
-if [[ ${config6[type]} != "" ]]; then update "$(declare -p config6)"; fi
-if [[ ${config7[type]} != "" ]]; then update "$(declare -p config7)"; fi
-if [[ ${config8[type]} != "" ]]; then update "$(declare -p config8)"; fi
-if [[ ${config9[type]} != "" ]]; then update "$(declare -p config9)"; fi
-if [[ ${config10[type]} != "" ]]; then update "$(declare -p config10)"; fi
+
+regions="ap-northeast-1 eu-west-1 us-east-1 us-west-2"
+for region in $regions; do
+	function_list=`aws lambda --region $region list-functions`
+	arn_list=`echo $function_list | jq -r ".Functions[].FunctionArn"`
+
+	for arn in $arn_list; do
+		tag_list=`aws lambda --region $region list-tags --resource $arn`
+		if jq -e '.Tags | has("Patreon")' >/dev/null <<< $tag_list; then
+			update $region $arn
+		fi
+	done
+done
 
