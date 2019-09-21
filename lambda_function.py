@@ -588,8 +588,8 @@ def get_url_and_title_youtube_dl(id):
     import youtube_dl
     logger.info('Getting youtube-dl url for https://www.youtube.com/watch?v='+id)
     youtube_dl_properties = {}
-    if environ['proxy_enabled'].lower() == 'true':
-        youtube_dl_properties["proxy"] = environ['proxy']
+    if 'proxy_enabled' in environ and 'proxy' in environ and environ['proxy_enabled'].lower() == 'true':
+        youtube_dl_properties['proxy'] = environ['proxy']
     with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
         yt_url = 'http://www.youtube.com/watch?v='+id
         info = ydl.extract_info(yt_url, download=False)
@@ -609,8 +609,8 @@ def get_url_and_title_pytube(id):
     from pytube import YouTube
     from pytube.exceptions import LiveStreamError
     proxy_list = {}
-    if environ["proxy_enabled"] == 'true':
-        proxy_list = {"https": environ["proxy"]}
+    if 'proxy_enabled' in environ and 'proxy' in environ and environ['proxy_enabled'] == 'true':
+        proxy_list = {'https': environ['proxy']}
     logger.info('Getting pytube url for https://www.youtube.com/watch?v='+id)
     try:
         yt=YouTube('https://www.youtube.com/watch?v='+id, proxies = proxy_list)
