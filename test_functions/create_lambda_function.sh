@@ -7,6 +7,11 @@ region=$2
 patreonamount=$3
 patreon="$4 $5 $6"
 
+if [[ ! "$region" =~ ^(us-east-1|us-west-2|eu-west-1|ap-northeast-1)$ ]]; then
+	echo "Invalid region, must be one of us-east-1|us-west-2|eu-west-1|ap-northeast-1"
+	exit
+fi
+
 if [[ $patreon == "  " ]]; then
 	echo "Need name, region, patreon amount and patreon name"
 	exit
