@@ -379,7 +379,7 @@ def create_list_item(event, listId, title):
         utc = datetime.strptime(timestamp,'%Y-%m-%dT%H:%M:%SZ')
         from_zone = tz.tzutc()
         timezone = get_time_zone(event)
-        if type(timezone) != str:
+        if type(timezone) != unicode:
             timezone = 'Europe/London'
             if event['request']['locale'] in locales:
                 timezone = locales[event['request']['locale']]
