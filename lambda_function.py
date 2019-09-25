@@ -378,9 +378,11 @@ def create_list_item(event, listId, title):
         timestamp = event['request']['timestamp']
         utc = datetime.strptime(timestamp,'%Y-%m-%dT%H:%M:%SZ')
         from_zone = tz.tzutc()
-        timezone = 'Europe/London'
-        if event['request']['locale'] in locales:
-            timezone = locales[event['request']['locale']]
+        timezone = get_time_zone(event)
+        if type(timezone) != str:
+            timezone = 'Europe/London'
+            if event['request']['locale'] in locales:
+                timezone = locales[event['request']['locale']]
         to_zone = tz.gettz(timezone)
         utc = utc.replace(tzinfo=from_zone)
         local = utc.astimezone(to_zone)
@@ -1013,6 +1015,18 @@ def get_next_url_and_token(current_token, skip):
     playlist['p'] = str(next_playing)
     next_token = convert_dict_to_token(playlist)
     return next_url, next_token, title
+
+def get_time_zone(event):
+    try:
+        deviceId = event['context']['System']['device']['deviceId']
+        apiAccessToken = event['context']['System']['apiAccessToken']
+        apiEndpoint = event['context']['System']['apiEndpoint']
+        headers = {'Authorization': 'Bearer '+apiAccessToken}
+        url = apiEndpoint + '/v2/devices/'+deviceId+'/settings/System.timeZone'
+        r = requests.get(url, headers=headers)
+        return r.json()
+    except:
+        return []
 
 def stopped(event):
     offsetInMilliseconds = event['request']['offsetInMilliseconds']
