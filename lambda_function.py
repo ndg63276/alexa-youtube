@@ -592,9 +592,16 @@ def get_url_and_title_youtube_dl(id):
     youtube_dl_properties = {}
     if 'proxy_enabled' in environ and 'proxy' in environ and environ['proxy_enabled'].lower() == 'true':
         youtube_dl_properties['proxy'] = environ['proxy']
-    with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
-        yt_url = 'http://www.youtube.com/watch?v='+id
-        info = ydl.extract_info(yt_url, download=False)
+    try:
+        with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
+            yt_url = 'http://www.youtube.com/watch?v='+id
+            info = ydl.extract_info(yt_url, download=False)
+    except HTTPError as e:
+        logger.info('HTTPError code '+str(e.code))
+        return False,False
+    except:
+        logger.info('Other ytdl error')
+        return False,False
     if info['is_live'] == True:
         video_or_audio[1] = 'video'
         return info['url'], info['title']
