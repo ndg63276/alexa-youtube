@@ -692,7 +692,9 @@ def search(event):
     query = ''
     if 'slots' in intent and 'query' in intent['slots']:
         query = intent['slots']['query']['value']
-        logger.info('Looking for: ' + query)
+    if environ['AWS_LAMBDA_FUNCTION_NAME'] == 'YouTubeTest':
+        query = 'gangnam style'
+    logger.info('Looking for: ' + query)
     should_end_session = True
     intent_name = intent['name']
     playlist_title = None
