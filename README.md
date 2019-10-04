@@ -1,6 +1,6 @@
 # alexa-youtube
 ## Unofficial YouTube skill for Alexa
-__Last update: 03 Oct 2019__
+__Last update: 04 Oct 2019__
 
 
 ## Skill is now full
