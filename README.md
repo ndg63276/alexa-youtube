@@ -1,13 +1,12 @@
 # alexa-youtube
 ## Unofficial YouTube skill for Alexa
-__Last update: 25 Sep 2019__
+__Last update: 04 Oct 2019__
 
 
 ## Skill is now full
 * This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
 * Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
-* So I am now asking for donations through https://www.patreon.com/alexayoutube. For $1/month, I will give you a unique ARN which you can use to run this skill.
-* If you don't want to sponsor me, you can host your own lambda instance, there are instructions in the wiki.
+* So I am now asking for donations through https://www.patreon.com/alexayoutube. For $1/month, I will give you a unique ARN which you can use to run this skill. **NB From 7th October 2019, the minimum sponsorship for new patrons will become $3/month.**
 
 ## Features
 * Play audio from YouTube videos
@@ -74,13 +73,6 @@ This skill can make a list of the last 90 videos played, but you have to give it
 The list can be viewed in the Alexa app, click Lists from the main menu.
 
 That's it!
-
-## Deploying yourself (optional)
-If you want to, and know how, you can deploy this skill on your own Lambda, you just need the lambda_function.zip file, and a YouTube developer key. (See [here](https://www.slickremix.com/docs/get-api-key-for-youtube/)).
-
-[tal9000v2](https://github.com/tal9000v2) has put together a handy guide for deploying yourself [here](https://github.com/ndg63276/alexa-youtube/wiki/Running-your-own-lambda-instance).
-
-If you have (public) playlists that you would like to play, first get your channel ID from youtube. Find a video you have uploaded, then click on your name beneath it, it should take you to eg https://www.youtube.com/channel/UCDVYQ4Zhbm3S2dlz7P1GBDg, in which case your channel ID is UCDVYQ4Zhbm3S2dlz7P1GBDg. Then, when you add the environment variable DEVELOPER_KEY, add another environment variable called MY_CHANNEL_ID, with the value of that your channel ID. Then you can say, "Alexa, ask YouTube to play my playlist {name of your playlist}".
 
 ## FAQ
 * **Alexa tells me she can't find any supported video skills, what does that mean?**
