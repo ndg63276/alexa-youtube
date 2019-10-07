@@ -54,7 +54,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 9. Click "Save Model" at the top.
 10. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
-11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put the ARN. You can get an ARN by sponsoring me on https://www.patreon.com/alexayoutube, or make your own using the instructions under "Deploying yourself", below. (If you would like to test the skill before sponsoring me, put arn:aws:lambda:eu-west-1:175548706300:function:YouTubeTest - but this will only play Gangnam Style.)
+11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put the ARN. You can get an ARN by sponsoring me on https://www.patreon.com/alexayoutube. (If you would like to test the skill before sponsoring me, put arn:aws:lambda:eu-west-1:175548706300:function:YouTubeTest - but this will only play Gangnam Style.)
 12. Click "Save Endpoints"
 13. Click "Permissions", at the very bottom on the left.
 14. Turn on "Lists Read" and "Lists Write".
