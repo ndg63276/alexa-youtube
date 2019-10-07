@@ -6,7 +6,7 @@ __Last update: 04 Oct 2019__
 ## Skill is now full
 * This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
 * Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
-* So I am now asking for donations through https://www.patreon.com/alexayoutube. For $1/month, I will give you a unique ARN which you can use to run this skill. **NB From 7th October 2019, the minimum sponsorship for new patrons will become $3/month.**
+* So I am now asking for donations through https://www.patreon.com/alexayoutube. For **$3/month**, I will give you a unique ARN which you can use to run this skill.
 
 ## Features
 * Play audio from YouTube videos
