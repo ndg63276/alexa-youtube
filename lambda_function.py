@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from os import environ
-from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from urllib2 import HTTPError
 import logging
@@ -15,10 +14,6 @@ from dateutil import tz
 logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-DEVELOPER_KEY=environ['DEVELOPER_KEY']
-YOUTUBE_API_SERVICE_NAME = 'youtube'
-YOUTUBE_API_VERSION = 'v3'
-youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 from strings import *
 strings = strings_en
 
@@ -458,32 +453,39 @@ def do_nothing():
     return build_response({})
 
 def youtube_search(query, search_type, maxResults, relatedToVideoId=None, channel_id=None, order=None, pageToken=None):
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=maxResults,
-        relatedToVideoId=relatedToVideoId,
-        channelId=channel_id,
-        order=order,
-        pageToken=pageToken,
-        type=search_type
-        ).execute()
-    return search_response
+    params = {}
+    for kv in ([['q',query],['type',search_type],['maxResults',maxResults],
+        ['relatedToVideoId',relatedToVideoId],['channelId',channel_id],['order',order],['pageToken',pageToken],
+        ['part','id,snippet'],['key',environ['DEVELOPER_KEY']]]):
+        k = kv[0]
+        v = kv[1]
+        params[k] = v
+    youtube_search_url = 'https://www.googleapis.com/youtube/v3/search'
+    if 'youtube_search_url' in environ:
+        youtube_search_url = environ['youtube_search_url']
+    r = requests.get(youtube_search_url, params=params)
+    return r.json()
 
 def youtube_playlist_search(playlist_id, pageToken=None):
-    data = youtube.playlistItems().list(
-        part='snippet',
-        maxResults=50,
-        playlistId=playlist_id,
-        pageToken=pageToken
-        ).execute()
-    return data
+    params = {}
+    for kv in ([['maxResults',50],['playlistId',playlist_id],['pageToken',pageToken],
+        ['part','snippet'],['key',environ['DEVELOPER_KEY']]]):
+        k = kv[0]
+        v = kv[1]
+        params[k] = v
+    youtube_search_url = 'https://www.googleapis.com/youtube/v3/playlistItems'
+    if 'youtube_playlist_search_url' in environ:
+        youtube_search_url = environ['youtube_playlist_search_url']
+    r = requests.get(youtube_search_url, params=params)
+    return r.json()
 
 def video_search(query, relatedToVideoId=None):
     try:
         search_response = youtube_search(query, 'video', 50, relatedToVideoId)
-    except HttpError as err:
-        if json.loads(err.content.decode('utf-8'))['error']['code'] == 403:
+    except:
+        return False, "There was a problem with the youtube search response."
+    if 'error' in search_response:
+        if search_response['error']['code'] == 403:
             return False, "Sorry, this skill has hit it's usage limit for today. Please consider deploying the skill yourself for unlimited use"
         else:
             return False, "Sorry, there was a problem with the Youtube API key"
@@ -494,6 +496,7 @@ def video_search(query, relatedToVideoId=None):
     return videos, ""
 
 def playlist_search(query, sr, do_shuffle='0'):
+    playlist_id = ''
     search_response = youtube_search(query, 'playlist', 10)
     for playlist in range(sr, len(search_response.get('items'))):
         if 'playlistId' in search_response.get('items')[playlist]['id']:
