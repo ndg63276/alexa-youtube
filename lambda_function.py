@@ -457,15 +457,31 @@ def illegal_action():
 def do_nothing():
     return build_response({})
 
+def youtube_search(query, search_type, maxResults, relatedToVideoId=None, channel_id=None, order=None, pageToken=None):
+    search_response = youtube.search().list(
+        q=query,
+        part='id,snippet',
+        maxResults=maxResults,
+        relatedToVideoId=relatedToVideoId,
+        channelId=channel_id,
+        order=order,
+        pageToken=pageToken,
+        type=search_type
+        ).execute()
+    return search_response
+
+def youtube_playlist_search(playlist_id, pageToken=None):
+    data = youtube.playlistItems().list(
+        part='snippet',
+        maxResults=50,
+        playlistId=playlist_id,
+        pageToken=pageToken
+        ).execute()
+    return data
+
 def video_search(query, relatedToVideoId=None):
     try:
-        search_response = youtube.search().list(
-            q=query,
-            part='id,snippet',
-            maxResults=50,
-            relatedToVideoId=relatedToVideoId,
-            type='video'
-            ).execute()
+        search_response = youtube_search(query, 'video', 50, relatedToVideoId)
     except HttpError as err:
         if json.loads(err.content.decode('utf-8'))['error']['code'] == 403:
             return False, "Sorry, this skill has hit it's usage limit for today. Please consider deploying the skill yourself for unlimited use"
@@ -478,12 +494,7 @@ def video_search(query, relatedToVideoId=None):
     return videos, ""
 
 def playlist_search(query, sr, do_shuffle='0'):
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=10,
-        type='playlist'
-        ).execute()
+    search_response = youtube_search(query, 'playlist', 10)
     for playlist in range(sr, len(search_response.get('items'))):
         if 'playlistId' in search_response.get('items')[playlist]['id']:
             playlist_id = search_response.get('items')[playlist]['id']['playlistId']
@@ -495,7 +506,7 @@ def playlist_search(query, sr, do_shuffle='0'):
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
-        data = youtube.playlistItems().list(part='snippet',maxResults=50,playlistId=playlist_id,pageToken=next_page_token).execute()
+        data = youtube_playlist_search(playlist_id, next_page_token)
         for item in data['items']:
             try:
                 videos.append(item['snippet']['resourceId']['videoId'])
@@ -510,13 +521,7 @@ def my_playlists_search(query, sr, do_shuffle='0'):
     playlist_id = None
     if 'MY_CHANNEL_ID' in environ:
         channel_id = environ['MY_CHANNEL_ID']
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=10,
-        type='playlist',
-        channelId=channel_id
-        ).execute()
+    search_response = youtube_search(query, 'playlist', 10, channel_id=channel_id)
     for playlist in range(sr, len(search_response.get('items'))):
         if 'playlistId' in search_response.get('items')[playlist]['id']:
             playlist_id = search_response.get('items')[playlist]['id']['playlistId']
@@ -530,7 +535,7 @@ def my_playlists_search(query, sr, do_shuffle='0'):
     data={'nextPageToken':''}
     while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
-        data = youtube.playlistItems().list(part='snippet',maxResults=50,playlistId=playlist_id,pageToken=next_page_token).execute()
+        data = youtube_playlist_search(playlist_id, next_page_token)
         for item in data['items']:
             try:
                 videos.append(item['snippet']['resourceId']['videoId'])
@@ -546,13 +551,7 @@ def my_latest_video():
         channel_id = environ['MY_CHANNEL_ID']
     if channel_id is None:
         return build_response(build_short_speechlet_response('You do not have a channel id set', True))
-    search_response = youtube.search().list(
-        part='id,snippet',
-        maxResults=50,
-        type='video',
-        order='date',
-        channelId=channel_id
-        ).execute()
+    search_response = youtube_search(None, 'video', 50, channel_id=channel_id, order='date')
     videos = []
     for search_result in search_response.get('items', []):
         if 'videoId' in search_result['id']:
@@ -560,20 +559,15 @@ def my_latest_video():
     return videos
 
 def channel_search(query, sr, do_shuffle='0'):
-    search_response = youtube.search().list(
-        q=query,
-        part='id,snippet',
-        maxResults=10,
-        type='channel'
-        ).execute()
-    playlist_id = search_response.get('items')[sr]['id']['channelId']
+    search_response = youtube_search(query, 'channel', 10)
+    channel_id = search_response.get('items')[sr]['id']['channelId']
     playlist_title = search_response.get('items')[sr]['snippet']['title']
     data={'nextPageToken':''}
     videos = []
     while 'nextPageToken' in data and len(videos) < 200:
         next_page_token = data['nextPageToken']
-        data = youtube.search().list(part='snippet',maxResults=50,channelId=playlist_id,pageToken=next_page_token).execute()
-        for item in data['items']:
+        search_response = youtube_search(query, 'video', 50, channel_id=channel_id, pageToken=next_page_token)
+        for item in search_response.get('items'):
             try:
                 videos.append(item['id']['videoId'])
             except:
