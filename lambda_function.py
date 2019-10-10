@@ -580,27 +580,32 @@ def channel_search(query, sr, do_shuffle='0'):
     return videos[0:50], playlist_title
 
 def get_url_and_title(id):
-    if 'youtube_dl' in environ and environ['youtube_dl'].lower() == 'true':
+    if 'youtube_dl' in environ and (environ['youtube_dl'].lower() == 'true' or 'http' in environ['youtube_dl']):
         return get_url_and_title_youtube_dl(id)
     else:
         return get_url_and_title_pytube(id)
 
 def get_url_and_title_youtube_dl(id):
-    import youtube_dl
-    logger.info('Getting youtube-dl url for https://www.youtube.com/watch?v='+id)
-    youtube_dl_properties = {}
-    if 'proxy_enabled' in environ and 'proxy' in environ and environ['proxy_enabled'].lower() == 'true':
-        youtube_dl_properties['proxy'] = environ['proxy']
-    try:
-        with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
-            yt_url = 'http://www.youtube.com/watch?v='+id
-            info = ydl.extract_info(yt_url, download=False)
-    except HTTPError as e:
-        logger.info('HTTPError code '+str(e.code))
-        return False,False
-    except:
-        logger.info('Other ytdl error')
-        return False,False
+    if 'http' in environ['youtube_dl']:
+        params = {'id': id}
+        r = requests.get(environ['youtube_dl'], params=params)
+        info = r.json()
+    else:
+        import youtube_dl
+        logger.info('Getting youtube-dl url for https://www.youtube.com/watch?v='+id)
+        youtube_dl_properties = {}
+        if 'proxy_enabled' in environ and 'proxy' in environ and environ['proxy_enabled'].lower() == 'true':
+            youtube_dl_properties['proxy'] = environ['proxy']
+        try:
+            with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
+                yt_url = 'http://www.youtube.com/watch?v='+id
+                info = ydl.extract_info(yt_url, download=False)
+        except HTTPError as e:
+            logger.info('HTTPError code '+str(e.code))
+            return False,False
+        except:
+            logger.info('Other ytdl error')
+            return False,False
     if info['is_live'] == True:
         video_or_audio[1] = 'video'
         return info['url'], info['title']
