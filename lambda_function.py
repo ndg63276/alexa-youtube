@@ -586,7 +586,7 @@ def get_url_and_title(id):
     else:
         return get_url_and_title_pytube(id)
 
-def get_url_and_title_youtube_dl(id):
+def get_url_and_title_youtube_dl(id, retry=True):
     if 'youtube_dl' in environ and 'http' in environ['youtube_dl']:
         params = {'id': id}
         r = requests.get(environ['youtube_dl'], params=params)
@@ -603,9 +603,13 @@ def get_url_and_title_youtube_dl(id):
                 info = ydl.extract_info(yt_url, download=False)
         except HTTPError as e:
             logger.info('HTTPError code '+str(e.code))
+            if retry:
+                return get_url_and_title_pytube(id, False)
             return False,False
         except:
             logger.info('Other ytdl error')
+            if retry:
+                return get_url_and_title_pytube(id, False)
             return False,False
     if info['is_live'] == True:
         video_or_audio[1] = 'video'
@@ -619,7 +623,7 @@ def get_url_and_title_youtube_dl(id):
     logger.info('Unable to get URL for '+id)
     return None, None
 
-def get_url_and_title_pytube(id):
+def get_url_and_title_pytube(id, retry=True):
     if 'pytube' in environ and 'http' in environ['pytube']:
         return get_url_and_title_pytube_server(id)
     from pytube import YouTube
@@ -635,6 +639,8 @@ def get_url_and_title_pytube(id):
         return get_live_video_url_and_title(id)
     except HTTPError as e:
         logger.info('HTTPError code '+str(e.code))
+        if retry:
+            return get_url_and_title_youtube_dl(id, False)
         return False,False
     except:
         logger.info('Unable to get URL for '+id)
