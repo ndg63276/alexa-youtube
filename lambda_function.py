@@ -234,6 +234,7 @@ def lambda_handler(event, context):
 # --------------- Events ------------------
 
 def on_intent(event):
+    logger.info(event)
     intent_name = event['request']['intent']['name']
     # Dispatch to your skill's intent handlers
     search_intents = ["SearchIntent", "PlayOneIntent", "PlaylistIntent", "SearchMyPlaylistsIntent", "ShuffleMyPlaylistsIntent", "ChannelIntent", "ShuffleIntent", "ShufflePlaylistIntent", "ShuffleChannelIntent", "PlayMyLatestVideoIntent"]
@@ -586,7 +587,7 @@ def get_url_and_title(id):
         return get_url_and_title_pytube(id)
 
 def get_url_and_title_youtube_dl(id):
-    if 'http' in environ['youtube_dl']:
+    if 'youtube_dl' in environ and 'http' in environ['youtube_dl']:
         params = {'id': id}
         r = requests.get(environ['youtube_dl'], params=params)
         info = r.json()
@@ -619,6 +620,8 @@ def get_url_and_title_youtube_dl(id):
     return None, None
 
 def get_url_and_title_pytube(id):
+    if 'pytube' in environ and 'http' in environ['pytube']:
+        return get_url_and_title_pytube_server(id)
     from pytube import YouTube
     from pytube.exceptions import LiveStreamError
     proxy_list = {}
@@ -642,6 +645,18 @@ def get_url_and_title_pytube(id):
         first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
     logger.info(first_stream.url)
     return first_stream.url, yt.title
+
+def get_url_and_title_pytube_server(id):
+    params = {'id': id, 'video': video_or_audio[1]}
+    r = requests.get(environ['pytube'], params=params)
+    info = r.json()
+    if info['is_live'] == True:
+        logger.info(id+' is a live video')
+        return get_live_video_url_and_title(id)
+    if info['url'] is not None:
+        return info['url'], info['title']
+    logger.info('Unable to get URL for '+id)
+    return False, False
 
 def get_live_video_url_and_title(id):
     logger.info('Live video?')
