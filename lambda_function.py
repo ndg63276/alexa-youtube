@@ -601,16 +601,18 @@ def get_url_and_title_youtube_dl(id, retry=True):
             with youtube_dl.YoutubeDL(youtube_dl_properties) as ydl:
                 yt_url = 'http://www.youtube.com/watch?v='+id
                 info = ydl.extract_info(yt_url, download=False)
-        except HTTPError as e:
-            logger.info('HTTPError code '+str(e.code))
-            if retry:
-                return get_url_and_title_pytube(id, False)
-            return False,False
         except:
-            logger.info('Other ytdl error')
-            if retry:
+            logger.info('youtube_dl error')
+            if 'youtube_dl_error_mirror' in environ and 'http' in environ['youtube_dl_error_mirror']:
+                logger.info('Trying mirror: '+environ['youtube_dl_error_mirror'])
+                params = {'id': id}
+                r = requests.get(environ['youtube_dl_error_mirror'], params=params)
+                info = r.json()
+            elif retry:
+                logger.info('trying pytube')
                 return get_url_and_title_pytube(id, False)
-            return False,False
+            else:
+                return False,False
     if info['is_live'] == True:
         video_or_audio[1] = 'video'
         return info['url'], info['title']
