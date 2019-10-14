@@ -17,10 +17,10 @@ if [[ $patreon == "  " ]]; then
 	exit
 fi
 
-DEVELOPER_KEY=`$gitroot/test_functions/get_developer_key.sh`
+ENVIRONMENT_VARIABLES=`$gitroot/test_functions/get_environment_variables.sh`
 ROLE="arn:aws:iam::175548706300:role/lambda_basic_execution"
 
-environment="{ \"Variables\":{\"DEVELOPER_KEY\":\"$DEVELOPER_KEY\" } }"
+environment="{ \"Variables\": $ENVIRONMENT_VARIABLES }"
 tags="{\"PatreonAmount\":\"$patreonamount\",\"Patreon\":\"$patreon\" }"
 
 aws lambda --region $region create-function --function-name $name --runtime python2.7 --role $ROLE --handler lambda_function.lambda_handler --zip-file fileb://$gitroot/lambda_function.zip --timeout 10 --memory-size 512 --environment "$environment" --tags "$tags"
