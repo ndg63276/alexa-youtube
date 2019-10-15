@@ -5,7 +5,7 @@ from googleapiclient.errors import HttpError
 from urllib2 import HTTPError
 import logging
 from random import shuffle, randint
-from botocore.vendored import requests
+import requests
 import re
 from time import time
 import json
@@ -605,7 +605,7 @@ def get_url_and_title_youtube_dl(id, retry=True):
             logger.info('youtube_dl error')
             if 'youtube_dl_error_mirror' in environ and 'http' in environ['youtube_dl_error_mirror']:
                 logger.info('Trying mirror: '+environ['youtube_dl_error_mirror'])
-                params = {'id': id}
+                params = {'id': id, 'function_name': environ['AWS_LAMBDA_FUNCTION_NAME']}
                 r = requests.get(environ['youtube_dl_error_mirror'], params=params)
                 info = r.json()
             elif retry:
