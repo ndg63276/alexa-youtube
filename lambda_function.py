@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from os import environ
-from googleapiclient.errors import HttpError
-from urllib2 import HTTPError
+try:
+    from urllib.error import HTTPError # python3
+except:
+    from urllib2 import HTTPError # python2
 import logging
 from random import shuffle, randint
 import requests
@@ -637,7 +639,7 @@ def get_url_and_title_pytube(id, retry=True):
     else:
         first_stream = yt.streams.filter(only_audio=True, subtype='mp4').first()
     logger.info(first_stream.url)
-    return first_stream.url, yt.title
+    return first_stream.url, first_stream.player_config_args['player_response']['videoDetails']['title']
 
 def get_url_and_title_pytube_server(id):
     params = {'id': id, 'video': video_or_audio[1]}

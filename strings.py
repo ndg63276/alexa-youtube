@@ -1,5 +1,18 @@
 # -*- coding: utf-8 -*-
 
+# To run as an Alexa hosted skill:
+# 1. Uncomment lines 9-14 below
+# 2. Insert your Google developer key in line 10
+# 3. Make sure to add this strings.py file to the lambda folder
+# 4. Make sure to add pytube to the requirements.txt file in the lambda folder
+
+#environ = {
+#    "DEVELOPER_KEY": "insert_your_key_here",
+#    "youtube_dl": "false",
+#    "youtube_dl_error_mirror": "",
+#    "AWS_LAMBDA_FUNCTION_NAME": ""
+#}
+
 locales = {
     'en-GB': 'Europe/London',
     'en-US': 'America/New York',
