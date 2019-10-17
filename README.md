@@ -6,7 +6,7 @@ __Last update: 16 Oct 2019__
 ## Skill is now full
 * This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
 * Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
-* So I am now asking for donations through https://www.patreon.com/alexayoutube. For **$3/month**, I will give you a unique ARN which you can use to run this skill.
+* So I am now asking for donations through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For **$3/month**, I will give you a unique ARN which you can use to run this skill.
 
 ## Features
 * Play audio from YouTube videos
@@ -30,7 +30,7 @@ __Last update: 16 Oct 2019__
 7. Skip forward or back in the video by "Alexa, ask YouTube to skip forward/backward to/by one minute and one second"
 8. Just play one video by "Alexa, ask YouTube to play one video Gangnam Style". You can switch in and out of "autoplay" mode by "Alexa, ask YouTube to turn on/off autoplay."
 9. Find the current time in the video by "Alexa, ask YouTube what is the timestamp?"
-10. If you want to play your own playlists, and the search feature finds other people's, if you follow the Advanced instructions below you can specify your own channel id.
+10. If you want to play your own playlists, and the search feature finds other people's, let me know your channel id, or add the environment variable MY_CHANNEL_ID.
 11. Play related videos, by "Alexa, ask YouTube to play more like this". This is a YouTube feature, don't ask me why it plays what it plays.
 
 Command 7 doesn't seem to work on Generation 1 Echo's, no idea why.
@@ -54,7 +54,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
 9. Click "Save Model" at the top.
 10. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
-11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put the ARN. You can get an ARN by sponsoring me on https://www.patreon.com/alexayoutube. (If you would like to test the skill before sponsoring me, put arn:aws:lambda:eu-west-1:175548706300:function:YouTubeTest - but this will only play Gangnam Style.)
+11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put the ARN. You can get an ARN by sponsoring me on https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. (If you would like to test the skill before sponsoring me, put arn:aws:lambda:eu-west-1:175548706300:function:YouTubeTest - but this will only play Gangnam Style.)
 12. Click "Save Endpoints"
 13. Click "Permissions", at the very bottom on the left.
 14. Turn on "Lists Read" and "Lists Write".
