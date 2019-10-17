@@ -6,14 +6,12 @@ try:
 except:
     from urllib2 import HTTPError # python2
 import logging
-from random import shuffle, randint
+from random import shuffle, randrange
 import requests
 import re
-from time import time
 import json
 from datetime import datetime
 from dateutil import tz
-logging.getLogger('googleapiclient.discovery_cache').setLevel(logging.ERROR)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 from strings import *
@@ -700,7 +698,7 @@ def next_playlist(event):
 def search(event):
     session = event['session']
     intent = event['request']['intent']
-    startTime = time()
+    startTime = datetime.now()
     query = ''
     if 'slots' in intent and 'query' in intent['slots']:
         query = intent['slots']['query']['value']
@@ -748,7 +746,7 @@ def search(event):
         return build_response(build_cardless_speechlet_response(strings['novideo'], None, True))
     next_url = None
     for i,id in enumerate(videos):
-        if playlist_channel_video != strings['video'] and time() - startTime > 8:
+        if playlist_channel_video != strings['video'] and (datetime.now() - startTime).total_seconds() > 8:
             return build_response(build_cardless_speechlet_response(playlist_channel_video+" "+playlist_title+" " + strings['notworked'], None, False), sessionAttributes)
         playlist['v'+str(i)]=id
         if next_url is None:
@@ -1020,7 +1018,7 @@ def get_next_url_and_token(current_token, skip):
     while next_url is None:
         next_playing = next_playing + skip
         if shuffle_mode and skip != 0:
-            next_playing = randint(0,number_of_videos-1)
+            next_playing = randrange(number_of_videos)
         if next_playing < 0:
             if loop_mode:
                 next_playing = number_of_videos - 1
