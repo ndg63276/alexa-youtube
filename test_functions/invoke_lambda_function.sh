@@ -3,34 +3,36 @@
 gitroot=`git rev-parse --show-toplevel`
 
 if [[ $# == 0 ]]; then
-  echo "No cfg file specified"
+  echo "No cfg or arn file specified"
   exit
 fi
 
-. $1
-
 function invoke {
-  intent=$1
-  eval "declare -A arr="${2#*=}
-  region=${arr[region]}
-  arn_no=${arr[arn]}
-  name=${arr[name]}
-  arn=arn:aws:lambda:$region:$arn_no:function:$name
-  echo $arn $intent $region
-  aws lambda --region $region invoke --function-name $arn --payload fileb://$gitroot/test_intents/$intent /dev/null | grep StatusCode
+	intent=$1
+	arn=$2
+	region=`echo $arn | cut -d: -f4`
+	echo
+	echo $intent
+	aws lambda --region $region invoke --function-name $arn --payload fileb://$gitroot/test_intents/$intent /tmp/output.txt | grep StatusCode
+	cat /tmp/output.txt
+	echo
 }
 
 intents=`ls $gitroot/test_intents/`
 
 for intent in $intents; do
-  if [[ ${config1[type]} != "" ]]; then invoke $intent "$(declare -p config1)"; fi
-  if [[ ${config2[type]} != "" ]]; then invoke $intent "$(declare -p config2)"; fi
-  if [[ ${config3[type]} != "" ]]; then invoke $intent "$(declare -p config3)"; fi
-  if [[ ${config4[type]} != "" ]]; then invoke $intent "$(declare -p config4)"; fi
-  if [[ ${config5[type]} != "" ]]; then invoke $intent "$(declare -p config5)"; fi
-  if [[ ${config6[type]} != "" ]]; then invoke $intent "$(declare -p config6)"; fi
-  if [[ ${config7[type]} != "" ]]; then invoke $intent "$(declare -p config7)"; fi
-  if [[ ${config8[type]} != "" ]]; then invoke $intent "$(declare -p config8)"; fi
-  if [[ ${config9[type]} != "" ]]; then invoke $intent "$(declare -p config9)"; fi
-  if [[ ${config10[type]} != "" ]]; then invoke $intent "$(declare -p config10)"; fi
+	if [[ $1 == arn* ]]; then
+		invoke $intent $1
+	else
+		. $1
+		if [[ ${config1[type]} != "" ]]; then
+			region=${config1[region]}
+			arn_no=${config1[arn]}
+			name=${config1[name]}
+			arn=arn:aws:lambda:$region:$arn_no:function:$name
+			invoke $intent $arn
+		fi
+	fi
 done
+
+rm /tmp/output.txt 2>/dev/null
