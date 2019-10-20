@@ -476,7 +476,25 @@
                         "Atrasa {hours} hora {minutes} minutos y {seconds} segundos",
                         "Atrasa {hours} horas {minutes} minuto y {seconds} segundo",
                         "Atrasa {hours} horas {minutes} minuto y {seconds} segundos",
-                        "Atrasa {hours} horas {minutes} minutos y {seconds} segundos"
+                        "Atrasa {hours} horas {minutes} minutos y {seconds} segundos",
+                        "Vuelve {minutes} {seconds}",
+                        "Vuelve {hours} {minutes} {seconds}",
+                        "Vuelve {hours} hora",
+                        "Vuelve {hours} horas",
+                        "Vuelve {minutes} minuto",
+                        "Vuelve {minutes} minutos",
+                        "Vuelve {seconds} segundo",
+                        "Vuelve {seconds} segundos",
+                        "Vuelve {hours} hora y {minutes} minuto",
+                        "Vuelve {hours} hora y {minutes} minutos",
+                        "Vuelve {hours} horas y {minutes} minuto",
+                        "Vuelve {hours} horas y {minutes} minutos",
+                        "Vuelve {hours} hora {minutes} minuto y {seconds} segundo",
+                        "Vuelve {hours} hora {minutes} minuto y {seconds} segundos",
+                        "Vuelve {hours} hora {minutes} minutos y {seconds} segundos",
+                        "Vuelve {hours} horas {minutes} minuto y {seconds} segundo",
+                        "Vuelve {hours} horas {minutes} minuto y {seconds} segundos",
+                        "Vuelve {hours} horas {minutes} minutos y {seconds} segundos"
                     ]
                 },                
                 {
