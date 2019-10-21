@@ -25,7 +25,8 @@ locales = {
     'it-IT': 'Europe/Rome',
     'es-ES': 'Europe/Madrid',
     'es-MX': 'America/Mexico City',
-    'ja-JP': 'Asia/Tokyo'
+    'ja-JP': 'Asia/Tokyo',
+    'pt-BR': 'Brasil/Sao Paulo'
 }
 
 strings_en = {
@@ -193,4 +194,34 @@ strings_ja = {
 'minute':"分",
 'seconds':"秒",
 'second':"秒",
+}
+strings_pt = {
+'welcome1':"Bem vindo ao Youtube. Diga, por exemplo, toque um vídeo dos Beatles.",
+'welcome2':"Ou você pode dizer, toque músicas de Michael Jackson.",
+'help':"Por exemplo, diga, toque vídeos de Fall Out Boy",
+'illegal':"Você não pode fazer isso com essa skill.",
+'gonewrong':"Desculpe, algo deu errado",
+'playlist':"A playlist",
+'channel':"O canal",
+'video':"O vídeo",
+'notworked':"não funcionou, devo tentar o próximo?",
+'playing':"Tocando",
+'pausing':"Pausando",
+'nomoreitems':"Existem mais itens na playlist.",
+'resuming':"Retomando",
+'noresume':"Não consegui voltar a tocar.",
+'novideo':"Não consegui tocar o vídeo.",
+'notitle':"Não encontrei o nome do vídeo atual.",
+'nowplaying':"Tocando agora",
+'nothingplaying':"Nada está tocando atualmente.",
+'sorryskipby':"Desculpe, não ouvi quanto tenho que pular",
+'sorryskipto':"Desculpe, não entendi para onde tenho que pular",
+'ok':"OK",
+'currentposition':"A posição atual é",
+'hours':"horas",
+'hour':"hora",
+'minutes':"minutos",
+'minute':"minuto",
+'seconds':"segundos",
+'second':"segundo",
 }
