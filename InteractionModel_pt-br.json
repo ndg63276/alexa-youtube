@@ -1,0 +1,495 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "youtube",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "SearchIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Toque uma música de {query}",
+                        "Toque músicas de {query}",
+                        "Toque vídeos de {query}",
+                        "Procure por {query}",
+                        "Toque {query}"
+                    ]
+                },
+                {
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Toque a música {query}",
+                        "Toque o vídeo {query}",
+                        "Toque a faixa {query}",
+                        "Toque uma música {query}",
+                        "Toque um vídeo {query}",
+                        "Toque uma faixa {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Misturar {query}",
+                        "Músicas aleatórias de {query}",
+                        "Música aleatória de {query}",
+                        "Vídeos aleatórios de {query}"
+                    ]
+                },
+                {
+                    "name": "PlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Iniciar playlist {query}",
+                        "Escutar a playlist {query}",
+                        "Tocar playlist {query}"
+                    ]
+                },
+                {
+                    "name": "ShufflePlaylistIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Shuffle playlist {query}"
+                    ]
+                },
+                {
+                    "name": "SearchMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Iniciar minha playlist {query}",
+                        "Escutar minha playlist {query}",
+                        "Tocar minha playlist {query}"
+                    ]
+                },
+                {
+                    "name": "NextPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Próxima playlist"
+                    ]
+                },
+                {
+                    "name": "ShuffleMyPlaylistsIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Toque minha playlist de forma aleatória {query}"
+                    ]
+                },
+                {
+                    "name": "PlayMyLatestVideoIntent",
+                    "slots": [],
+                    "samples": [
+                        "Toque meu último video"
+                    ]
+                },
+                {
+                    "name": "ChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Escute o canal {query}",
+                        "Iniciar o canal {query} ",
+                        "Tocar canal {query}"
+                    ]
+                },
+                {
+                    "name": "ShuffleChannelIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Tocar canal de forma aleatória {query}"
+                    ]
+                },
+                {
+                    "name": "NowPlayingIntent",
+                    "slots": [],
+                    "samples": [
+                        "Quem é esse",
+                        "Que vídeo esta tocando",
+                        "Que música está tocando",
+                        "O que é isso",
+                        "O que está tocando"
+                    ]
+                },
+                {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "Reproduza mais vídeos como este",
+                        "Reproduza vídeos como este",
+                        "Reproduza vídeos similares"
+                    ]
+                },
+                {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "Ligue o autoplay",
+                        "Ligar o autoplay",
+                        "Trocar para o autoplay"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "Desligar autoplay",
+                        "Desligar o autoplay",
+                        "This este vídeo"
+                    ]
+                },
+                {
+                    "name": "SayTimestampIntent",
+                    "slots": [],
+                    "samples": [
+                        "O quão longe estamos neste vídeo",
+                        "Qual é o tempo atual",
+                        "Qual é o tempo",
+                        "Qual é a parte do vídeo"
+                    ]
+                },
+                {
+                    "name": "SkipToIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Ir para {hours} horas",
+                        "Ir para {hours} hora",
+                        "Ir para {hours} {minutes} {seconds}",
+                        "Ir para {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Ir para {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Ir para {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Ir para {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Ir para {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Ir para {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Ir para {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Ir para {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Ir para {hours} horas {minutes} minutos",
+                        "Ir para {hours} hora {minutes} minutos",
+                        "Ir para {hours} horas {minutes} minuto",
+                        "Ir para {hours} hora {minutes} minuto",
+                        "Ir para {minutes} {seconds}",
+                        "Ir para {minutes} minutos e {seconds} segundos",
+                        "Ir para {minutes} minuto e {seconds} segundos",
+                        "Ir para {minutes} minutos e {seconds} segundo",
+                        "Ir para {minutes} minuto e {seconds} segundo",
+                        "Ir para {minutes} minutos",
+                        "Ir para {minutes} minuto",
+                        "Ir para {seconds} segundos",
+                        "Ir para {seconds} segundo",
+                        "Pular para {hours} horas",
+                        "Pular para {hours} hora",
+                        "Pular para {hours} {minutes} {seconds}",
+                        "Pular para {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Pular para {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Pular para {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Pular para {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Pular para {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Pular para {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Pular para {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Pular para {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Pular para {hours} horas {minutes} minutos",
+                        "Pular para {hours} hora {minutes} minutos",
+                        "Pular para {hours} horas {minutes} minuto",
+                        "Pular para {hours} hora {minutes} minuto",
+                        "Pular para {minutes} {seconds}",
+                        "Pular para {minutes} minutos e {seconds} segundos",
+                        "Pular para {minutes} minuto e {seconds} segundos",
+                        "Pular para {minutes} minutos e {seconds} segundo",
+                        "Pular para {minutes} minuto e {seconds} segundo",
+                        "Pular para {minutes} minutos",
+                        "Pular para {minutes} minuto",
+                        "Pular para {seconds} segundos",
+                        "Pular para {seconds} segundo",
+                        "Vá para {hours} horas",
+                        "Vá para {hours} hora",
+                        "Vá para {hours} {minutes} {seconds}",
+                        "Vá para {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Vá para {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Vá para {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Vá para {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Vá para {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Vá para {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Vá para {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Vá para {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Vá para {hours} horas {minutes} minutos",
+                        "Vá para {hours} hora {minutes} minutos",
+                        "Vá para {hours} horas {minutes} minuto",
+                        "Vá para {hours} hora {minutes} minuto",
+                        "Vá para {minutes} {seconds}",
+                        "Vá para {minutes} minutos e {seconds} segundos",
+                        "Vá para {minutes} minuto e {seconds} segundos",
+                        "Vá para {minutes} minutos e {seconds} segundo",
+                        "Vá para {minutes} minuto e {seconds} segundo",
+                        "Vá para {minutes} minutos",
+                        "Vá para {minutes} minuto",
+                        "Vá para {seconds} segundos",
+                        "Vá para {seconds} segundo",
+                        "Avance para {hours} horas",
+                        "Avance para {hours} hora",
+                        "Avance para {hours} {minutes} {seconds}",
+                        "Avance para {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Avance para {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Avance para {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Avance para {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Avance para {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Avance para {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Avance para {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Avance para {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Avance para {hours} horas {minutes} minutos",
+                        "Avance para {hours} hora {minutes} minutos",
+                        "Avance para {hours} horas {minutes} minuto",
+                        "Avance para {hours} hora {minutes} minuto",
+                        "Avance para {minutes} {seconds}",
+                        "Avance para {minutes} minutos e {seconds} segundos",
+                        "Avance para {minutes} minuto e {seconds} segundos",
+                        "Avance para {minutes} minutos e {seconds} segundo",
+                        "Avance para {minutes} minuto e {seconds} segundo",
+                        "Avance para {minutes} minutos",
+                        "Avance para {minutes} minuto",
+                        "Avance para {seconds} segundos",
+                        "Avance para {seconds} segundo",
+                        "Voltar para {hours} horas",
+                        "Voltar para {hours} hora",
+                        "Voltar para {hours} {minutes} {seconds}",
+                        "Voltar para {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Voltar para {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Voltar para {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Voltar para {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Voltar para {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Voltar para {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Voltar para {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Voltar para {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Voltar para {hours} horas {minutes} minutos",
+                        "Voltar para {hours} hora {minutes} minutos",
+                        "Voltar para {hours} horas {minutes} minuto",
+                        "Voltar para {hours} hora {minutes} minuto",
+                        "Voltar para {minutes} {seconds}",
+                        "Voltar para {minutes} minutos e {seconds} segundos",
+                        "Voltar para {minutes} minuto e {seconds} segundos",
+                        "Voltar para {minutes} minutos e {seconds} segundo",
+                        "Voltar para {minutes} minuto e {seconds} segundo",
+                        "Voltar para {minutes} minutos",
+                        "Voltar para {minutes} minuto",
+                        "Voltar para {seconds} segundos",
+                        "Voltar para {seconds} segundo"
+                    ]
+                },
+                {
+                    "name": "SkipForwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Avance {hours} horas",
+                        "Avance {hours} hora",
+                        "Avance {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Avance {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Avance {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Avance {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Avance {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Avance {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Avance {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Avance {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Avance {hours} horas {minutes} minutos",
+                        "Avance {hours} horas {minutes} minuto",
+                        "Avance {hours} hora {minutes} minuto",
+                        "Avance {hours} hora {minutes} minutos",
+                        "Avance {minutes} minutos e {seconds} segundos",
+                        "Avance {minutes} minutos e {seconds} segundo",
+                        "Avance {minutes} minuto e {seconds} segundos",
+                        "Avance {minutes} minuto e {seconds} segundo",
+                        "Avance {minutes} minutos",
+                        "Avance {seconds} segundos",
+                        "Avance {minutes} minuto",
+                        "Avance {seconds} segundo",
+                        "Pule {hours} horas",
+                        "Pule {hours} hora",
+                        "Pule {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Pule {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Pule {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Pule {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Pule {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Pule {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Pule {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Pule {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Pule {hours} horas {minutes} minutos",
+                        "Pule {hours} horas {minutes} minuto",
+                        "Pule {hours} hora {minutes} minuto",
+                        "Pule {hours} hora {minutes} minutos",
+                        "Pule {minutes} minutos e {seconds} segundos",
+                        "Pule {minutes} minutos e {seconds} segundo",
+                        "Pule {minutes} minuto e {seconds} segundos",
+                        "Pule {minutes} minuto e {seconds} segundo",
+                        "Pule {minutes} minutos",
+                        "Pule {seconds} segundos",
+                        "Pule {minutes} minuto",
+                        "Pule {seconds} segundo"
+                    ]
+                },
+                {
+                    "name": "SkipBackwardIntent",
+                    "slots": [
+                        {
+                            "name": "minutes",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "seconds",
+                            "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "hours",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Volte {hours} horas",
+                        "Volte {hours} hora",
+                        "Volte {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Volte {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Volte {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Volte {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Volte {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Volte {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Volte {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Volte {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Volte {hours} horas {minutes} minutos",
+                        "Volte {hours} horas {minutes} minuto",
+                        "Volte {hours} hora {minutes} minutos",
+                        "Volte {hours} hora {minutes} minuto",
+                        "Volte {minutes} minutos e {seconds} segundos",
+                        "Volte {minutes} minutos e {seconds} segundo",
+                        "Volte {minutes} minuto e {seconds} segundos",
+                        "Volte {minutes} minuto e {seconds} segundo",
+                        "Volte {minutes} minutos",
+                        "Volte {seconds} segundos",
+                        "Volte {minutes} minuto",
+                        "Volte {seconds} segundo",
+                        "Retroceda {hours} horas",
+                        "Retroceda {hours} hora",
+                        "Retroceda {hours} horas {minutes} minutos e {seconds} segundos",
+                        "Retroceda {hours} horas {minutes} minuto e {seconds} segundos",
+                        "Retroceda {hours} hora {minutes} minutos e {seconds} segundos",
+                        "Retroceda {hours} hora {minutes} minuto e {seconds} segundos",
+                        "Retroceda {hours} horas {minutes} minutos e {seconds} segundo",
+                        "Retroceda {hours} horas {minutes} minuto e {seconds} segundo",
+                        "Retroceda {hours} hora {minutes} minutos e {seconds} segundo",
+                        "Retroceda {hours} hora {minutes} minuto e {seconds} segundo",
+                        "Retroceda {hours} horas {minutes} minutos",
+                        "Retroceda {hours} horas {minutes} minuto",
+                        "Retroceda {hours} hora {minutes} minutos",
+                        "Retroceda {hours} hora {minutes} minuto",
+                        "Retroceda {minutes} minutos e {seconds} segundos",
+                        "Retroceda {minutes} minutos e {seconds} segundo",
+                        "Retroceda {minutes} minuto e {seconds} segundos",
+                        "Retroceda {minutes} minuto e {seconds} segundo",
+                        "Retroceda {minutes} minutos",
+                        "Retroceda {seconds} segundos",
+                        "Retroceda {minutes} minuto",
+                        "Retroceda {seconds} segundo"
+                    ]
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": []
+        }
+    }
+}
