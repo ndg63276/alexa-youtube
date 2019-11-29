@@ -40,6 +40,19 @@
                     ]
                 },
                 {
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Spiele das Lied {query}",
+                        "Spiele das Video {query}"
+                    ]
+                },
+                {
                     "name": "ShuffleIntent",
                     "slots": [
                         {
@@ -114,6 +127,13 @@
                     ]
                 },
                 {
+                    "name": "PlayMyLatestVideoIntent",
+                    "slots": [],
+                    "samples": [
+                        "Spiele mein neuestes Video"
+                    ]
+                },
+                {
                     "name": "ChannelIntent",
                     "slots": [
                         {
@@ -150,7 +170,31 @@
                         "Was spielt"
                     ]
                 },
-        {
+                {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "Spiele mehr wie das",
+                        "Spiele videos wie das",
+                        "Spiele ähnliche videos"
+                    ]
+                },
+                {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "Automatisches abspielen einschalten"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "Automatisches abspielen ausschalten",
+                        "Spiele dieses eine Video"
+                    ]
+                },
+                {
                     "name": "SayTimestampIntent",
                     "slots": [],
                     "samples": [
@@ -158,7 +202,7 @@
                         "Was ist die aktuelle Position",
                         "Aktuelle Zeit",
                         "Aktuelle Position",
-            "Zeitstempel"
+                        "Zeitstempel"
                     ]
                 },
                 {
