@@ -3,6 +3,8 @@
 tag=$1
 new_key=$2
 new_val=$3
+shift 3
+regions=$@
 
 gitroot=`git rev-parse --show-toplevel`
 
@@ -15,7 +17,7 @@ function update {
 	aws lambda --region $region update-function-configuration --function-name $arn --environment "$new_environment"
 }
 
-arns=`$gitroot/test_functions/list_lambda_functions.sh $tag`
+arns=`$gitroot/test_functions/list_lambda_functions.sh $tag $regions`
 for arn in $arns; do
 	update $arn
 done

@@ -17,7 +17,7 @@ if [[ $patreon == "  " ]]; then
 	exit
 fi
 
-ENVIRONMENT_VARIABLES=`$gitroot/test_functions/get_environment_variables.sh`
+ENVIRONMENT_VARIABLES=`$gitroot/test_functions/get_environment_variables.sh $region`
 ROLE="arn:aws:iam::175548706300:role/lambda_basic_execution"
 
 environment="{ \"Variables\": $ENVIRONMENT_VARIABLES }"
