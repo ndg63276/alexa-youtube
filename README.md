@@ -3,10 +3,10 @@
 __Last update: 15 Dec 2019__
 
 
-## Skill is now full
-* This skill has become so popular, I am hitting the limits on the free AWS lambda tier, which is 800000 seconds of CPU time per month!
-* Unfortunately this means I am getting charged by Amazon, so I need some way to recoup my costs.
-* So I am now asking for donations through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For **$3/month**, I will give you a unique ARN which you can use to run this skill. Email me at ndg63276@gmail.com to receive your ARN.
+## Sponsorship
+* First things first, I am asking for **$3/month** to use this skill. You can test it for free, but it will only ever play Gangnam Style.
+* You can donate through https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. For just **$3/month**, I will give you a unique ARN which you can use to run this skill.
+* Email me at ndg63276@gmail.com to receive your ARN. Let me know what country you are in, and I will make sure the server is close to you, which makes it respond slightly faster.
 
 ## Features
 * Play audio from YouTube videos
@@ -30,15 +30,15 @@ __Last update: 15 Dec 2019__
 7. Skip forward or back in the video by "Alexa, ask YouTube to skip forward/backward to/by one minute and one second"
 8. Just play one video by "Alexa, ask YouTube to play one video Gangnam Style". You can switch in and out of "autoplay" mode by "Alexa, ask YouTube to turn on/off autoplay."
 9. Find the current time in the video by "Alexa, ask YouTube what is the timestamp?"
-10. If you want to play your own playlists, and the search feature finds other people's, let me know your channel id, or add the environment variable MY_CHANNEL_ID.
+10. If you want to play your own playlists, and the search feature finds other people's, send me a link to your youtube page.
 11. Play related videos, by "Alexa, ask YouTube to play more like this". This is a YouTube feature, don't ask me why it plays what it plays.
 
 Command 7 doesn't seem to work on Generation 1 Echo's, no idea why.
-Commands 8, 9, 10 and 11 are only available in English at the moment.
+Commands 8, 9, 10 and 11 are only available in English at the moment. Need them in your language? Drop me an email and we can figure out the translation.
 
 ## Known issues
 
-1. Some videos just fail, it's not clear why, they work locally. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
+1. Some videos just fail, it's not clear why, they just do. The skill just moves to the next video on the playlist, but this can mean sometimes she announces a video that doesn't play.
 2. It appears this skill only works on Amazon Echo products, not on 3rd party products that support Alexa. If you get it to work on another device, please let me know.
 3. Live videos work on Gen 2 devices onwards, not on the original Gen 1 Echo.
 
@@ -51,7 +51,7 @@ Commands 8, 9, 10 and 11 are only available in English at the moment.
 5. **Important** Set the language to whatever your Echo device is set to. If you are not sure, go to the Alexa app, go to Settings, Device Settings, then click on your Echo device, and look under Language. If your Echo is set to English (UK), then the skill must be English (UK), other types of English will not work!
 6. Choose "Custom" as your model, and "Provision Your Own" as your method, then click "Create Skill". On the template page, choose "Start from scratch".
 7. On the left hand side, click "JSON Editor".
-8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json for French, Italian, German or Spanish)
+8. Delete everything in the text box, and copy in the text from https://raw.githubusercontent.com/ndg63276/alexa-youtube/master/InteractionModel_en.json, (or use InteractionModel_fr.json, InteractionModel_it.json, InteractionModel_de.json, InteractionModel_es.json, InteractionModel_ja.json or InteractionModel_pt-br.json for French, Italian, German, Spanish, Japanese or Brazilian Portuguese.)
 9. Click "Save Model" at the top.
 10. Click "Interfaces" in the menu on the left, and enable "Audio Player" and "Video App". Click "Save Interfaces".
 11. Click "Endpoint" in the menu on the left, and select "AWS Lambda ARN". Under "Default Region", put the ARN. You can get an ARN by sponsoring me on https://www.patreon.com/alexayoutube, or by clicking the **Sponsor** button at the top of this page. (If you would like to test the skill before sponsoring me, put arn:aws:lambda:eu-west-1:175548706300:function:YouTubeTest - but this will only play Gangnam Style.)
@@ -74,6 +74,17 @@ The list can be viewed in the Alexa app, click Lists from the main menu.
 
 That's it!
 
+## Favorites List
+If you enable list permissions as above, the skill will make a second list called "YouTube Favorites". You can use this to set shortcuts to videos you want often, or that are hard to find in search results.
+Look in the lists in the Alexa app, or at alexa.amazon.com, and you will see how it works. You add an item like:
+
+That song I like | https://youtu.be/ZyhrYis509A
+
+super awesome playlist | https://www.youtube.com/playlist?list=PL1EQjK4xc6hsirkCQq-MHfmUqGMkSgUTn
+
+Then you can just say "Alexa, ask YouTube to play that song I like" or "Alexa, ask YouTube to play super awesome playlist", and it shoulds play whatever you have linked. The | character separates the name from the link (on mobile it can be hard to find, on Android go to the second page of symbols).
+If you find a video/playlist/channel that you like, and want to add it to your favorites, you can just say "Alexa, ask YouTube to add this video/playlist/channel to my favorites". It will then appear in the list, but you probably want to edit the name, as it just takes the video title. (Adding to favorites is currently only in English, email me if you want to translate.)
+
 ## FAQ
 * **Alexa tells me she can't find any supported video skills, what does that mean?**
 Alexa is trying to be too clever, and not launching this skill. Start your request by saying 'Alexa, launch YouTube' and then when she says 'Welcome to YouTube', ask for the video you want.
@@ -82,8 +93,10 @@ Make sure to follow step 19 above, enabling Testing for Development.
 * **She still says she can't find any video skills!**
 Try using a different word to start the skill. In English, say "Alexa, launch YouTube". In German, say "Alexa, öffne YouTube". In Italian, say "Alexa, avvia YouTube". In Spanish, say "Alexa, abrir YouTube".
 * **I am getting another issue, can you fix it?**
-Hopefully. Create an issue on github, with the exact wording of what you ask Alexa, so I can try and reproduce it.
+Hopefully, drop me an email!
 * **If I try and test in the Developer Console, it says 'Unsupported Directive. AudioPlayer is currently an unsupported namespace. Check the device log for more information.'**
 That is normal, the Developer Console doesn't play audio. You just need to enable testing through the Developer Console, then you can use the skill through your Alexa device.
 * **Why don't more videos work as video?**
 Alexa doesn't provide any ability to enqueue videos, so you only get one video, then it stops. So it only plays videos if you ask for one specific video, or if it is a live video.
+* **Didn't the code used to be freely available?**
+Yes, it did. Unfortunately people started stealing my code and taking credit for it, and asking for donations, so now the code is private.
