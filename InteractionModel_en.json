@@ -241,6 +241,16 @@
                     ]
                 },
                 {
+                    "name": "AlexaPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "play the requests playlist",
+                        "play the alexa playlist",
+                        "play my requests playlist",
+                        "play my alexa playlist"
+                    ]
+                },
+                {
                     "name": "SkipToIntent",
                     "slots": [
                         {
