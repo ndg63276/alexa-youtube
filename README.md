@@ -1,7 +1,6 @@
 # alexa-youtube
 ## Unofficial YouTube skill for Alexa
-__Last update: 27 Dec 2019__
-
+__Last update: 24 Jan 2020__
 
 ## Sponsorship
 * First things first, I am asking for **$3/month** to use this skill. You can test it for free, but it will only ever play Gangnam Style.
@@ -16,7 +15,7 @@ __Last update: 27 Dec 2019__
 ## Launching
 * In English, say "Alexa, launch YouTube". 
 * In German, say "Alexa, öffne YouTube". 
-* In Italian, say "Alexa, avvia YouTube".
+* In Italian, say "Alexa, apri YouTube".
 * In Spanish, say "Alexa, abrir YouTube".
 
 ## Skill Commands
