@@ -125,6 +125,55 @@
                     ]
                 },
                 {
+                    "name": "PlayOneIntent",
+                    "slots": [
+                        {
+                            "name": "query",
+                            "type": "AMAZON.SearchQuery"
+                        }
+                    ],
+                    "samples": [
+                        "Fammi sentire la canzone {query}",
+                        "Fammi ascoltare la canzone {query}",
+                        "Riproduci la canzone {query}",
+                        "Metti la canzone {query}",
+                        "Suona la canzone {query}",
+                        "Mostrami il video {query}",
+                        "Fammi vedere il video {query}",
+                        "Riproduci il video {query}",
+                        "Metti il video {query}",
+                        "Fammi sentire il pezzo {query}",
+                        "Fammi ascoltare il pezzo {query}",
+                        "Riproduci il pezzo {query}",
+                        "Metti il pezzo {query}",
+                        "Suona il pezzo {query}",
+                        "Fammi sentire il brano {query}",
+                        "Fammi ascoltare il brano {query}",
+                        "Riproduci il brano {query}",
+                        "Metti il brano {query}",
+                        "Suona il brano {query}",
+                        "Fammi sentire una canzone {query}",
+                        "Fammi ascoltare una canzone {query}",
+                        "Riproduci una canzone {query}",
+                        "Metti una canzone {query}",
+                        "Suona una canzone {query}",
+                        "Mostrami un video {query}",
+                        "Fammi vedere un video {query}",
+                        "Riproduci un video {query}",
+                        "Metti un video {query}",
+                        "Fammi sentire un pezzo {query}",
+                        "Fammi ascoltare un pezzo {query}",
+                        "Riproduci un pezzo {query}",
+                        "Metti un pezzo {query}",
+                        "Suona un pezzo {query}",
+                        "Fammi sentire un brano {query}",
+                        "Fammi ascoltare un brano {query}",
+                        "Riproduci un brano {query}",
+                        "Metti un brano {query}",
+                        "Suona un brano {query}"
+                    ]
+                },
+                {
                     "name": "ShuffleIntent",
                     "slots": [
                         {
