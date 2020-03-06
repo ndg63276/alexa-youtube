@@ -17,6 +17,7 @@ __Last update: 24 Jan 2020__
 * In German, say "Alexa, öffne YouTube". 
 * In Italian, say "Alexa, apri YouTube".
 * In Spanish, say "Alexa, abrir YouTube".
+* In French, say "Alexa, ouvre YouTube".
 
 ## Skill Commands
 
