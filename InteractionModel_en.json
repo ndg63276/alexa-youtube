@@ -682,7 +682,7 @@
                     "samples": []
                 },
                 {
-                    "name": "SkipTracksIntent",
+                    "name": "SkipTracksForwardIntent",
                     "slots": [
                         {
                             "name": "tracks",
@@ -690,7 +690,23 @@
                         }
                     ],
                     "samples": [
-                        "Skip {tracks} tracks"
+                        "Skip {tracks} tracks",
+                        "Go forward {tracks} tracks",
+                        "Skip forward {tracks} tracks"
+                    ]
+                },
+                {
+                    "name": "SkipTracksBackwardIntent",
+                    "slots": [
+                        {
+                            "name": "tracks",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Skip {tracks} tracks back",
+                        "Go backward {tracks} tracks",
+                        "Skip backward {tracks} tracks"
                     ]
                 },
                 {
