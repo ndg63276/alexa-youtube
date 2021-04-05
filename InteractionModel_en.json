@@ -680,6 +680,22 @@
                 {
                     "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
+                },
+                {
+                    "name": "SkipTracksIntent",
+                    "slots": [
+                        {
+                            "name": "tracks",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Skip {tracks} tracks"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
                 }
             ],
             "types": []
