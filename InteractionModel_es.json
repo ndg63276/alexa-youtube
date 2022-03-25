@@ -314,6 +314,42 @@
                     ]
                 },
                 {
+                    "name": "AddVideoToFavoritesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Agregar a favoritos",
+                        "Agregala a favoritos",
+                        "Agrega este video a favoritos",
+                        "Agrega esta cancion a favoritos"
+                    ]
+                },
+                {
+                    "name": "AddChannelToFavoritesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Agrega a favoritos",
+                        "Agrega este canal a favoritos"
+                    ]
+                },
+                {
+                    "name": "AddPlaylistToFavoritesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Agrega esta playlist a favoritos",
+                        "Agrega playlist a favoritos"
+                    ]
+                },
+                {
+                    "name": "AlexaPlaylistIntent",
+                    "slots": [],
+                    "samples": [
+                        "Pon la playlist",
+                        "Pon la alexa playlist",
+                        "Pon mi playlist",
+                        "Pon mi alexa playlist"
+                    ]
+                },
+                {
                     "name": "SkipToIntent",
                     "slots": [
                         {
