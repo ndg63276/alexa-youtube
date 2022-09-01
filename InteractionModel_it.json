@@ -614,6 +614,93 @@
                     ]
                 },
                 {
+                    "name": "PlayMoreLikeThisIntent",
+                    "slots": [],
+                    "samples": [
+                        "Cerca altre canzoni come questa",
+                        "Cerca altre canzoni uguali a questa",
+                        "Cercare altre canzoni come questa",
+                        "Cercare altre canzoni uguali a questa",
+                        "Cerca altri video come questo",
+                        "Cerca altri video come questo",
+                        "Cercare altri video simili",
+                        "Cercare altri video come questo",
+                        "Riproduci video simili",
+                        "Cerca video simili",
+                        "Riprodurmi altri video simili",
+                        "Cercare altri video simili"
+                    ]
+                },
+                {
+                    "name": "AutoplayOnIntent",
+                    "slots": [],
+                    "samples": [
+                        "Avvia la riproduzione automatica",
+                        "Avviarmi la riproduzione automatica"
+                    ]
+                },
+                {
+                    "name": "AutoplayOffIntent",
+                    "slots": [],
+                    "samples": [
+                        "Spegni la riproduzione automatica",
+                        "Spegnere la riproduzione automatica",
+                        "Chiudi la riproduzione automatica"
+                    ]
+                },
+                {
+                    "name": "SayTimestampIntent",
+                    "slots": [],
+                    "samples": [
+                        "A che minuto siamo del video",
+                        "Che minuto è",
+                        "Dirmi a quale minuto siamo del video",
+                        "Dirmi il minuto del video"
+                    ]
+                },
+                {
+                    "name": "AddVideoToFavoritesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Aggiungi questo video ai preferiti",
+                        "Metti questo video nei miei preferiti",
+                        "Aggiungi questo video ai miei preferit",
+                        "Aggiungere questo video ai preferiti",
+                        "Mettere questo video nei miei preferiti",
+                        "Aggiungere questo video ai miei preferiti",
+                        "Aggiungi questa canzone ai preferiti",
+                        "Metti questa canzone nei miei prefeiti",
+                        "Aggiungi questa canzone ai miei preferiti",
+                        "Aggiungi questa musica ai preferiti",
+                        "Aggiungi questa musica ai miei preferiti",
+                        "Aggiungere questa canzone ai preferiti",
+                        "Mettere questa canzone nei miei preferiti",
+                        "Aggiungere questa canzone ai miei preferiti",
+                        "Aggiungere questa muaica ai preferiti",
+                        "Aggiungere questa musica ai miei preferiti"
+                    ]
+                },
+                {
+                    "name": "AddChannelToFavoritesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Aggiungi questo canale nei miei preferiti",
+                        "Metti questo canale nei miei preferiti",
+                        "Aggiungere questo canale nei miei prefeiti",
+                        "Mettere questo canale nei miei preferiti"
+                    ]
+                },
+                {
+                    "name": "AddPlaylistToFavoritesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Aggiungi questa playlist nei preferiti",
+                        "Metti questa playlist nei preferiti",
+                        "Aggiungere questa playlist nei preferiti",
+                        "Mettere questa playlist nei preferiti"
+                    ]
+                },
+                {
                     "name": "SkipToIntent",
                     "slots": [
                         {
@@ -806,6 +893,10 @@
                 },
                 {
                     "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
                     "samples": []
                 }
             ],
