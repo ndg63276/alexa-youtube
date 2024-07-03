@@ -10,7 +10,6 @@ __Last update: 22 Nov 2021__
 ## Features
 * Play audio from YouTube videos
 * Play video (if supported) on live videos or if you ask for just one specific video (command 8)
-* Makes a list of all the videos played, in the Alexa app
 
 ## Launching
 * In English, say "Alexa, launch YouTube". 
@@ -60,27 +59,6 @@ Commands 8, 9, 10 and 11 are only available in English at the moment. Need them 
 14. If you want to call the skill anything other than "youtube", change it here. Click "Save Model" if you change anything.
 15. Click "Build Model". This will take a minute, be patient. It should tell you if it succeeded.
 16. **Important:** At the top, click "Test". Where it says "Test is disabled for this skill", change the dropdown from "Off" to "Development". 
-
-## Keeping a list of what you have played
-This skill can make a list of the last 90 videos played, but you have to give it permissions in the Alexa app:
-1. Go to the Alexa app on your phone. In the menu, go to "Skills & Games", then "Your Skills", then scroll to the right and click on "Dev".
-2. Click on your YouTube skill. You should see a button marked "Settings", click that. 
-3. Then press on "Manage Settings", and tick the boxes marked "Lists Read Access" and "Lists Write Access", and press "Save Settings".
-4. Say "Alexa, launch YouTube", that will create the list, and from then on, videos will be added to it.
-The list can be viewed in the Alexa app, click Lists from the main menu.
-
-That's it!
-
-## Favorites List
-If you enable list permissions as above, the skill will make a second list called "YouTube Favorites". You can use this to set shortcuts to videos you want often, or that are hard to find in search results.
-Look in the lists in the Alexa app, or at alexa.amazon.com, and you will see how it works. You add an item like:
-
-That song I like | https://youtu.be/ZyhrYis509A
-
-super awesome playlist | https://www.youtube.com/playlist?list=PL1EQjK4xc6hsirkCQq-MHfmUqGMkSgUTn
-
-Then you can just say "Alexa, ask YouTube to play that song I like" or "Alexa, ask YouTube to play super awesome playlist", and it shoulds play whatever you have linked. The | character separates the name from the link (on mobile it can be hard to find, on Android go to the second page of symbols).
-If you find a video/playlist/channel that you like, and want to add it to your favorites, you can just say "Alexa, ask YouTube to add this video/playlist/channel to my favorites". It will then appear in the list, but you probably want to edit the name, as it just takes the video title. (Adding to favorites is currently only in English, email me if you want to translate.)
 
 ## FAQ
 * **Alexa tells me she can't find any supported video skills, what does that mean?**
