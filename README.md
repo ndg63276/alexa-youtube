@@ -1,6 +1,6 @@
 # alexa-youtube
 ## Unofficial YouTube skill for Alexa
-__Last update: 22 Nov 2021__
+__Update: 2 Dec 2024: This skill is no longer available due to changes in Youtube's API.__
 
 ## Sponsorship
 * First things first, I am asking for **$3/month** to use this skill. You can test it for free, but it will only ever play Gangnam Style.
